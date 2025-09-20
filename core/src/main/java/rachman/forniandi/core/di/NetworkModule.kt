@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.di
+package rachman.forniandi.core.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector

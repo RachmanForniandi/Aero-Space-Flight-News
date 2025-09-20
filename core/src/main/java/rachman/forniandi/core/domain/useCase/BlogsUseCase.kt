@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.domain.useCase
+package rachman.forniandi.core.domain.useCase
 
 import kotlinx.coroutines.flow.Flow
 import rachman.forniandi.aerospaceflightnews.data.network.RemoteResponse

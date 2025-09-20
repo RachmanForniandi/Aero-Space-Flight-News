@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.adapters.ContentAdapter
-import rachman.forniandi.aerospaceflightnews.data.network.RemoteResponse
+import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentBlogsBinding
-import rachman.forniandi.aerospaceflightnews.domain.Contents
+import rachman.forniandi.core.domain.entity.Contents
 
 @AndroidEntryPoint
 class BlogsFragment : Fragment() {
@@ -54,7 +54,7 @@ class BlogsFragment : Fragment() {
         binding.listBlogs.adapter = contentAdapter
         contentAdapter.setOnClickListener(object : ContentAdapter.OnContentClickListener {
             override fun onClick(position: Int, idContent: Contents) {
-                val toDetailContent = BlogsFragmentDirections.actionBlogsFragmentToDetailContentsFragment(idContent.id!!)
+                val toDetailContent = BlogsFragmentDirections.actionBlogsFragmentToDetailContentsFragment(idContent)
                 findNavController().navigate(toDetailContent)
             }
         })
@@ -72,7 +72,6 @@ class BlogsFragment : Fragment() {
             is RemoteResponse.Loading -> {
                 showShimmer()
                 showErrorState(false)
-                binding.listBlogs.visibility = View.GONE
             }
 
             is RemoteResponse.Success -> {
@@ -82,7 +81,7 @@ class BlogsFragment : Fragment() {
                 if (contents!=null){
                     if (contents.isEmpty()){
                         showErrorState(true)
-                        binding.listBlogs.visibility = View.GONE
+
                     }else{
                         contents.let { contentAdapter.setData(it) }
                         showErrorState(false)

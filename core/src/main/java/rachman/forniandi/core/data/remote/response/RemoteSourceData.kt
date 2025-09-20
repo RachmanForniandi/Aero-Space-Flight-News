@@ -1,6 +1,6 @@
-package rachman.forniandi.aerospaceflightnews.data.remote.response
+package rachman.forniandi.core.data.remote.response
 
-import rachman.forniandi.aerospaceflightnews.data.network.NetworkService
+import rachman.forniandi.core.data.network.NetworkService
 import javax.inject.Inject
 import javax.inject.Singleton
 

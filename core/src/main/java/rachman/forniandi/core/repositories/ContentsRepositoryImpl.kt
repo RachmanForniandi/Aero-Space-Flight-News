@@ -1,10 +1,10 @@
-package rachman.forniandi.aerospaceflightnews.repositories
+package rachman.forniandi.core.repositories
 
 import kotlinx.coroutines.flow.flow
-import rachman.forniandi.aerospaceflightnews.data.network.RemoteResponse
-import rachman.forniandi.aerospaceflightnews.data.remote.response.RemoteSourceData
-import rachman.forniandi.aerospaceflightnews.util.toContentsEntity
-import rachman.forniandi.aerospaceflightnews.util.toDetailContentsEntity
+import rachman.forniandi.core.data.network.RemoteResponse
+import rachman.forniandi.core.data.remote.response.RemoteSourceData
+import rachman.forniandi.core.utilRemote.toContentsEntity
+import rachman.forniandi.core.utilRemote.toDetailContentsEntity
 import javax.inject.Inject
 
 class ContentsRepositoryImpl @Inject constructor(

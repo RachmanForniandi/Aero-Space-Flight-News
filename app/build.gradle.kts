@@ -22,7 +22,7 @@ android {
     }
 
     buildTypes {
-        debug{
+        /*debug{
             buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
         }
         release {
@@ -32,7 +32,7 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
-        }
+        }*/
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -56,14 +56,10 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    //Retrofit
-    implementation (libs.okhttp)
-    implementation (libs.logging.interceptor)
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
-    implementation (libs.kotlinx.coroutines.core)
-    implementation (libs.kotlinx.coroutines.android)
-
+    //dagger hilt
+    implementation (libs.hilt.android)
+    ksp (libs.hilt.compiler)
+    ksp (libs.dagger.compiler)
 
     //viewmodel
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
@@ -80,26 +76,6 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    //Room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.room.ktx)
-    implementation(libs.androidx.legacy.support.v4)
-    ksp(libs.room.compiler)
-
-    //datastore
-    implementation(libs.androidx.datastore.preferences)
-
-    //gson
-    implementation(libs.gson)
-
-    //dagger hilt
-    implementation (libs.hilt.android)
-    ksp (libs.hilt.compiler)
-    ksp (libs.dagger.compiler)
-
-    //chucker
-    debugImplementation(libs.chucker.library)
-    releaseImplementation(libs.chucker.no.op)
 
     implementation(libs.androidx.swiperefreshlayout)
 

@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.adapters.ContentAdapter
-import rachman.forniandi.aerospaceflightnews.data.network.RemoteResponse
+import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentArticlesBinding
-import rachman.forniandi.aerospaceflightnews.domain.Contents
+import rachman.forniandi.core.domain.entity.Contents
 
 @AndroidEntryPoint
 class ArticlesFragment : Fragment() {
@@ -57,7 +57,7 @@ class ArticlesFragment : Fragment() {
         binding.listArticles.adapter = contentAdapter
         contentAdapter.setOnClickListener(object : ContentAdapter.OnContentClickListener {
             override fun onClick(position: Int, idContent: Contents) {
-                val toDetailContent = ArticlesFragmentDirections.actionArticlesFragmentToDetailContentsActivity(idContent)
+                val toDetailContent = ArticlesFragmentDirections.actionArticlesFragmentToDetailContentsFragment(idContent)
                 findNavController().navigate(toDetailContent)
             }
         })

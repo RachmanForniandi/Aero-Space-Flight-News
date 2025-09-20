@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import rachman.forniandi.aerospaceflightnews.R
-import rachman.forniandi.aerospaceflightnews.data.network.RemoteResponse
+import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityDetailContentsBinding
 import rachman.forniandi.aerospaceflightnews.domain.Contents
 import rachman.forniandi.aerospaceflightnews.uiPresentation.articles.DetailArticlesViewModel

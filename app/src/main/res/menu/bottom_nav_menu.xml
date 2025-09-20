@@ -10,8 +10,8 @@
         android:icon="@drawable/ic_menu_book"/>
 
 
-    <item android:id="@+id/favoriteContentsFragment"
+    <!--<item android:id="@+id/favoriteContentsFragment"
         android:title="Favorited"
-        android:icon="@drawable/ic_collections_bookmark"/>
+        android:icon="@drawable/ic_collections_bookmark"/>-->
 
 </menu>

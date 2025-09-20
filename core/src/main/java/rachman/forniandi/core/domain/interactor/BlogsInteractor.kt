@@ -1,7 +1,7 @@
-package rachman.forniandi.aerospaceflightnews.domain.interactor
+package rachman.forniandi.core.domain.interactor
 
 import rachman.forniandi.aerospaceflightnews.domain.useCase.BlogsUseCase
-import rachman.forniandi.aerospaceflightnews.repositories.ContentsRepository
+import rachman.forniandi.core.repositories.ContentsRepository
 import javax.inject.Inject
 
 class BlogsInteractor @Inject constructor(private val contentsRepository: ContentsRepository): BlogsUseCase{

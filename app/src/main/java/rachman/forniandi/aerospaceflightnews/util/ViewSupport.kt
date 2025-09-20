@@ -2,12 +2,8 @@ package rachman.forniandi.aerospaceflightnews.util
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
+
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import org.json.JSONObject
-import retrofit2.HttpException
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -27,10 +23,10 @@ fun getStringDate(date: String?): String? {
     return outputDate.format(d)
 }
 
-fun HttpException.getErrorMessage(): String {
+/*fun HttpException.getErrorMessage(): String {
     val message = response()?.errorBody()?.string().toString()
     return JSONObject(message).getString("message")
-}
+}*/
 
 
 fun View.animateLoadingProcessData(isVisible: Boolean, duration: Long = 300) {

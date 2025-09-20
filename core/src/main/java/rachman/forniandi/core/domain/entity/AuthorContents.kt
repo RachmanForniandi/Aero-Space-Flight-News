@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.domain
+package rachman.forniandi.core.domain.entity
 
 
 

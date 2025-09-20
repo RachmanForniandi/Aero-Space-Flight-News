@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import rachman.forniandi.aerospaceflightnews.data.network.RemoteResponse
+import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.aerospaceflightnews.domain.Contents
 import rachman.forniandi.aerospaceflightnews.domain.useCase.ArticlesUseCase
 import javax.inject.Inject

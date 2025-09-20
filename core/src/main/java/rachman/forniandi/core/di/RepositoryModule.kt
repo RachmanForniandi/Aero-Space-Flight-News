@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.di
+package rachman.forniandi.core.di
 
 import dagger.Module
 import dagger.Provides

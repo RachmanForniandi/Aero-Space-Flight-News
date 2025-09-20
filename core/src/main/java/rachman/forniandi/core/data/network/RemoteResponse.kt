@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.data.network
+package rachman.forniandi.core.data.network
 
 sealed class RemoteResponse <out R>{
     data class Loading<out T>(val data: T? = null) : RemoteResponse<T>()

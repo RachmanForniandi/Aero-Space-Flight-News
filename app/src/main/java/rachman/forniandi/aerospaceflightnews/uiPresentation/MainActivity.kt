@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.articlesFragment,
             R.id.blogsFragment,
-            R.id.favoriteContentsFragment
+            //R.id.favoriteContentsFragment
 
         )
 

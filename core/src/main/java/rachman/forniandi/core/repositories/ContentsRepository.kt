@@ -1,8 +1,8 @@
-package rachman.forniandi.aerospaceflightnews.repositories
+package rachman.forniandi.core.repositories
 
 import kotlinx.coroutines.flow.Flow
-import rachman.forniandi.aerospaceflightnews.data.network.RemoteResponse
-import rachman.forniandi.aerospaceflightnews.domain.Contents
+import rachman.forniandi.core.data.network.RemoteResponse
+import rachman.forniandi.core.domain.entity.Contents
 
 interface ContentsRepository {
 

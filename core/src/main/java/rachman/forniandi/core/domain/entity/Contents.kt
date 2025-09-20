@@ -1,4 +1,5 @@
-package rachman.forniandi.aerospaceflightnews.domain
+package rachman.forniandi.core.domain.entity
+
 
 import java.io.Serializable
 
@@ -13,4 +14,4 @@ data class Contents(
     val summary: String?,
     val publishedAt: String?,
     val updatedAt: String?
-): Serializable
+) :Serializable

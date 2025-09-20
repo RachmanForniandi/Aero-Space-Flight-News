@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.data.remote.response
+package rachman.forniandi.core.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -8,7 +8,7 @@ data class ResponseGeneral(
 	val next: String? = null,
 
 	@field:SerializedName("previous")
-	val previous: Any? = null,
+	val previous: String? = null,
 
 	@field:SerializedName("count")
 	val count: Int? = null,

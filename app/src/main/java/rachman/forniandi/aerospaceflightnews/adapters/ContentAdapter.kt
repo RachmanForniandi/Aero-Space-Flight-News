@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ItemContentBinding
-import rachman.forniandi.aerospaceflightnews.domain.Contents
 import rachman.forniandi.aerospaceflightnews.util.ContentDiffUtil
+import rachman.forniandi.core.domain.entity.Contents
 
 class ContentAdapter (): RecyclerView.Adapter
 <ContentAdapter.ContentHolder>(){
