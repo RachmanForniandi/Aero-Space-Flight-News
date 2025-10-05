@@ -68,6 +68,10 @@ dependencies {
     //glide
     implementation(libs.glide)
 
+    //coil
+    implementation(libs.coil3.coil)
+    implementation(libs.coil3.okhttp)
+
     //lifecycle
     implementation (libs.androidx.lifecycle.livedata.ktx)
 

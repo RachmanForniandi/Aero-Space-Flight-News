@@ -4,10 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import rachman.forniandi.aerospaceflightnews.domain.interactor.ArticlesInteractor
-import rachman.forniandi.aerospaceflightnews.domain.interactor.BlogsInteractor
-import rachman.forniandi.aerospaceflightnews.domain.useCase.ArticlesUseCase
-import rachman.forniandi.aerospaceflightnews.domain.useCase.BlogsUseCase
+import rachman.forniandi.core.domain.interactor.ArticlesInteractor
+import rachman.forniandi.core.domain.interactor.BlogsInteractor
+import rachman.forniandi.core.domain.useCase.ArticlesUseCase
+import rachman.forniandi.core.domain.useCase.BlogsUseCase
 import javax.inject.Singleton
 
 @Module

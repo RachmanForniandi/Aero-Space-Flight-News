@@ -15,10 +15,10 @@
         android:theme="@style/Theme.AeroSpaceFlightNews"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".uiPresentation.DetailContents.DetailContentsWebviewActivity"
+            android:name=".uiPresentation.detailContents.DetailContentsWebviewActivity"
             android:exported="false" />
         <activity
-            android:name=".uiPresentation.DetailContents.DetailContentsActivity"
+            android:name=".uiPresentation.detailContents.DetailContentsActivity"
             android:exported="false" />
         <activity
             android:name=".uiPresentation.MainActivity"

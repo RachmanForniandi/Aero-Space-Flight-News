@@ -57,7 +57,7 @@ class ArticlesFragment : Fragment() {
         binding.listArticles.adapter = contentAdapter
         contentAdapter.setOnClickListener(object : ContentAdapter.OnContentClickListener {
             override fun onClick(position: Int, idContent: Contents) {
-                val toDetailContent = ArticlesFragmentDirections.actionArticlesFragmentToDetailContentsFragment(idContent)
+                val toDetailContent = ArticlesFragmentDirections.actionArticlesFragmentToArticleDetailsFragment(idContent)
                 findNavController().navigate(toDetailContent)
             }
         })
@@ -136,5 +136,9 @@ class ArticlesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        val EXTRA_ARTICLE = "extra_article"
     }
 }

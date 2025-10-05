@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import rachman.forniandi.core.data.network.RemoteResponse
-import rachman.forniandi.aerospaceflightnews.domain.Contents
-import rachman.forniandi.aerospaceflightnews.domain.useCase.ArticlesUseCase
+import rachman.forniandi.core.domain.entity.Contents
+import rachman.forniandi.core.domain.useCase.ArticlesUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,12 +15,14 @@ class ArticlesViewModel @Inject constructor(private val articlesUseCase: Article
 
     private val getArticles = MutableLiveData<RemoteResponse<List<Contents>?>>()
 
+
     val articlesObserve: MutableLiveData<RemoteResponse<List<Contents>?>> get()= getArticles
 
     fun obtainArticles() = viewModelScope.launch {
-        articlesUseCase.getArticles().collect { response->
+        articlesUseCase.getArticles().collect { response ->
             getArticles.value = response as RemoteResponse<List<Contents>?>?
         }
+
     }
 
 }

@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.uiPresentation.DetailContents
+package rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents
 
 import android.content.Intent
 import android.os.Bundle

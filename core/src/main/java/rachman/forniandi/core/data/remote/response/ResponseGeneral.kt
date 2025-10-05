@@ -53,6 +53,6 @@ data class AuthorsItem(
 	@field:SerializedName("name")
 	val name: String? = null,
 
-	@field:SerializedName("socials")
-	val socials: Any? = null
+	/*@field:SerializedName("socials")
+	val socials: Any? = null*/
 )

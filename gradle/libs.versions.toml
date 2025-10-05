@@ -28,6 +28,7 @@ dataStoreVersion="1.1.7"
 chuckerVersion="4.1.0"
 facebookShimmer="0.5.0"
 swiperefreshlayout = "1.1.0"
+coil="3.3.0"
 
 
 multidex= "2.0.1"
@@ -71,6 +72,9 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
+
+coil3-coil= { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
+coil3-okhttp= { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }

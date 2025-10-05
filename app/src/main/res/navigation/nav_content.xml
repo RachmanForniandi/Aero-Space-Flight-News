@@ -10,12 +10,13 @@
         android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.articles.ArticlesFragment"
         android:label="fragment_articles"
         tools:layout="@layout/fragment_articles" >
-        <action
-            android:id="@+id/action_articlesFragment_to_detailContentsFragment"
-            app:destination="@id/detailContentsFragment" />
+
         <!--<action
             android:id="@+id/action_articlesFragment_to_detailContentsActivity"
             app:destination="@id/detailContentsActivity" />-->
+        <action
+            android:id="@+id/action_articlesFragment_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/blogsFragment"
@@ -23,11 +24,8 @@
         android:label="fragment_blogs"
         tools:layout="@layout/fragment_blogs" >
         <action
-            android:id="@+id/action_blogsFragment_to_detailContentsFragment"
-            app:destination="@id/detailContentsFragment" />
-        <!--<action
-            android:id="@+id/action_blogsFragment_to_detailContentsActivity"
-            app:destination="@id/detailContentsActivity" />-->
+            android:id="@+id/action_blogsFragment_to_detailBlogsFragment"
+            app:destination="@id/detailBlogsFragment" />
     </fragment>
     <!--<fragment
         android:id="@+id/favoriteContentsFragment"
@@ -44,14 +42,43 @@
     </fragment>-->
 
     <fragment
-        android:id="@+id/detailContentsFragment"
-        android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.DetailContents.DetailContentsFragment"
-        android:label="fragment_detail_contents"
-        tools:layout="@layout/fragment_detail_contents" >
+        android:id="@+id/articleDetailsFragment"
+        android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents.DetailArticlesFragment"
+        android:label="article_detail_contents"
+        tools:layout="@layout/fragment_detail_articles" >
         <argument
-            android:name="contentDetails"
-            app:argType="rachman.forniandi.core.domain.entity"/>
+            android:name="articleDetails"
+            app:argType="rachman.forniandi.core.domain.entity.Contents"
+             />
+        <action
+            android:id="@+id/action_articleDetailsFragment_to_detailContentsWebviewActivity"
+            app:destination="@id/detailContentsWebviewActivity" />
+
     </fragment>
+    <fragment
+        android:id="@+id/detailBlogsFragment"
+        android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents.DetailBlogsFragment"
+        android:label="fragment_detail_blogs"
+        tools:layout="@layout/fragment_detail_blogs" >
+        <argument
+            android:name="blogDetails"
+            app:argType="rachman.forniandi.core.domain.entity.Contents"
+             />
+        <action
+            android:id="@+id/action_detailBlogsFragment_to_detailContentsWebviewActivity"
+            app:destination="@id/detailContentsWebviewActivity" />
+
+    </fragment>
+    <activity
+        android:id="@+id/detailContentsWebviewActivity"
+        android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents.DetailContentsWebviewActivity"
+        android:label="activity_detail_contents_webview"
+        tools:layout="@layout/activity_detail_contents_webview" >
+        <argument
+            android:name="urlWeb"
+            app:argType="string"
+             />
+    </activity>
     <!--<activity
         android:id="@+id/detailContentsActivity"
         android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.DetailContents.DetailContentsActivity"

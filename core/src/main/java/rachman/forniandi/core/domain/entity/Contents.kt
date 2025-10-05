@@ -1,9 +1,10 @@
 package rachman.forniandi.core.domain.entity
 
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-
+@Parcelize
 data class Contents(
     val id: Int?,
     val title: String?,
@@ -14,4 +15,4 @@ data class Contents(
     val summary: String?,
     val publishedAt: String?,
     val updatedAt: String?
-) :Serializable
+) : Parcelable

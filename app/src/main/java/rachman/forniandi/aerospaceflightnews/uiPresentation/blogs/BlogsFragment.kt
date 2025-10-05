@@ -54,7 +54,7 @@ class BlogsFragment : Fragment() {
         binding.listBlogs.adapter = contentAdapter
         contentAdapter.setOnClickListener(object : ContentAdapter.OnContentClickListener {
             override fun onClick(position: Int, idContent: Contents) {
-                val toDetailContent = BlogsFragmentDirections.actionBlogsFragmentToDetailContentsFragment(idContent)
+                val toDetailContent = BlogsFragmentDirections.actionBlogsFragmentToDetailBlogsFragment(idContent)
                 findNavController().navigate(toDetailContent)
             }
         })
@@ -135,5 +135,9 @@ class BlogsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        val EXTRA_BLOG = "extra_blog"
     }
 }

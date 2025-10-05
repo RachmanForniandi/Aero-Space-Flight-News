@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.uiPresentation.DetailContents
+package rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents
 
 import android.os.Bundle
 import android.webkit.WebViewClient
@@ -7,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import rachman.forniandi.aerospaceflightnews.R
-import rachman.forniandi.aerospaceflightnews.databinding.ActivityDetailContentsBinding
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityDetailContentsWebviewBinding
-import rachman.forniandi.aerospaceflightnews.uiPresentation.DetailContents.DetailContentsActivity.Companion.DETAIL_WEB_CONTENT
+import rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents.DetailContentsActivity.Companion.DETAIL_WEB_CONTENT
 
 class DetailContentsWebviewActivity : AppCompatActivity() {
 
