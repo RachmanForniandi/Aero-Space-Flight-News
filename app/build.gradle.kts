@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.daggerhilt)
-    id("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -22,17 +22,20 @@ android {
     }
 
     buildTypes {
-        /*debug{
-            buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
-        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled =false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
-        }*/
+        }
+        debug {
+            isMinifyEnabled =false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -44,7 +47,7 @@ android {
 
     buildFeatures {
         viewBinding= true
-        buildConfig= true
+
     }
 }
 
