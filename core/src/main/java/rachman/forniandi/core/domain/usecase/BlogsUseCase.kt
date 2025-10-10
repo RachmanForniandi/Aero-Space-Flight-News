@@ -1,4 +1,4 @@
-package rachman.forniandi.core.domain.useCase
+package rachman.forniandi.core.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
 import rachman.forniandi.core.data.network.RemoteResponse

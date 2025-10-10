@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.Contents
-import rachman.forniandi.core.domain.useCase.BlogsUseCase
+import rachman.forniandi.core.domain.usecase.BlogsUseCase
 import javax.inject.Inject
 
 @HiltViewModel

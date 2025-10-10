@@ -8,8 +8,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityDetailContentsWebviewBinding
-import rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents.DetailContentsActivity.Companion.DETAIL_WEB_CONTENT
-
 class DetailContentsWebviewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailContentsWebviewBinding
@@ -31,12 +29,12 @@ class DetailContentsWebviewActivity : AppCompatActivity() {
     }
 
     private fun showLinkContent() {
-        val linkContent = intent.getStringExtra(DETAIL_WEB_CONTENT)
+        /*val linkContent = intent.getStringExtra(DETAIL_WEB_CONTENT)
 
         binding.wbDetailContent.webViewClient= object : WebViewClient() {}
         if (linkContent!= null) {
             binding.wbDetailContent.loadUrl(linkContent)
-        }
+        }*/
     }
 
 }

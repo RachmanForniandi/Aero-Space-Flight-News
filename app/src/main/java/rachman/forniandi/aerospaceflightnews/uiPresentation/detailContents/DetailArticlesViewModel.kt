@@ -5,13 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import dagger.hilt.android.lifecycle.HiltViewModel
-import rachman.forniandi.core.domain.useCase.ArticlesUseCase
+import rachman.forniandi.core.domain.usecase.ArticlesUseCase
+import javax.inject.Inject
 
 @HiltViewModel
-class DetailArticlesViewModel (private val articleUseCase: ArticlesUseCase
+class DetailArticlesViewModel @Inject constructor(private val articleUseCase: ArticlesUseCase
 ): ViewModel(){
 
     private val articleId = MutableLiveData<Int>()
+
     fun setArticleId(id: Int?){
         articleId.value = id!!
 

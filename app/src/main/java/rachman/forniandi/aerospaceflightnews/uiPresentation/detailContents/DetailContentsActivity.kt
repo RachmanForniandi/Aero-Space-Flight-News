@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents
+/*package rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,10 +11,8 @@ import com.bumptech.glide.Glide
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityDetailContentsBinding
-import rachman.forniandi.aerospaceflightnews.domain.Contents
-import rachman.forniandi.aerospaceflightnews.uiPresentation.articles.DetailArticlesViewModel
-import rachman.forniandi.aerospaceflightnews.uiPresentation.blogs.DetailBlogsViewModel
 import rachman.forniandi.aerospaceflightnews.util.animateLoadingProcessData
+import rachman.forniandi.core.domain.entity.Contents
 import kotlin.getValue
 
 class DetailContentsActivity : AppCompatActivity() {
@@ -22,17 +20,18 @@ class DetailContentsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailContentsBinding
     private val viewmodelArticles: DetailArticlesViewModel by viewModels ()
     private val viewmodelBlogs: DetailBlogsViewModel by viewModels ()
-    private val navArgs:DetailContentsActivityArgs by navArgs()
+    //private val navArgs:DetailContentsActivityArgs by navArgs()
     private var idContent:Int=0
-    private var detailContentArticle:Contents?=null
+    private var detailContentArticle: Contents?=null
     private var detailContentBlog:Contents?=null
     private var linkContent=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailContentsBinding.inflate(layoutInflater)
+        binding.root
 
-        idContent = if (intent.hasExtra(EXTRA_ARTICLES_ID)){
+        *//*idContent = if (intent.hasExtra(EXTRA_ARTICLES_ID)){
             intent.getIntExtra(EXTRA_ARTICLES_ID,0)
         }else if (intent.hasExtra(EXTRA_BLOGS_ID)){
             intent.getIntExtra(EXTRA_BLOGS_ID,0)
@@ -50,7 +49,7 @@ class DetailContentsActivity : AppCompatActivity() {
                 setViewDetailContentBlogs()
             }
         }
-
+*//*
 
 
     }
@@ -164,6 +163,6 @@ class DetailContentsActivity : AppCompatActivity() {
         const val DETAIL_WEB_CONTENT="detail_web_content"
     }
 
-}
+}*/
 
 

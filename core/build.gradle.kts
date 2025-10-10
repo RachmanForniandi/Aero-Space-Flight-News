@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
+    //alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.daggerhilt)
@@ -12,11 +13,11 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "rachman.forniandi.core"
+        //applicationId = "rachman.forniandi.core"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        //versionCode = 1
+        //versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -61,7 +62,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.fragment.ktx)
+
 
     //Retrofit
     implementation (libs.okhttp)
@@ -70,7 +71,6 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.kotlinx.coroutines.core)
     implementation (libs.kotlinx.coroutines.android)
-
 
 
     //gson
@@ -82,12 +82,6 @@ dependencies {
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 
-    /*//fragment
-    implementation(libs.androidx.legacy.support.v4)
-    implementation(libs.navigation.fragment.ktx)
-    implementation(libs.navigation.ui.ktx)
-
-*/
 
     //datastore
     implementation(libs.androidx.datastore.preferences)

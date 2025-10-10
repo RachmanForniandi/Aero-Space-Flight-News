@@ -17,9 +17,7 @@
         <activity
             android:name=".uiPresentation.detailContents.DetailContentsWebviewActivity"
             android:exported="false" />
-        <activity
-            android:name=".uiPresentation.detailContents.DetailContentsActivity"
-            android:exported="false" />
+
         <activity
             android:name=".uiPresentation.MainActivity"
             android:exported="true">

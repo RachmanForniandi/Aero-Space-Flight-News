@@ -10,8 +10,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import rachman.forniandi.aerospaceflightnews.BuildConfig
-import rachman.forniandi.aerospaceflightnews.data.network.NetworkService
+import rachman.forniandi.core.BuildConfig
+import rachman.forniandi.core.data.network.NetworkService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

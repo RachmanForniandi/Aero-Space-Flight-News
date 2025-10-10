@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.placeholder
+import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentDetailBlogsBinding
 import rachman.forniandi.aerospaceflightnews.util.animateLoadingProcessData
@@ -18,14 +19,14 @@ import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.Contents
 import kotlin.getValue
 
-
+@AndroidEntryPoint
 class DetailBlogsFragment : Fragment() {
     private var _binding: FragmentDetailBlogsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailBlogsViewModel by viewModels()
     private var idContent: Int? =0
     private var detailContent: Contents? = null
-    private var linkUrlWeb: String? = ""
+    private var linkUrlWeb: String = ""
 
 
 
@@ -75,7 +76,7 @@ class DetailBlogsFragment : Fragment() {
                     crossfade(true)
                 }
 
-                linkUrlWeb = detailContent?.url
+                detailContent?.let { linkUrlWeb = it.url!! }
 
                 binding.btnToDetailContentWeb.setOnClickListener {
                     val toDetailContentWeb = DetailBlogsFragmentDirections.actionDetailBlogsFragmentToDetailContentsWebviewActivity(linkUrlWeb)

@@ -1,5 +1,7 @@
 package rachman.forniandi.core.repositories
 
+
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
@@ -36,24 +38,22 @@ class ContentsRepositoryImpl @Inject constructor(
 
     override fun doGetDetailArticles(id: Int)= flow {
         emit(RemoteResponse.Loading())
-        try {
             val response = remoteSourceData.getDetailArticles(id)
             val result = response.toDetailContentsEntity()
             emit(RemoteResponse.Success(result))
-        } catch (e: Exception) {
+        }.catch { e ->
             emit(RemoteResponse.Error(e.message.toString()))
         }
-    }
 
     override fun doGetDetailBlogs(id: Int)= flow {
         emit(RemoteResponse.Loading())
-        try {
-            val response = remoteSourceData.getDetailBlogs(id)
-            val result = response.toDetailContentsEntity()
-            emit(RemoteResponse.Success(result))
-        } catch (e: Exception) {
-            emit(RemoteResponse.Error(e.message.toString()))
-        }
+        val response = remoteSourceData.getDetailBlogs(id)
+        val result = response.toDetailContentsEntity()
+        emit(RemoteResponse.Success(result))
+    }.catch {e ->
+        emit(RemoteResponse.Error(e.message.toString()))
     }
-
 }
+
+
+

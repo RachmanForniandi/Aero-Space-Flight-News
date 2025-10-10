@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import dagger.hilt.android.lifecycle.HiltViewModel
-import rachman.forniandi.core.domain.useCase.BlogsUseCase
+import rachman.forniandi.core.domain.usecase.BlogsUseCase
+import javax.inject.Inject
 
 @HiltViewModel
-class DetailBlogsViewModel (private val blogsUseCase: BlogsUseCase): ViewModel(){
+class DetailBlogsViewModel @Inject constructor(private val blogsUseCase: BlogsUseCase): ViewModel(){
 
     private val blogId = MutableLiveData<Int>()
 

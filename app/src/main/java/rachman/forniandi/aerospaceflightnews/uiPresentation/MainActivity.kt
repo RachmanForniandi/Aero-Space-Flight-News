@@ -26,12 +26,10 @@ class MainActivity : AppCompatActivity() {
             R.id.articlesFragment,
             R.id.blogsFragment,
             //R.id.favoriteContentsFragment
-
         )
 
-
         binding.bottomNavigationMain.setupWithNavController(navController)
-        setupActionBarWithNavController(navController,appBarConfiguration.build())
+        //setupActionBarWithNavController(navController,appBarConfiguration.build())
 
     }
 
