@@ -8,7 +8,9 @@ import rachman.forniandi.core.data.remote.response.RemoteSourceData
 import rachman.forniandi.core.utilRemote.toContentsEntity
 import rachman.forniandi.core.utilRemote.toDetailContentsEntity
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ContentsRepositoryImpl @Inject constructor(
     private val remoteSourceData: RemoteSourceData
 ):ContentsRepository {

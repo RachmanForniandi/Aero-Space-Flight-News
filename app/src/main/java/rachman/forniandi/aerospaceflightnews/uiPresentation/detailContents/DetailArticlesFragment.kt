@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.placeholder
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentDetailArticlesBinding
@@ -48,6 +49,10 @@ class DetailArticlesFragment : Fragment() {
             viewModel.setArticleId(idContent)
         }
 
+        binding.detailToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         showDetailArticles()
     }
 
@@ -68,10 +73,11 @@ class DetailArticlesFragment : Fragment() {
                 binding.txtSummaryContent.text = detailContent?.summary
                 binding.txtPublishedAt.text = detailContent?.publishedAt
                 binding.txtUpdatedAt.text = detailContent?.updatedAt
-                binding.txtAuthor.text = detailContent?.authors?.get(0)?.name
+                binding.txtSource.text = detailContent?.newsSite
+                binding.txtAuthor.text = detailContent?.authors?.firstOrNull()?.name
                 binding.imgOfContent.load(detailContent?.imageUrl){
                     placeholder(R.drawable.place_holder)
-                    error(R.drawable.place_holder)
+                    //error(R.drawable.place_holder)
                     crossfade(true)
                 }
                 detailContent?.let { linkUrlWeb = it.url!! }
@@ -84,20 +90,30 @@ class DetailArticlesFragment : Fragment() {
             }
             is RemoteResponse.Error->{
                 applyLoadingStateDetail(false)
+                showSnackBarError("Detail Article Error.")
 
             }
+
         }
     }
 
+    private fun showSnackBarError(message: String) {
+        Snackbar.make(binding.detailArticles,message, Snackbar.LENGTH_SHORT)
+            .setAction("Ok"){}
+            .show()
+    }
 
-    private fun applyLoadingStateDetail(onProcess:Boolean){
 
-        binding.btnToDetailContentWeb.isEnabled =!onProcess
+    private fun applyLoadingStateDetail(onProcess: Boolean) {
 
-        if (onProcess){
+        binding.btnToDetailContentWeb.isEnabled = !onProcess
+
+        if (onProcess) {
             binding.detailLoadingMask.root.animateLoadingProcessData(true)
-        }else{
+            binding.contentDetail.animateLoadingProcessData(false)
+        } else {
             binding.detailLoadingMask.root.animateLoadingProcessData(false)
+            binding.contentDetail.animateLoadingProcessData(true)
         }
     }
 

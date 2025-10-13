@@ -7,6 +7,5 @@ import kotlinx.android.parcel.Parcelize
 @Suppress("DEPRECATED_ANNOTATION")
 @Parcelize
 data class AuthorContents(
-    val name: String?,
-    //@IgnoredOnParcel val socials: Any?
+    val name: String?
 ): Parcelable

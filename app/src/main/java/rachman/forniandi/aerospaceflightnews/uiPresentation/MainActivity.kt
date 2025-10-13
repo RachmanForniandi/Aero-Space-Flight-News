@@ -1,6 +1,7 @@
 package rachman.forniandi.aerospaceflightnews.uiPresentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -29,8 +30,24 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.bottomNavigationMain.setupWithNavController(navController)
-        //setupActionBarWithNavController(navController,appBarConfiguration.build())
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.articlesFragment -> showToolbarAndNavBottomBar()
+                R.id.blogsFragment -> showToolbarAndNavBottomBar()
+                else -> hideToolbarAndNavBottomBar()
+            }
+        }
 
+    }
+
+    private fun showToolbarAndNavBottomBar(){
+        binding.bottomNavigationMain.visibility = View.VISIBLE
+        binding.homeAppBarLayout.visibility = View.VISIBLE
+    }
+
+    private fun hideToolbarAndNavBottomBar(){
+        binding.bottomNavigationMain.visibility = View.GONE
+        binding.homeAppBarLayout.visibility = View.GONE
     }
 
     override fun onSupportNavigateUp(): Boolean {
