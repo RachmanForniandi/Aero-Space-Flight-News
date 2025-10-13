@@ -85,8 +85,8 @@ class DetailBlogsFragment : Fragment() {
                 detailContent?.let { linkUrlWeb = it.url!! }
 
                 binding.btnToDetailContentWeb.setOnClickListener {
-                    val toDetailContentWeb = DetailBlogsFragmentDirections.actionDetailBlogsFragmentToDetailContentsWebviewActivity(linkUrlWeb)
-                    findNavController().navigate(toDetailContentWeb)
+                    val toDetailContentWeb = detailContent?.let { urlWeb -> DetailBlogsFragmentDirections.actionDetailBlogsFragmentToDetailContentsWebviewActivity(urlWeb) }
+                    toDetailContentWeb?.let { directions -> findNavController().navigate(directions) }
                 }
 
             }
@@ -115,6 +115,10 @@ class DetailBlogsFragment : Fragment() {
             binding.detailLoadingMask.root.animateLoadingProcessData(false)
             binding.contentDetail.animateLoadingProcessData(true)
         }
+    }
+
+    companion object {
+        const val DETAIL_CONTENT_ID = "detail_content_id"
     }
 
 

@@ -83,14 +83,15 @@ class DetailArticlesFragment : Fragment() {
                 detailContent?.let { linkUrlWeb = it.url!! }
 
                 binding.btnToDetailContentWeb.setOnClickListener {
-                    val toDetailContentWeb = DetailBlogsFragmentDirections.actionDetailBlogsFragmentToDetailContentsWebviewActivity(linkUrlWeb)
-                    findNavController().navigate(toDetailContentWeb)
+                    val toDetailContentWeb = detailContent?.let { urlWeb -> DetailArticlesFragmentDirections.actionArticleDetailsFragmentToDetailContentsWebviewActivity(urlWeb) }
+                    toDetailContentWeb?.let { directions -> findNavController().navigate(directions) }
                 }
 
             }
             is RemoteResponse.Error->{
                 applyLoadingStateDetail(false)
                 showSnackBarError("Detail Article Error.")
+
 
             }
 
@@ -117,7 +118,5 @@ class DetailArticlesFragment : Fragment() {
         }
     }
 
-    companion object {
 
-    }
 }

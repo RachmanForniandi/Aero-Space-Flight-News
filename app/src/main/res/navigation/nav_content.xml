@@ -45,7 +45,7 @@
         android:id="@+id/articleDetailsFragment"
         android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents.DetailArticlesFragment"
         android:label="article_detail_contents"
-        tools:layout="@layout/fragment_detail_articles" >
+        tools:layout="@layout/fragment_detail_articles">
         <argument
             android:name="articleDetails"
             app:argType="rachman.forniandi.core.domain.entity.Contents"
@@ -59,7 +59,7 @@
         android:id="@+id/detailBlogsFragment"
         android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.detailContents.DetailBlogsFragment"
         android:label="fragment_detail_blogs"
-        tools:layout="@layout/fragment_detail_blogs" >
+        tools:layout="@layout/fragment_detail_blogs">
         <argument
             android:name="blogDetails"
             app:argType="rachman.forniandi.core.domain.entity.Contents"
@@ -76,7 +76,7 @@
         tools:layout="@layout/activity_detail_contents_webview" >
         <argument
             android:name="urlWeb"
-            app:argType="string"
+            app:argType="rachman.forniandi.core.domain.entity.Contents"
              />
     </activity>
     <!--<activity
