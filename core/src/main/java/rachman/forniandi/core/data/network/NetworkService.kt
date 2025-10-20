@@ -20,6 +20,18 @@ interface NetworkService {
         @Query("offset") offset: Int=10*/
     ): ResponseGeneral
 
+    @GET("articles")
+    suspend fun getArticlesPaging(
+        @Query("limit") limit: Int? =null,
+        @Query("offset") offset: Int? =null
+    ): ResponseGeneral
+
+    @GET("blogs")
+    suspend fun getBlogsPaging(
+        @Query("limit") limit: Int?=null,
+        @Query("offset") offset: Int?=null
+    ): ResponseGeneral
+
 
     @GET("articles/{id}")
     suspend fun getDetailArticles(@Path("id")id:Int): ResultsItem

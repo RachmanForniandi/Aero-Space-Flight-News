@@ -11,9 +11,7 @@
         android:label="fragment_articles"
         tools:layout="@layout/fragment_articles" >
 
-        <!--<action
-            android:id="@+id/action_articlesFragment_to_detailContentsActivity"
-            app:destination="@id/detailContentsActivity" />-->
+
         <action
             android:id="@+id/action_articlesFragment_to_articleDetailsFragment"
             app:destination="@id/articleDetailsFragment" />
@@ -27,19 +25,7 @@
             android:id="@+id/action_blogsFragment_to_detailBlogsFragment"
             app:destination="@id/detailBlogsFragment" />
     </fragment>
-    <!--<fragment
-        android:id="@+id/favoriteContentsFragment"
-        android:name="rachman.forniandi.core.di.FavoriteContentsFragment"
-        android:label="fragment_favorite_contents">
 
-        &lt;!&ndash;<action
-            android:id="@+id/action_favoriteContentsFragment_to_detailContentsFragment"
-            app:destination="@id/detailContentsFragment"
-            tools:layout="@layout/fragment_detail_contents" />&ndash;&gt;
-        <action
-            android:id="@+id/action_favoriteContentsFragment_to_detailContentsActivity"
-            app:destination="@id/detailContentsActivity" />
-    </fragment>-->
 
     <fragment
         android:id="@+id/articleDetailsFragment"
@@ -79,13 +65,5 @@
             app:argType="rachman.forniandi.core.domain.entity.Contents"
              />
     </activity>
-    <!--<activity
-        android:id="@+id/detailContentsActivity"
-        android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.DetailContents.DetailContentsActivity"
-        android:label="activity_detail_contents"
-        tools:layout="@layout/activity_detail_contents" >
-        <argument
-            android:name="contentDetails"
-            app:argType="rachman.forniandi.core.domain"/>
-    </activity>-->
+
 </navigation>

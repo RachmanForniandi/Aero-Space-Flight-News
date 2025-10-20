@@ -8,7 +8,11 @@ import javax.inject.Singleton
 class RemoteSourceData @Inject constructor(
     private val networkService: NetworkService
 ){
+    suspend fun getDataPagingArticles(limit: Int?, offset: Int) = networkService.getArticlesPaging(limit, offset)
+
     suspend fun getDataArticles() = networkService.getArticles()
+
+    suspend fun getDataPagingBlogs(limit: Int?, offset: Int) = networkService.getBlogsPaging(limit, offset)
 
     suspend fun getDataBlogs() = networkService.getBlogs()
 
