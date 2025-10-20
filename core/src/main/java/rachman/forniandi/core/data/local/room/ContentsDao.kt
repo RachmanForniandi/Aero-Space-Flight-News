@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import rachman.forniandi.core.data.remote.response.ResultsItem
 import rachman.forniandi.core.domain.entity.Contents
 
 @Dao
@@ -16,7 +15,7 @@ interface ContentsDao {
     fun getContentsByType(type: String): PagingSource<Int, Contents>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertContents(contents: List<ResultsItem>?)
+    suspend fun insertContents(contents: List<Contents>)
 
     @Query("SELECT * FROM contents_table WHERE id = :id LIMIT 1")
     suspend fun getContentById(id: Int): Flow<Contents?>

@@ -1,6 +1,5 @@
 package rachman.forniandi.core.paging
 
-import android.net.http.HttpException
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -11,7 +10,6 @@ import rachman.forniandi.core.data.local.entity.RemoteKeys
 import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
 import rachman.forniandi.core.domain.entity.Contents
-import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
 class ContentsRemoteMediator (
