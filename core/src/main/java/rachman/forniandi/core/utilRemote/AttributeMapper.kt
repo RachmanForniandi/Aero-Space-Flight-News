@@ -22,9 +22,9 @@ import rachman.forniandi.core.domain.entity.Contents
         result.publishedAt,
         result.updatedAt
     )
-}
+}*/
 
-fun ResultsItem.toDetailContentsEntity() = Contents(
+fun ResultsItem.toDetailContentsEntity(type: String) = Contents(
     id = id,
     title = title,
     authors = authors?.map { authorItem ->
@@ -37,8 +37,9 @@ fun ResultsItem.toDetailContentsEntity() = Contents(
     newsSite = newsSite,
     summary = summary,
     publishedAt = publishedAt,
-    updatedAt = updatedAt
-)*/
+    updatedAt = updatedAt,
+    type = type
+)
 
 fun mapResponseToEntities(
     input: List<ResultsItem>,
@@ -79,5 +80,21 @@ fun Contents.toFavoriteEntity(type: String) = FavoriteContentsEntity(
     url = url,
     contentType = type,
     isFavorite = false
-
 )
+
+fun List<ResultsItem>.toContentsEntity(type: String): List<Contents> = map {
+    Contents(
+        id = it.id,
+        title = it.title,
+        authors = it.authors?.map { author ->
+            AuthorContents(author?.name ?: "")
+        } ?: emptyList(),
+        url = it.url,
+        imageUrl = it.imageUrl,
+        newsSite = it.newsSite,
+        summary = it.summary,
+        publishedAt = it.publishedAt,
+        updatedAt = it.updatedAt,
+        type = type
+    )
+}

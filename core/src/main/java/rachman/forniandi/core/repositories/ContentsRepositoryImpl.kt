@@ -1,7 +1,5 @@
 package rachman.forniandi.core.repositories
 
-
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
@@ -19,7 +17,7 @@ class ContentsRepositoryImpl @Inject constructor(
         emit(RemoteResponse.Loading())
         try {
             val response = remoteSourceData.getDataArticles()
-            val result = response.results.toContentsEntity()
+            val result = response.results.toContentsEntity("ARTICLE")
             emit(RemoteResponse.Success(result))
         } catch (e: Exception) {
             emit(RemoteResponse.Error(e.message.toString()))
@@ -30,7 +28,7 @@ class ContentsRepositoryImpl @Inject constructor(
         emit(RemoteResponse.Loading())
         try {
             val response = remoteSourceData.getDataBlogs()
-            val result = response.results.toContentsEntity()
+            val result = response.results.toContentsEntity("BLOG")
             emit(RemoteResponse.Success(result))
         } catch (e: Exception) {
             emit(RemoteResponse.Error(e.message.toString()))
@@ -40,20 +38,24 @@ class ContentsRepositoryImpl @Inject constructor(
 
     override fun doGetDetailArticles(id: Int)= flow {
         emit(RemoteResponse.Loading())
+        try {
             val response = remoteSourceData.getDetailArticles(id)
-            val result = response.toDetailContentsEntity()
+            val result = response.toDetailContentsEntity("ARTICLE")
             emit(RemoteResponse.Success(result))
-        }.catch { e ->
+        } catch (e: Exception) {
             emit(RemoteResponse.Error(e.message.toString()))
         }
+    }
 
     override fun doGetDetailBlogs(id: Int)= flow {
         emit(RemoteResponse.Loading())
-        val response = remoteSourceData.getDetailBlogs(id)
-        val result = response.toDetailContentsEntity()
-        emit(RemoteResponse.Success(result))
-    }.catch {e ->
-        emit(RemoteResponse.Error(e.message.toString()))
+        try {
+            val response = remoteSourceData.getDetailBlogs(id)
+            val result = response.toDetailContentsEntity(type = "BLOG")
+            emit(RemoteResponse.Success(result))
+        } catch (e: Exception) {
+            emit(RemoteResponse.Error(errorMessage = e.message.toString()))
+        }
     }
 }
 

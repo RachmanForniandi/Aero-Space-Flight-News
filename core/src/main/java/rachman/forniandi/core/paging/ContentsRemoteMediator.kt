@@ -10,6 +10,7 @@ import rachman.forniandi.core.data.local.entity.RemoteKeys
 import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
 import rachman.forniandi.core.domain.entity.Contents
+import rachman.forniandi.core.utilRemote.toContentsEntity
 
 @OptIn(ExperimentalPagingApi::class)
 class ContentsRemoteMediator (
@@ -56,8 +57,8 @@ class ContentsRemoteMediator (
                 else -> throw IllegalArgumentException("Unknown content type: $type")
             }
 
-            val contents = response.results
-            val endOfPaginationReached: Boolean = contents.isEmpty()
+            val contents = response.results.toContentsEntity(type)
+            val endOfPaginationReached = contents.isEmpty()
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
@@ -65,11 +66,11 @@ class ContentsRemoteMediator (
                     localDataSource.clearContentsByType(type)
                 }
 
-                val keys = contents?.map {
+                val keys = contents.map {
                     RemoteKeys(
                         id = it.id.toString(),
                         prevKey = if (page == 1) null else page?.minus(1),
-                        nextKey = if (endOfPaginationReached == true) null else page?.plus(1)
+                        nextKey = if (endOfPaginationReached) null else page?.plus(1)
                     )
                 }
                 remoteKeysDao.insertAllKeys(keys)

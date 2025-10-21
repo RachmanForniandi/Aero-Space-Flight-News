@@ -33,7 +33,7 @@ data class ResultsItem(
 	val imageUrl: String? = null,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("title")
 	val title: String? = null,

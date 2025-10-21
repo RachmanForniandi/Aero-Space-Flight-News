@@ -20,13 +20,13 @@ interface NetworkService {
         @Query("offset") offset: Int=10*/
     ): ResponseGeneral
 
-    @GET("articles")
+    @GET("articles/")
     suspend fun getArticlesPaging(
         @Query("limit") limit: Int? =null,
         @Query("offset") offset: Int? =null
     ): ResponseGeneral
 
-    @GET("blogs")
+    @GET("blogs/")
     suspend fun getBlogsPaging(
         @Query("limit") limit: Int?=null,
         @Query("offset") offset: Int?=null
