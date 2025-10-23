@@ -9,12 +9,13 @@ import rachman.forniandi.core.data.local.ContentsLocalDataSource
 import rachman.forniandi.core.data.local.entity.RemoteKeys
 import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
+import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.toContentsEntity
 
 @OptIn(ExperimentalPagingApi::class)
 class ContentsRemoteMediator (
-    private val type: String,
+    private val type: ContentType,
     private val remoteDataSource: RemoteSourceData,
     private val localDataSource: ContentsLocalDataSource,
     private val database: ContentsDatabase
@@ -51,10 +52,10 @@ class ContentsRemoteMediator (
                 }
             }
 
-            val response = when (type.lowercase()) {
-                "articles" -> remoteDataSource.getDataPagingArticles(page, state.config.pageSize)
-                "blogs" -> remoteDataSource.getDataPagingBlogs(page, state.config.pageSize)
-                else -> throw IllegalArgumentException("Unknown content type: $type")
+            val response = when (type) {
+                ContentType.ARTICLE -> remoteDataSource.getDataPagingArticles(page, state.config.pageSize)
+                ContentType.BLOG -> remoteDataSource.getDataPagingBlogs(page, state.config.pageSize)
+
             }
 
             val contents = response.results.toContentsEntity(type)

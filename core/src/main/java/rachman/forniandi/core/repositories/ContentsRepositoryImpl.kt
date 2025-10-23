@@ -1,8 +1,15 @@
 package rachman.forniandi.core.repositories
 
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import kotlinx.coroutines.flow.flow
+import rachman.forniandi.core.data.local.ContentsLocalDataSource
+import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
+import rachman.forniandi.core.domain.entity.ContentType
+import rachman.forniandi.core.paging.ContentsRemoteMediator
 import rachman.forniandi.core.utilRemote.toContentsEntity
 import rachman.forniandi.core.utilRemote.toDetailContentsEntity
 import javax.inject.Inject
@@ -10,37 +17,59 @@ import javax.inject.Singleton
 
 @Singleton
 class ContentsRepositoryImpl @Inject constructor(
-    private val remoteSourceData: RemoteSourceData
+    private val contentDatabase: ContentsDatabase,
+    private val remoteSourceData: RemoteSourceData,
+    private val localDataSource: ContentsLocalDataSource,
 ):ContentsRepository {
 
-    override fun doGetArticles()= flow {
-        emit(RemoteResponse.Loading())
-        try {
-            val response = remoteSourceData.getDataArticles()
-            val result = response.results.toContentsEntity("ARTICLE")
-            emit(RemoteResponse.Success(result))
-        } catch (e: Exception) {
-            emit(RemoteResponse.Error(e.message.toString()))
-        }
-    }
+    override fun doGetArticles()=
+        @OptIn(ExperimentalPagingApi::class)
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false
+            ),
+            remoteMediator = ContentsRemoteMediator(
+                type = ContentType.ARTICLE,
+                remoteDataSource = remoteSourceData,
+                localDataSource = localDataSource,
+                database = contentDatabase,
 
-    override fun doGetBlogs()= flow {
-        emit(RemoteResponse.Loading())
-        try {
-            val response = remoteSourceData.getDataBlogs()
-            val result = response.results.toContentsEntity("BLOG")
-            emit(RemoteResponse.Success(result))
-        } catch (e: Exception) {
-            emit(RemoteResponse.Error(e.message.toString()))
-        }
-    }
+
+            ),
+            pagingSourceFactory = {
+                localDataSource.getAllContents(ContentType.ARTICLE)
+            }
+        ).flow
+
+
+    override fun doGetBlogs()=
+        @OptIn(ExperimentalPagingApi::class)
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false
+            ),
+            remoteMediator = ContentsRemoteMediator(
+                type = ContentType.BLOG,
+                remoteDataSource = remoteSourceData,
+                localDataSource = localDataSource,
+                database = contentDatabase,
+
+
+                ),
+            pagingSourceFactory = {
+                localDataSource.getAllContents(ContentType.BLOG)
+            }
+        ).flow
+
 
 
     override fun doGetDetailArticles(id: Int)= flow {
         emit(RemoteResponse.Loading())
         try {
             val response = remoteSourceData.getDetailArticles(id)
-            val result = response.toDetailContentsEntity("ARTICLE")
+            val result = response.toDetailContentsEntity(ContentType.ARTICLE)
             emit(RemoteResponse.Success(result))
         } catch (e: Exception) {
             emit(RemoteResponse.Error(e.message.toString()))
@@ -51,7 +80,7 @@ class ContentsRepositoryImpl @Inject constructor(
         emit(RemoteResponse.Loading())
         try {
             val response = remoteSourceData.getDetailBlogs(id)
-            val result = response.toDetailContentsEntity(type = "BLOG")
+            val result = response.toDetailContentsEntity(ContentType.BLOG)
             emit(RemoteResponse.Success(result))
         } catch (e: Exception) {
             emit(RemoteResponse.Error(errorMessage = e.message.toString()))

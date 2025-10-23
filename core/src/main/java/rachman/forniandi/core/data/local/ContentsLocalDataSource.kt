@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import rachman.forniandi.core.data.local.room.ContentsDao
 import rachman.forniandi.core.data.local.room.FavoriteContentDao
+import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 import javax.inject.Singleton
 
@@ -15,13 +16,13 @@ class ContentsLocalDataSource (
     private val favoriteContentDao: FavoriteContentDao
 ){
 
-    fun getAllContents(type: String): PagingSource<Int, Contents> =
+    fun getAllContents(type: ContentType): PagingSource<Int, Contents> =
         contentsDao.getContentsByType(type)
 
     suspend fun insertContents(contents: List<Contents>) =
         contentsDao.insertContents(contents)
 
-    suspend fun clearContentsByType(type: String) =
+    suspend fun clearContentsByType(type: ContentType) =
         contentsDao.clearContentsByType(type)
 
     suspend fun getContentById(id: Int): Flow<Contents?> =

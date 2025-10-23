@@ -1,10 +1,14 @@
 package rachman.forniandi.core.utilRemote
 
 
+import androidx.paging.PagingData
+import androidx.paging.map
 import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import rachman.forniandi.core.data.remote.response.ResultsItem
 import rachman.forniandi.core.domain.entity.AuthorContents
+import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
+
 
 /*fun List<ResultsItem>.toContentsEntity()=map { result ->
     Contents(
@@ -24,7 +28,7 @@ import rachman.forniandi.core.domain.entity.Contents
     )
 }*/
 
-fun ResultsItem.toDetailContentsEntity(type: String) = Contents(
+fun ResultsItem.toDetailContentsEntity(type: ContentType) = Contents(
     id = id,
     title = title,
     authors = authors?.map { authorItem ->
@@ -43,11 +47,11 @@ fun ResultsItem.toDetailContentsEntity(type: String) = Contents(
 
 fun mapResponseToEntities(
     input: List<ResultsItem>,
-    type: String // "ARTICLE" atau "BLOG"
+    type: ContentType // "ARTICLE" atau "BLOG"
 ): List<Contents> {
     return input.map { data ->
         Contents(
-            id = data.id ?: 0,
+            id = data.id,
             title = data.title.orEmpty(),
             authors = data.authors?.map {
                 AuthorContents(
@@ -82,7 +86,22 @@ fun Contents.toFavoriteEntity(type: String) = FavoriteContentsEntity(
     isFavorite = false
 )
 
-fun List<ResultsItem>.toContentsEntity(type: String): List<Contents> = map {
+fun toContentPagingDomain(content: PagingData<Contents>,contentType: ContentType)= content.map {
+    Contents(
+        id = it.id,
+        title = it.title,
+        authors = it.authors,
+        url = it.url,
+        imageUrl = it.imageUrl,
+        newsSite = it.newsSite,
+        summary = it.summary,
+        publishedAt = it.publishedAt,
+        updatedAt = it.updatedAt,
+        type = contentType
+    )
+}
+
+fun List<ResultsItem>.toContentsEntity(type: ContentType): List<Contents> = map {
     Contents(
         id = it.id,
         title = it.title,

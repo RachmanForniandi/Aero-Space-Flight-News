@@ -22,6 +22,6 @@ data class Contents(
     val summary: String?,
     val publishedAt: String?,
     val updatedAt: String?,
-    val type: String,
+    val type: ContentType,
 ) : Parcelable
 

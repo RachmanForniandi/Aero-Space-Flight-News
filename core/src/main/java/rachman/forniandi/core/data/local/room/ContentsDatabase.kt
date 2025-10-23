@@ -13,7 +13,7 @@ import rachman.forniandi.core.domain.entity.Contents
     exportSchema = false
 )
 
-@TypeConverters(AuthorConverter::class)
+@TypeConverters(AuthorConverter::class, ContentTypeConverter::class)
 abstract class ContentsDatabase : RoomDatabase(){
     abstract fun contentsDao(): ContentsDao
     abstract fun favoriteContentsDao(): FavoriteContentDao
