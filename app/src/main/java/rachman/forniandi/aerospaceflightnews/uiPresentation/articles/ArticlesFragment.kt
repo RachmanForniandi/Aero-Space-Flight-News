@@ -46,7 +46,7 @@ class ArticlesFragment : Fragment() {
 
     private fun setSwipeRefreshDataBlogs() {
         binding.swipeRefreshArticles.setOnRefreshListener {
-            viewModel.obtainArticles()
+            viewModel.refreshPagingArticles()
             hideShimmer()
         }
     }
@@ -66,7 +66,7 @@ class ArticlesFragment : Fragment() {
     }
 
     private fun showDataArticles() {
-        viewModel.obtainArticles()
+        viewModel.refreshPagingArticles()
         viewModel.articlesObserve.observe(viewLifecycleOwner, articlesObserver)
     }
 

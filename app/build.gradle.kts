@@ -89,6 +89,8 @@ dependencies {
     //facebook shimmer
     implementation(libs.facebook.shimmer)
 
+    //paging3
+    implementation(libs.androidx.paging.runtime.ktx)
     
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

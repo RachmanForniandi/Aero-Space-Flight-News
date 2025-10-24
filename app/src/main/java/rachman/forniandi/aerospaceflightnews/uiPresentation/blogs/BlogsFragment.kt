@@ -43,7 +43,7 @@ class BlogsFragment : Fragment() {
 
     private fun setSwipeRefreshDataBlogs() {
         binding.swipeRefreshBlogs.setOnRefreshListener {
-            viewModel.obtainBlogs()
+            viewModel.refreshPagingBlogs()
             hideShimmer()
         }
     }
@@ -62,7 +62,7 @@ class BlogsFragment : Fragment() {
     }
 
     private fun showDataBlogs() {
-        viewModel.obtainBlogs()
+        viewModel.refreshPagingBlogs()
         viewModel.blogsObserve.observe(viewLifecycleOwner, blogsObserver)
     }
 

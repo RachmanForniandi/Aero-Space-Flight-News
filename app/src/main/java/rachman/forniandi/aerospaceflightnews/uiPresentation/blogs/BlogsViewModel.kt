@@ -3,6 +3,8 @@ package rachman.forniandi.aerospaceflightnews.uiPresentation.blogs
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import rachman.forniandi.core.data.network.RemoteResponse
@@ -13,13 +15,16 @@ import javax.inject.Inject
 @HiltViewModel
 class BlogsViewModel @Inject constructor(private val blogsUseCase: BlogsUseCase) : ViewModel() {
 
-    private val getBlogs = MutableLiveData<RemoteResponse<List<Contents>?>>()
+    private val getBlogs = MutableLiveData<PagingData<Contents>>()
 
-    val blogsObserve: MutableLiveData<RemoteResponse<List<Contents>?>> get()= getBlogs
+    //val blogsObserve: MutableLiveData<RemoteResponse<List<Contents>?>> get()= getBlogs
 
-    fun obtainBlogs() = viewModelScope.launch {
-        blogsUseCase.getBlogs().collect { response->
-            getBlogs.value = response as RemoteResponse<List<Contents>?>?
+    init {
+        refreshPagingBlogs()
+    }
+    fun refreshPagingBlogs() = viewModelScope.launch {
+        blogsUseCase.getBlogs().cachedIn(viewModelScope).collect { blog->
+            getBlogs.value = blog
         }
     }
 
