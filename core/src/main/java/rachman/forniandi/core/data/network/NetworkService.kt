@@ -8,18 +8,6 @@ import retrofit2.http.Query
 
 interface NetworkService {
 
-    @GET("articles")
-    suspend fun getArticles(
-        /*@Query("limit") limit: Int=10,
-        @Query("offset") offset: Int=10*/
-    ): ResponseGeneral
-
-    @GET("blogs")
-    suspend fun getBlogs(
-        /*@Query("limit") limit: Int=10,
-        @Query("offset") offset: Int=10*/
-    ): ResponseGeneral
-
     @GET("articles/")
     suspend fun getArticlesPaging(
         @Query("limit") limit: Int? =null,
@@ -32,13 +20,10 @@ interface NetworkService {
         @Query("offset") offset: Int?=null
     ): ResponseGeneral
 
-
     @GET("articles/{id}")
     suspend fun getDetailArticles(@Path("id")id:Int): ResultsItem
 
     @GET("blogs/{id}")
     suspend fun getDetailBlogs(@Path("id")id:Int): ResultsItem
-
-
 
 }

@@ -10,7 +10,6 @@ import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
 import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.paging.ContentsRemoteMediator
-import rachman.forniandi.core.utilRemote.toContentsEntity
 import rachman.forniandi.core.utilRemote.toDetailContentsEntity
 import javax.inject.Inject
 import javax.inject.Singleton

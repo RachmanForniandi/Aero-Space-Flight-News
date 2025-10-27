@@ -15,17 +15,19 @@ import javax.inject.Inject
 @HiltViewModel
 class ArticlesViewModel @Inject constructor(private val articlesUseCase: ArticlesUseCase) : ViewModel() {
 
-    private val getArticles = MutableLiveData<PagingData<Contents>>()
+    val getArticles = MutableLiveData<PagingData<Contents>>()
 
-    init {
+    /*init {
         refreshPagingArticles()
-    }
+    }*/
 
     //val articlesObserve: MutableLiveData<RemoteResponse<List<Contents>?>> get()= getArticles
 
-    fun refreshPagingArticles() = viewModelScope.launch {
-        articlesUseCase.getArticles().cachedIn(viewModelScope).collect { response ->
-            getArticles.value = response
+    fun refreshPagingArticles() {
+        viewModelScope.launch {
+            articlesUseCase.getArticles().cachedIn(viewModelScope).collect {
+                getArticles.postValue(it)
+            }
         }
     }
 

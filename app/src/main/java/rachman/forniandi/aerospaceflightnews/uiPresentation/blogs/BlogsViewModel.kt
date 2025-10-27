@@ -15,16 +15,14 @@ import javax.inject.Inject
 @HiltViewModel
 class BlogsViewModel @Inject constructor(private val blogsUseCase: BlogsUseCase) : ViewModel() {
 
-    private val getBlogs = MutableLiveData<PagingData<Contents>>()
+    val getBlogs = MutableLiveData<PagingData<Contents>>()
 
     //val blogsObserve: MutableLiveData<RemoteResponse<List<Contents>?>> get()= getBlogs
 
-    init {
-        refreshPagingBlogs()
-    }
+
     fun refreshPagingBlogs() = viewModelScope.launch {
-        blogsUseCase.getBlogs().cachedIn(viewModelScope).collect { blog->
-            getBlogs.value = blog
+        blogsUseCase.getBlogs().cachedIn(viewModelScope).collect {
+            getBlogs.postValue(it)
         }
     }
 

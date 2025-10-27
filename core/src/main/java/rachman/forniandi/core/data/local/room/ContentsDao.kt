@@ -12,14 +12,14 @@ import rachman.forniandi.core.domain.entity.Contents
 @Dao
 interface ContentsDao {
 
-    @Query("SELECT * FROM contents_table WHERE type = :type ORDER BY publishedAt DESC")
+    @Query("SELECT * FROM contents_table WHERE type = :type ORDER BY publishedAt ASC, id ASC")
     fun getContentsByType(type: ContentType): PagingSource<Int, Contents>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertContents(contents: List<Contents>)
 
     @Query("SELECT * FROM contents_table WHERE id = :id LIMIT 1")
-    suspend fun getContentById(id: Int): Flow<Contents?>
+    fun getContentById(id: Int): Flow<Contents?>
 
     @Query("DELETE FROM contents_table WHERE type = :type")
     suspend fun clearContentsByType(type: ContentType)

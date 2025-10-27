@@ -10,15 +10,10 @@ class RemoteSourceData @Inject constructor(
 ){
     suspend fun getDataPagingArticles(limit: Int?, offset: Int) = networkService.getArticlesPaging(limit, offset)
 
-    suspend fun getDataArticles() = networkService.getArticles()
-
     suspend fun getDataPagingBlogs(limit: Int?, offset: Int) = networkService.getBlogsPaging(limit, offset)
-
-    suspend fun getDataBlogs() = networkService.getBlogs()
 
     suspend fun getDetailArticles(id: Int) = networkService.getDetailArticles(id)
 
     suspend fun getDetailBlogs(id: Int) = networkService.getDetailBlogs(id)
-
 
 }

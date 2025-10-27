@@ -23,7 +23,7 @@ import kotlin.getValue
 @AndroidEntryPoint
 class DetailBlogsFragment : Fragment() {
     private var _binding: FragmentDetailBlogsBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private val viewModel: DetailBlogsViewModel by viewModels()
     private var idContent: Int? =0
     private var detailContent: Contents? = null
@@ -36,7 +36,7 @@ class DetailBlogsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDetailBlogsBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class DetailBlogsFragment : Fragment() {
             idContent?.let { viewModel.setBlogId(it) }
         }
 
-        binding.detailToolbar.setNavigationOnClickListener {
+        binding?.detailToolbar?.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
 
@@ -69,25 +69,27 @@ class DetailBlogsFragment : Fragment() {
             is RemoteResponse.Success->{
                 applyLoadingStateDetail(false)
                 detailContent = response.data
-                binding.txtTitleContent.text = detailContent?.title
-                binding.txtSummaryContent.text = detailContent?.summary
-                binding.txtPublishedAt.text = detailContent?.publishedAt
-                binding.txtUpdatedAt.text = detailContent?.updatedAt
-                binding.txtSource.text = detailContent?.newsSite
-                binding.txtAuthor.text = detailContent?.authors?.firstOrNull()?.name
+                binding?.apply {
+                    txtTitleContent.text = detailContent?.title
+                    txtSummaryContent.text = detailContent?.summary
+                    txtPublishedAt.text = detailContent?.publishedAt
+                    txtUpdatedAt.text = detailContent?.updatedAt
+                    txtSource.text = detailContent?.newsSite
+                    txtAuthor.text = detailContent?.authors?.firstOrNull()?.name
 
-                binding.imgOfContent.load(detailContent?.imageUrl){
-                    placeholder(R.drawable.place_holder)
-                    //error(R.drawable.place_holder)
-                    crossfade(true)
+                    imgOfContent.load(detailContent?.imageUrl){
+                        placeholder(R.drawable.place_holder)
+                        //error(R.drawable.place_holder)
+                        crossfade(true)
+                    }
+
+                    btnToDetailContentWeb.setOnClickListener {
+                        val toDetailContentWeb = detailContent?.let { urlWeb -> DetailBlogsFragmentDirections.actionDetailBlogsFragmentToDetailContentsWebviewActivity(urlWeb) }
+                        toDetailContentWeb?.let { directions -> findNavController().navigate(directions) }
+                    }
                 }
 
                 detailContent?.let { linkUrlWeb = it.url!! }
-
-                binding.btnToDetailContentWeb.setOnClickListener {
-                    val toDetailContentWeb = detailContent?.let { urlWeb -> DetailBlogsFragmentDirections.actionDetailBlogsFragmentToDetailContentsWebviewActivity(urlWeb) }
-                    toDetailContentWeb?.let { directions -> findNavController().navigate(directions) }
-                }
 
             }
             is RemoteResponse.Error->{
@@ -97,29 +99,29 @@ class DetailBlogsFragment : Fragment() {
         }
     }
 
-    private fun showSnackBarError(message: String) {
-        Snackbar.make(binding.detailBlogs,message, Snackbar.LENGTH_SHORT)
-            .setAction("Ok"){}
-            .show()
+    private fun showSnackBarError(@Suppress("SameParameterValue")message: String) {
+        binding?.let { Snackbar.make(it.detailBlogs,message, Snackbar.LENGTH_SHORT) }
+            ?.setAction("Ok"){}
+            ?.show()
     }
 
 
     private fun applyLoadingStateDetail(onProcess:Boolean){
 
-        binding.btnToDetailContentWeb.isEnabled =!onProcess
+        binding?.btnToDetailContentWeb?.isEnabled =!onProcess
 
         if (onProcess){
-            binding.detailLoadingMask.root.animateLoadingProcessData(true)
-            binding.contentDetail.animateLoadingProcessData(false)
+            binding?.detailLoadingMask?.root?.animateLoadingProcessData(true)
+            binding?.contentDetail?.animateLoadingProcessData(false)
         }else{
-            binding.detailLoadingMask.root.animateLoadingProcessData(false)
-            binding.contentDetail.animateLoadingProcessData(true)
+            binding?.detailLoadingMask?.root?.animateLoadingProcessData(false)
+            binding?.contentDetail?.animateLoadingProcessData(true)
         }
     }
 
-    companion object {
-        const val DETAIL_CONTENT_ID = "detail_content_id"
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
 
 }

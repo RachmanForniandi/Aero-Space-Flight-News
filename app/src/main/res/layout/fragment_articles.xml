@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".uiPresentation.articles.ArticlesFragment">
 
-
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerFrameLayoutArticles"
         android:layout_width="match_parent"

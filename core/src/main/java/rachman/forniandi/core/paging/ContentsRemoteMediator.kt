@@ -1,5 +1,6 @@
 package rachman.forniandi.core.paging
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -14,7 +15,7 @@ import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.toContentsEntity
 
 @OptIn(ExperimentalPagingApi::class)
-class ContentsRemoteMediator (
+class ContentsRemoteMediator(
     private val type: ContentType,
     private val remoteDataSource: RemoteSourceData,
     private val localDataSource: ContentsLocalDataSource,
@@ -24,38 +25,43 @@ class ContentsRemoteMediator (
     private val contentsDao = database.contentsDao()
     private val remoteKeysDao = database.remoteKeysDao()
 
+    private companion object {
+        const val INITIAL_OFFSET = 0
+        private const val TAG = "ContentsRemoteMediator"
+    }
+
+    override suspend fun initialize(): InitializeAction {
+        return InitializeAction.LAUNCH_INITIAL_REFRESH
+    }
+
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, Contents>
     ): MediatorResult {
         return try {
-            val page = when (loadType) {
+            val offset = when (loadType) {
                 LoadType.REFRESH -> {
-                    val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
-                    remoteKeys?.nextKey?.minus(1) ?: 1
+                    Log.d(TAG, "Load REFRESH → offset=$INITIAL_OFFSET")
+                    INITIAL_OFFSET
                 }
                 LoadType.PREPEND -> {
-                    val remoteKeys = getRemoteKeyForFirstItem(state)
-                    val prevKey = remoteKeys?.prevKey
-                    if (prevKey == null){
-                        MediatorResult.Success(endOfPaginationReached = true)
-                    }
-                    prevKey
+                    Log.d(TAG, "Load PREPEND → stop (tidak ada data sebelum batch awal)")
+                    return MediatorResult.Success(endOfPaginationReached = true)
                 }
                 LoadType.APPEND -> {
                     val remoteKeys = getRemoteKeyForLastItem(state)
-                    val nextKey = remoteKeys?.nextKey
-                    if (nextKey == null) {
-                        return MediatorResult.Success(endOfPaginationReached = true)
-                    }
-                    nextKey
+                    val nextOffset = remoteKeys?.nextKey
+                    Log.d(TAG, "Load APPEND → nextOffset=$nextOffset")
+                    nextOffset ?: return MediatorResult.Success(endOfPaginationReached = true)
                 }
             }
 
-            val response = when (type) {
-                ContentType.ARTICLE -> remoteDataSource.getDataPagingArticles(page, state.config.pageSize)
-                ContentType.BLOG -> remoteDataSource.getDataPagingBlogs(page, state.config.pageSize)
+            val limit = state.config.pageSize
+            Log.d(TAG, "Requesting offset=$offset limit=$limit type=$type")
 
+            val response = when (type) {
+                ContentType.ARTICLE -> remoteDataSource.getDataPagingArticles(limit, offset)
+                ContentType.BLOG -> remoteDataSource.getDataPagingBlogs(limit, offset)
             }
 
             val contents = response.results.toContentsEntity(type)
@@ -67,21 +73,23 @@ class ContentsRemoteMediator (
                     localDataSource.clearContentsByType(type)
                 }
 
-                val keys = contents.map {
+                val keys = contents.mapIndexed { index, content ->
                     RemoteKeys(
-                        id = it.id.toString(),
-                        prevKey = if (page == 1) null else page?.minus(1),
-                        nextKey = if (endOfPaginationReached) null else page?.plus(1)
+                        id = content.id.toString(),
+                        prevKey = if (offset == INITIAL_OFFSET) null else offset - limit,
+                        nextKey = if (endOfPaginationReached) null else offset + limit
                     )
                 }
+
                 remoteKeysDao.insertAllKeys(keys)
                 contentsDao.insertContents(contents)
-
             }
+            Log.d(TAG, "Inserted ${contents.size} items at offset=$offset")
 
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
 
         } catch (e: Exception) {
+            Log.e(TAG, "Error loading data", e)
             MediatorResult.Error(e)
         }
     }

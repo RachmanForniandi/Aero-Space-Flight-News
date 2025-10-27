@@ -8,10 +8,11 @@ import rachman.forniandi.core.data.local.room.ContentsDao
 import rachman.forniandi.core.data.local.room.FavoriteContentDao
 import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
+import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class ContentsLocalDataSource (
+
+class ContentsLocalDataSource @Inject constructor(
     private val contentsDao: ContentsDao,
     private val favoriteContentDao: FavoriteContentDao
 ){
@@ -41,7 +42,7 @@ class ContentsLocalDataSource (
     suspend fun updateFavoriteContent(idContent: Int, isFavorite: Boolean) =
         favoriteContentDao.updateFavoriteContent(idContent, isFavorite)
 
-    fun deleteAllFavoriteContents() =
+    suspend fun deleteAllFavoriteContents() =
         favoriteContentDao.deleteAllFavoriteContents()
 
 }
