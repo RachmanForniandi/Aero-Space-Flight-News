@@ -27,6 +27,7 @@ class ContentsRemoteMediator(
 
     private companion object {
         const val INITIAL_OFFSET = 0
+        const val NETWORK_PAGE_SIZE = 10
         private const val TAG = "ContentsRemoteMediator"
     }
 
@@ -42,31 +43,44 @@ class ContentsRemoteMediator(
             val offset = when (loadType) {
                 LoadType.REFRESH -> {
                     Log.d(TAG, "Load REFRESH → offset=$INITIAL_OFFSET")
-                    INITIAL_OFFSET
+                    val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
+                    remoteKeys?.nextKey?.minus(NETWORK_PAGE_SIZE) ?: INITIAL_OFFSET
                 }
                 LoadType.PREPEND -> {
-                    Log.d(TAG, "Load PREPEND → stop (tidak ada data sebelum batch awal)")
-                    return MediatorResult.Success(endOfPaginationReached = true)
+                    val remoteKeys = getRemoteKeyForFirstItem(state)
+                    val prevKey = remoteKeys?.prevKey
+                    if (prevKey == null) {
+                        Log.d(TAG, "Reached beginning of list → endOfPaginationReached=true")
+                        return MediatorResult.Success(endOfPaginationReached = true)
+                    }
+                    prevKey
                 }
                 LoadType.APPEND -> {
                     val remoteKeys = getRemoteKeyForLastItem(state)
-                    val nextOffset = remoteKeys?.nextKey
-                    Log.d(TAG, "Load APPEND → nextOffset=$nextOffset")
-                    nextOffset ?: return MediatorResult.Success(endOfPaginationReached = true)
+                    val nextKey = remoteKeys?.nextKey
+                    if (nextKey == null) {
+                        Log.d(TAG, "Reached end of list → endOfPaginationReached=true")
+                        return MediatorResult.Success(endOfPaginationReached = true)
+                    }
+                    nextKey
                 }
             }
+            Log.d(TAG, "loadType=$loadType | offset=$offset | type=$type")
 
-            val limit = state.config.pageSize
-            Log.d(TAG, "Requesting offset=$offset limit=$limit type=$type")
 
             val response = when (type) {
-                ContentType.ARTICLE -> remoteDataSource.getDataPagingArticles(limit, offset)
-                ContentType.BLOG -> remoteDataSource.getDataPagingBlogs(limit, offset)
+                ContentType.ARTICLE -> remoteDataSource.getDataPagingArticles(limit = NETWORK_PAGE_SIZE,
+                    offset = offset)
+                ContentType.BLOG -> remoteDataSource.getDataPagingBlogs(limit = NETWORK_PAGE_SIZE,
+                    offset = offset)
             }
 
             val contents = response.results.toContentsEntity(type)
             val endOfPaginationReached = contents.isEmpty()
 
+            Log.d(
+                TAG, "API success → loaded ${contents.size} items | nextOffset=${offset + NETWORK_PAGE_SIZE} | endOfPaginationReached=$endOfPaginationReached"
+            )
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
                     remoteKeysDao.deleteAllKeys()
@@ -76,8 +90,8 @@ class ContentsRemoteMediator(
                 val keys = contents.mapIndexed { index, content ->
                     RemoteKeys(
                         id = content.id.toString(),
-                        prevKey = if (offset == INITIAL_OFFSET) null else offset - limit,
-                        nextKey = if (endOfPaginationReached) null else offset + limit
+                        prevKey = if (offset == INITIAL_OFFSET) null else offset - NETWORK_PAGE_SIZE,
+                        nextKey = if (endOfPaginationReached) null else offset + NETWORK_PAGE_SIZE
                     )
                 }
 

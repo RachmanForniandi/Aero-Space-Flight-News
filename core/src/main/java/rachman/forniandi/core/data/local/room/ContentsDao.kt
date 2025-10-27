@@ -12,7 +12,7 @@ import rachman.forniandi.core.domain.entity.Contents
 @Dao
 interface ContentsDao {
 
-    @Query("SELECT * FROM contents_table WHERE type = :type ORDER BY publishedAt ASC, id ASC")
+    @Query("SELECT * FROM contents_table WHERE type = :type ORDER BY publishedAt DESC")
     fun getContentsByType(type: ContentType): PagingSource<Int, Contents>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
