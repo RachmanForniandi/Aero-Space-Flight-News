@@ -3,12 +3,14 @@ package rachman.forniandi.core.repositories
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import rachman.forniandi.core.data.local.ContentsLocalDataSource
 import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
 import rachman.forniandi.core.domain.entity.ContentType
+import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.paging.ContentsRemoteMediator
 import rachman.forniandi.core.utilRemote.toDetailContentsEntity
 import javax.inject.Inject
@@ -54,8 +56,6 @@ class ContentsRepositoryImpl @Inject constructor(
                 remoteDataSource = remoteSourceData,
                 localDataSource = localDataSource,
                 database = contentDatabase,
-
-
                 ),
             pagingSourceFactory = {
                 localDataSource.getAllContents(ContentType.BLOG)
@@ -85,6 +85,23 @@ class ContentsRepositoryImpl @Inject constructor(
             emit(RemoteResponse.Error(errorMessage = e.message.toString()))
         }
     }
+
+    /*override fun getAllFavoriteContents(type: ContentType): Flow<List<Contents>> {
+        localDataSource.getAllFavorites(type)
+    }
+
+    override suspend fun addToFavorite(
+        contents: Contents,
+        type: ContentType
+    ) {
+        localDataSource.insertFavoriteContent(contents,type)
+    }
+
+    override suspend fun removeFromFavorite(contentsId: Int) {
+        TODO("Not yet implemented")
+    }*/
+
+
 }
 
 

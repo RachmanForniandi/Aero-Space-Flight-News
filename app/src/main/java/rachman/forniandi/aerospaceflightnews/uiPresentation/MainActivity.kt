@@ -1,12 +1,14 @@
 package rachman.forniandi.aerospaceflightnews.uiPresentation
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
@@ -39,6 +41,45 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_favorite -> {
+                try {
+                    /*val intent =
+                        Intent(this, Class.forName("rachman.forniandi.favorite.FavoriteContentActivity"))
+                    startActivity(intent)*/
+                    moveToFavorite()
+                } catch (e: ClassNotFoundException) {
+                    Toast.makeText(this, "Feature Favorite not installed yet!", Toast.LENGTH_SHORT).show()
+                }
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun moveToFavorite() {
+        val intent = Intent(this, Class.forName("rachman.forniandi.favorite.FavoriteContentActivity"))
+        startActivity(intent)
+    }
+
+    /*private fun installFavoriteModule() {
+        val splitInstallManager = SplitInstallManagerFactory.create(this)
+        val request = SplitInstallRequest.newBuilder()
+            .addModule("favorite") // nama modul sesuai folder di project
+            .build()
+
+        // Mulai proses download modul dinamis
+        splitInstallManager.startInstall(request)
+            .addOnSuccessListener {
+                // Modul berhasil dipasang
+                startActivity(Intent().setClassName(packageName, "rachman.forniandi.favorite.FavoriteContentActivity"))
+            }
+            .addOnFailureListener {
+                it.printStackTrace()
+            }
+    }*/
 
     private fun showToolbarAndNavBottomBar(){
         binding.bottomNavigationMain.visibility = View.VISIBLE

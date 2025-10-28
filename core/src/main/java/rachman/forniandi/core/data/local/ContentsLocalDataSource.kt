@@ -29,7 +29,7 @@ class ContentsLocalDataSource @Inject constructor(
     suspend fun getContentById(id: Int): Flow<Contents?> =
         contentsDao.getContentById(id)
 
-    fun getAllFavorites(type: String): Flow<List<FavoriteContentsEntity>> =
+    fun getAllFavorites(type: ContentType): Flow<List<FavoriteContentsEntity>> =
         favoriteContentDao.getFavorites(type)
 
     suspend fun insertFavoriteContent(contentEntity: FavoriteContentsEntity) =

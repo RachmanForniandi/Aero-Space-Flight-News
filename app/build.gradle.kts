@@ -50,6 +50,7 @@ android {
         viewBinding= true
 
     }
+    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {

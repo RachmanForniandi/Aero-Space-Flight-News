@@ -17,4 +17,9 @@ interface ContentsRepository {
 
     fun doGetDetailBlogs(id: Int): Flow<RemoteResponse<Contents>>
 
+   /* fun getAllFavoriteContents(type: ContentType): Flow<List<Contents>>
+
+    suspend fun addToFavorite(contents: Contents,type: ContentType)
+
+    suspend fun removeFromFavorite(contentsId: Int)*/
 }

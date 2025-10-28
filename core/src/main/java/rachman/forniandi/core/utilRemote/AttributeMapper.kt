@@ -74,13 +74,14 @@ fun mapEntityToDomain(input: Contents): Contents = input
 
 fun mapDomainToEntity(input: Contents): Contents = input
 
-fun Contents.toFavoriteEntity(type: String) = FavoriteContentsEntity(
+fun Contents.toFavoriteEntity(type: ContentType) = FavoriteContentsEntity(
     id = id,
     title = title,
     imageUrl = imageUrl,
     newsSite = newsSite,
     summary = summary,
     publishedAt = publishedAt,
+    updatedAt,
     url = url,
     contentType = type,
     isFavorite = false
@@ -100,6 +101,19 @@ fun toContentPagingDomain(content: PagingData<Contents>,contentType: ContentType
         type = contentType
     )
 }
+
+/*fun FavoriteContentsEntity.toContentsDomain(): Contents = Contents(
+    id = this.id,
+    title = this.title,
+    authors = listOf(),
+    url = this.url,
+    imageUrl = this.imageUrl,
+    newsSite = this.newsSite,
+    summary = this.summary,
+    publishedAt = this.publishedAt,
+    updatedAt = this.updateAt,
+    type = ContentType.valueOf(this.contentType) // kalau kamu punya field type di Contents
+)*/
 
 fun List<ResultsItem>.toContentsEntity(type: ContentType): List<Contents> = map {
     Contents(
