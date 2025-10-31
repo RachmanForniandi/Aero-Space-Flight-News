@@ -15,14 +15,14 @@ interface FavoriteContentDao {
     @Query("SELECT * FROM favorite_contents WHERE contentType = :type ORDER BY id DESC")
     fun getFavorites(type: ContentType): Flow<List<FavoriteContentsEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavoriteContent(contentEntity: FavoriteContentsEntity)
 
-    @Query("SELECT COUNT(*) FROM favorite_contents WHERE id = :idContent AND isFavorite = 1")
-    fun isFavoriteContent(idContent: Int): Flow<Boolean>
+    @Delete
+    suspend fun deleteFavoriteContent(content: FavoriteContentsEntity)
 
-    @Query("UPDATE favorite_contents SET isFavorite = :isFavorite WHERE id = :idContent")
-    suspend fun updateFavoriteContent(idContent: Int, isFavorite: Boolean)
+    @Query("SELECT EXISTS(SELECT * FROM favorite_contents WHERE id = :id AND contentType = :type)")
+    fun isFavoriteContent(id: Int, type: ContentType): Flow<Boolean>
 
     @Query("DELETE FROM favorite_contents")
     suspend fun deleteAllFavoriteContents()

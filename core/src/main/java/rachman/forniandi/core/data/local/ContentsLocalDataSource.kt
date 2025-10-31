@@ -35,12 +35,12 @@ class ContentsLocalDataSource @Inject constructor(
     suspend fun insertFavoriteContent(contentEntity: FavoriteContentsEntity) =
         favoriteContentDao.insertFavoriteContent(contentEntity)
 
-    suspend fun isFavoriteContent(idContent: Int): Flow<Boolean> =
-        favoriteContentDao.isFavoriteContent(idContent)
+    fun isFavoriteContent(id: Int, type: ContentType): Flow<Boolean> =
+        favoriteContentDao.isFavoriteContent(id,type)
 
 
-    suspend fun updateFavoriteContent(idContent: Int, isFavorite: Boolean) =
-        favoriteContentDao.updateFavoriteContent(idContent, isFavorite)
+    suspend fun deleteFavoriteContent(contentEntity: FavoriteContentsEntity) =
+        favoriteContentDao.deleteFavoriteContent(contentEntity)
 
     suspend fun deleteAllFavoriteContents() =
         favoriteContentDao.deleteAllFavoriteContents()

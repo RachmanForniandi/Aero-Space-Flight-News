@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import rachman.forniandi.core.data.local.ContentsLocalDataSource
+import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
@@ -86,21 +87,28 @@ class ContentsRepositoryImpl @Inject constructor(
         }
     }
 
-    /*override fun getAllFavoriteContents(type: ContentType): Flow<List<Contents>> {
-        localDataSource.getAllFavorites(type)
+    override fun getAllFavoriteContents(type: ContentType): Flow<List<FavoriteContentsEntity>> {
+        return localDataSource.getAllFavorites(type)
     }
 
-    override suspend fun addToFavorite(
-        contents: Contents,
+    override suspend fun insertToFavorite(favoriteContentsEntity: FavoriteContentsEntity) {
+        localDataSource.insertFavoriteContent(favoriteContentsEntity)
+    }
+
+    override suspend fun deleteFromFavorite(content: FavoriteContentsEntity) {
+        localDataSource.deleteFavoriteContent(content)
+    }
+
+    override fun isFavoriteContent(
+        id: Int,
         type: ContentType
-    ) {
-        localDataSource.insertFavoriteContent(contents,type)
+    ): Flow<Boolean> {
+        return localDataSource.isFavoriteContent(id,type)
     }
 
-    override suspend fun removeFromFavorite(contentsId: Int) {
-        TODO("Not yet implemented")
-    }*/
-
+    override suspend fun deleteAllFavorites() {
+        localDataSource.deleteAllFavoriteContents()
+    }
 
 }
 

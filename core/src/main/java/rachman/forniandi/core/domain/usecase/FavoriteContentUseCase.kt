@@ -2,12 +2,14 @@ package rachman.forniandi.core.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
 import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
+import rachman.forniandi.core.domain.entity.ContentType
 
 interface FavoriteContentUseCase {
-    fun getFavoriteContent(): Flow<List<FavoriteContentsEntity>>
 
-    suspend fun updateMovie(id: Int, isFavorite: Boolean)
+    fun getFavoriteContents(type: ContentType): Flow<List<FavoriteContentsEntity>>
 
-    fun isFavoriteMovie(id: Int): Flow<Boolean>
+    suspend fun updateFavoriteContent(content: FavoriteContentsEntity, isFavorite: Boolean)
+
+    fun isFavoriteContent(id: Int, type: ContentType): Flow<Boolean>
 
 }
