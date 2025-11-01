@@ -26,6 +26,7 @@
         app:title="@string/title_favorite"
         app:titleTextColor="@android:color/white"
         app:navigationIcon="@drawable/ic_arrow_back"
+        app:menu="@menu/menu_favorite"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
   </com.google.android.material.appbar.AppBarLayout>
 

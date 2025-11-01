@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -16,7 +17,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentDetailArticlesBinding
 import rachman.forniandi.aerospaceflightnews.util.animateLoadingProcessData
+import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import rachman.forniandi.core.data.network.RemoteResponse
+import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 
 import kotlin.getValue
@@ -54,7 +57,11 @@ class DetailArticlesFragment : Fragment() {
         }
 
         showDetailArticles()
+        observeFavoriteArticleState()
+
     }
+
+
 
     private fun showDetailArticles() {
         viewModel.setArticleId(idContent)
@@ -101,12 +108,39 @@ class DetailArticlesFragment : Fragment() {
         }
     }
 
+    private fun observeFavoriteArticleState() {
+        idContent.let {id ->
+            id?.let { viewModel.isArticleFavorites(it) }?.observe(viewLifecycleOwner) { isFavorite ->
+                binding?.fabFavoriteContent?.imageTintList = getColorStateList(
+                    requireActivity(),
+                    if (isFavorite) R.color.yellow else R.color.white
+                )
+
+                binding?.fabFavoriteContent?.setOnClickListener {
+                    detailContent?.let { content ->
+                        val favEntity = FavoriteContentsEntity(
+                            id = content.id ?: 0,
+                            title = content.title ?: "",
+                            imageUrl = content.imageUrl ?: "",
+                            newsSite = content.newsSite ?: "",
+                            summary = content.summary ?: "",
+                            publishedAt = content.publishedAt ?: "",
+                            updateAt = content.updatedAt ?: "",
+                            url = content.url ?: "",
+                            contentType = ContentType.ARTICLE
+                        )
+                        viewModel.toggleFavoriteArticle(favEntity, isFavorite)
+                    }
+                }
+            }
+        }
+    }
+
     private fun showSnackBarError(@Suppress("SameParameterValue") message: String?) {
         binding?.let { Snackbar.make(it.detailArticles,message.toString(), Snackbar.LENGTH_SHORT) }
             ?.setAction("Ok"){}
             ?.show()
     }
-
 
     private fun applyLoadingStateDetail(onProcess: Boolean) {
 

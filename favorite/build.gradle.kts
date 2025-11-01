@@ -36,16 +36,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":app"))
     implementation(project(":core"))
     implementation(libs.androidx.appcompat)
 
     //dagger hilt
     implementation (libs.hilt.android)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.material)
-    ksp (libs.hilt.compiler)
-    ksp (libs.dagger.compiler)
 
     //viewmodel
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
@@ -57,11 +52,6 @@ dependencies {
     //coil
     implementation(libs.coil3.coil)
     implementation(libs.coil3.okhttp)
-
-    //Room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.room.ktx)
-    ksp(libs.room.compiler)
 
     //feature delivery
     implementation(libs.feature.delivery.ktx)
