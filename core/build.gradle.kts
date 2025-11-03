@@ -72,6 +72,9 @@ dependencies {
     implementation (libs.kotlinx.coroutines.core)
     implementation (libs.kotlinx.coroutines.android)
 
+    implementation(libs.gms.play.services.base)
+    implementation(libs.google.android.play.core)
+
 
     //gson
     implementation(libs.gson)

@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":app"))
     implementation(project(":core"))
     implementation(libs.androidx.appcompat)
 
@@ -55,4 +56,6 @@ dependencies {
 
     //feature delivery
     implementation(libs.feature.delivery.ktx)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.material)
 }

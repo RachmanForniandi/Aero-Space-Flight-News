@@ -88,6 +88,7 @@ class DetailArticlesFragment : Fragment() {
                         //error(R.drawable.place_holder)
                         crossfade(true)
                     }
+                    fabFavoriteContent.isEnabled = true
                     btnToDetailContentWeb.setOnClickListener {
                         val toDetailContentWeb = detailContent?.let { urlWeb -> DetailArticlesFragmentDirections.actionArticleDetailsFragmentToDetailContentsWebviewActivity(urlWeb) }
                         toDetailContentWeb?.let { directions -> findNavController().navigate(directions) }
@@ -109,27 +110,42 @@ class DetailArticlesFragment : Fragment() {
     }
 
     private fun observeFavoriteArticleState() {
-        idContent.let {id ->
-            id?.let { viewModel.isArticleFavorites(it) }?.observe(viewLifecycleOwner) { isFavorite ->
-                binding?.fabFavoriteContent?.imageTintList = getColorStateList(
-                    requireActivity(),
-                    if (isFavorite) R.color.yellow else R.color.white
-                )
+        idContent?.let { id ->
+            val type = detailContent?.type ?: ContentType.ARTICLE
 
-                binding?.fabFavoriteContent?.setOnClickListener {
-                    detailContent?.let { content ->
-                        val favEntity = FavoriteContentsEntity(
-                            id = content.id ?: 0,
-                            title = content.title ?: "",
-                            imageUrl = content.imageUrl ?: "",
-                            newsSite = content.newsSite ?: "",
-                            summary = content.summary ?: "",
-                            publishedAt = content.publishedAt ?: "",
-                            updateAt = content.updatedAt ?: "",
-                            url = content.url ?: "",
-                            contentType = ContentType.ARTICLE
-                        )
-                        viewModel.toggleFavoriteArticle(favEntity, isFavorite)
+            viewModel.isArticleFavorites(id,type).observe(viewLifecycleOwner) { isFavorite ->
+                binding?.fabFavoriteContent?.apply {
+                    imageTintList = getColorStateList(
+                        requireActivity(),
+                        if (isFavorite) R.color.yellow else R.color.white
+                    )
+
+                    setOnClickListener {
+                        detailContent?.let { content ->
+                            val favEntity = FavoriteContentsEntity(
+                                id = content.id ?: 0,
+                                title = content.title ?: "",
+                                imageUrl = content.imageUrl ?: "",
+                                newsSite = content.newsSite ?: "",
+                                summary = content.summary ?: "",
+                                publishedAt = content.publishedAt ?: "",
+                                updateAt = content.updatedAt ?: "",
+                                url = content.url ?: "",
+                                contentType = content.type,
+                                isFavorite = !isFavorite
+                            )
+
+                            viewModel.toggleFavoriteArticle(favEntity, isFavorite)
+
+                            Snackbar.make(
+                                requireView(),
+                                if (isFavorite)
+                                    "Content removed from favorites list"
+                                else
+                                    "Content added to favorites list",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }

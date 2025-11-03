@@ -1,4 +1,4 @@
-package rachman.forniandi.favorite.ui
+package rachman.forniandi.core.di
 
 import dagger.Binds
 import dagger.Module
@@ -7,7 +7,6 @@ import dagger.hilt.components.SingletonComponent
 import rachman.forniandi.core.domain.interactor.FavoriteContentsInteractor
 import rachman.forniandi.core.domain.usecase.FavoriteContentUseCase
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(SingletonComponent::class)

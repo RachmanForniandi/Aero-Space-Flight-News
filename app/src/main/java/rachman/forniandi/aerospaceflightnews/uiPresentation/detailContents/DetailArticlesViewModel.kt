@@ -22,7 +22,7 @@ class DetailArticlesViewModel @Inject constructor(
     private val articleId = MutableLiveData<Int>()
 
     fun setArticleId(id: Int?){
-        articleId.value = id!!
+        articleId.value = id ?: return
 
     }
 
@@ -38,6 +38,6 @@ class DetailArticlesViewModel @Inject constructor(
         }
     }
 
-    fun isArticleFavorites(id: Int) =
-        favoriteContentUseCase.isFavoriteContent(id, ContentType.ARTICLE).asLiveData()
+    fun isArticleFavorites(id: Int, type: ContentType) =
+        favoriteContentUseCase.isFavoriteContent(id, type).asLiveData()
 }
