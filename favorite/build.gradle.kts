@@ -54,8 +54,7 @@ dependencies {
     implementation(libs.coil3.coil)
     implementation(libs.coil3.okhttp)
 
-    //feature delivery
-    implementation(libs.feature.delivery.ktx)
+
     implementation(libs.androidx.constraintlayout)
     implementation(libs.material)
 }

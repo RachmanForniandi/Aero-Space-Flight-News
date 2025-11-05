@@ -102,7 +102,7 @@ fun toContentPagingDomain(content: PagingData<Contents>,contentType: ContentType
     )
 }
 
-/*fun FavoriteContentsEntity.toContentsDomain(): Contents = Contents(
+fun FavoriteContentsEntity.toContentsDomain(): Contents = Contents(
     id = this.id,
     title = this.title,
     authors = listOf(),
@@ -112,8 +112,8 @@ fun toContentPagingDomain(content: PagingData<Contents>,contentType: ContentType
     summary = this.summary,
     publishedAt = this.publishedAt,
     updatedAt = this.updateAt,
-    type = ContentType.valueOf(this.contentType) // kalau kamu punya field type di Contents
-)*/
+    type = contentType
+)
 
 fun List<ResultsItem>.toContentsEntity(type: ContentType): List<Contents> = map {
     Contents(

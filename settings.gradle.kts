@@ -27,6 +27,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Aero Space Flight News"
-include(":app")
 include(":core")
+include(":app")
 include(":favorite")

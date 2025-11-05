@@ -12,4 +12,6 @@ interface FavoriteContentUseCase {
 
     fun isFavoriteContent(id: Int, type: ContentType): Flow<Boolean>
 
+    suspend fun deleteAllFavoriteContents()
+
 }

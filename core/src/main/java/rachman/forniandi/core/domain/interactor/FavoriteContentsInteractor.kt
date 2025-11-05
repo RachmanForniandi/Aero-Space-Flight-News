@@ -31,4 +31,8 @@ class FavoriteContentsInteractor @Inject constructor(private val contentsReposit
         return contentsRepository.isFavoriteContent(id, type)
     }
 
+    override suspend fun deleteAllFavoriteContents() {
+        contentsRepository.deleteAllFavorites()
+    }
+
 }

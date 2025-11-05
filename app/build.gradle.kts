@@ -55,6 +55,7 @@ android {
 
 dependencies {
     implementation (project(":core"))
+    implementation (project(":favorite"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

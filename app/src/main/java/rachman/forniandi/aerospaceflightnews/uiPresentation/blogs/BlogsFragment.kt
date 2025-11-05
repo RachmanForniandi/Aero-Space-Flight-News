@@ -1,5 +1,6 @@
 package rachman.forniandi.aerospaceflightnews.uiPresentation.blogs
 
+
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment

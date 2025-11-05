@@ -15,45 +15,17 @@ import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.local.room.ContentsDatabase.Companion.MIGRATION_1_2
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
+@Module @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-
-    @Provides
-    @Singleton
-    fun provideContentsDatabase(
-        @ApplicationContext context: Context
-    ): ContentsDatabase {
-        val builder = Room.databaseBuilder(
-            context,
+    @Provides @Singleton fun provideContentsDatabase(
+        @ApplicationContext context: Context ): ContentsDatabase =
+        Room.databaseBuilder(context,
             ContentsDatabase::class.java,
             "contents_database"
-        ).addMigrations(ContentsDatabase.MIGRATION_1_2)
-            .addCallback(object : RoomDatabase.Callback() {
-                override fun onCreate(db: SupportSQLiteDatabase) {
-                    super.onCreate(db)
-                    Log.d("RoomDB", "Database created: contents_database")
-                }
-
-                override fun onOpen(db: SupportSQLiteDatabase) {
-                    super.onOpen(db)
-                    Log.d("RoomDB", "Database opened successfully")
-                }
-            })
-
-        return if (BuildConfig.DEBUG) {
-            builder.fallbackToDestructiveMigration().build()
-        } else {
-            builder.build()
-        }
-    }
-
-    @Provides
-    fun provideContentsDao(db: ContentsDatabase) = db.contentsDao()
-
-    @Provides
-    fun provideFavoriteContentDao(db: ContentsDatabase) = db.favoriteContentsDao()
-
-    @Provides
-    fun provideRemoteKeysDao(db: ContentsDatabase) = db.remoteKeysDao()
+        )
+            .addMigrations(MIGRATION_1_2)
+            .build()
+    @Provides fun provideContentsDao(db: ContentsDatabase) = db.contentsDao()
+    @Provides fun provideFavoriteContentDao(db: ContentsDatabase) = db.favoriteContentsDao()
+    @Provides fun provideRemoteKeysDao(db: ContentsDatabase) = db.remoteKeysDao()
 }

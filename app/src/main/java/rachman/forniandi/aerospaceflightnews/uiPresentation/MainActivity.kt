@@ -8,11 +8,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityMainBinding
+import rachman.forniandi.aerospaceflightnews.uiPresentation.articles.ArticlesFragmentDirections
+import rachman.forniandi.aerospaceflightnews.uiPresentation.blogs.BlogsFragmentDirections
+import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
+import rachman.forniandi.core.domain.entity.ContentType
+import rachman.forniandi.core.utilRemote.toContentsDomain
+import rachman.forniandi.favorite.ui.FavoriteContentActivity
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,12 +30,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         navController= findNavController(R.id.nav_host_fragment_container)
-        val appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.articlesFragment,
-            R.id.blogsFragment,
-            //R.id.favoriteContentsFragment
-        )
 
+
+        handleIntentNavigation(intent)
         binding.bottomNavigationMain.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -42,14 +44,43 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun handleIntentNavigation(intent: Intent) {
+        val isFromFavorite = intent.getBooleanExtra("EXTRA_FROM_FAVORITE", false) ?: false
+        val favorite = intent.getParcelableExtra<FavoriteContentsEntity>("EXTRA_FAVORITE_CONTENT")
+
+        if (isFromFavorite && favorite != null) {
+
+            when (favorite.contentType) {
+                ContentType.ARTICLE -> {
+                    val direction = ArticlesFragmentDirections
+                        .actionArticlesFragmentToArticleDetailsFragment(
+                            favorite.toContentsDomain()
+                        )
+                    navController.navigate(direction)
+
+                }
+
+                ContentType.BLOG -> {
+                    val direction = BlogsFragmentDirections
+                        .actionBlogsFragmentToDetailBlogsFragment(
+                            favorite.toContentsDomain()
+                        )
+                    navController.navigate(direction)
+                }
+
+            }
+        }
+    }
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_favorite -> {
                 try {
-                    /*val intent =
-                        Intent(this, Class.forName("rachman.forniandi.favorite.FavoriteContentActivity"))
-                    startActivity(intent)*/
-                    moveToFavorite()
+                    val intent =
+                        Intent(this, FavoriteContentActivity::class.java)
+                    startActivity(intent)
+                    //moveToFavorite()
                 } catch (e: ClassNotFoundException) {
                     Toast.makeText(this, "Feature Favorite not installed yet!", Toast.LENGTH_SHORT).show()
                 }
