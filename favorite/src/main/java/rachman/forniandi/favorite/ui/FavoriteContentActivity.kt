@@ -7,10 +7,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import rachman.forniandi.aerospaceflightnews.uiPresentation.MainActivity
+import rachman.forniandi.core.utilRemote.NavigationHelper
 import rachman.forniandi.favorite.R
 import rachman.forniandi.favorite.adapter.FavoriteContentAdapter
 import rachman.forniandi.favorite.databinding.ActivityFavoriteContentBinding
+import rachman.forniandi.favorite.viewmodel.FavoriteContentViewModel
 
 @AndroidEntryPoint
 class FavoriteContentActivity : AppCompatActivity() {
@@ -46,12 +47,7 @@ class FavoriteContentActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter = FavoriteContentAdapter { favorite ->
-            val intent = Intent(this, MainActivity::class.java).apply {
-                putExtra("EXTRA_CONTENT_ID", favorite.id)
-                putExtra("EXTRA_CONTENT_TYPE", favorite.contentType.name)
-                putExtra("EXTRA_FROM_FAVORITE", true)
-            }
-            startActivity(intent)
+            NavigationHelper.navigateToMain(this, favorite.id, favorite.contentType.name)
         }
 
         binding.rvFavorites.adapter = adapter

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Core</string>
+    <string name="unable_to_fetch_data_of_contents">Unable to fetch data of contents</string>
 </resources>

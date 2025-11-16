@@ -3,11 +3,13 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias (libs.plugins.kotlin.parcelize)
+    id("androidx.navigation.safeargs.kotlin")
 
 }
 android {
     namespace = "rachman.forniandi.favorite"
     compileSdk = 36
+
 
     defaultConfig {
         minSdk = 24
@@ -32,29 +34,38 @@ android {
     }
     buildFeatures {
         viewBinding = true
+
     }
+
 }
 
 dependencies {
     implementation(project(":app"))
     implementation(project(":core"))
-    implementation(libs.androidx.appcompat)
+    api(libs.androidx.appcompat)
 
     //dagger hilt
-    implementation (libs.hilt.android)
+    api (libs.hilt.android)
 
     //viewmodel
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.activity.ktx)
+    api (libs.androidx.lifecycle.viewmodel.ktx)
+    api (libs.androidx.activity.ktx)
+
+    //Navigation
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     //glide
-    implementation(libs.glide)
+    api(libs.glide)
 
     //coil
-    implementation(libs.coil3.coil)
-    implementation(libs.coil3.okhttp)
+    api(libs.coil3.coil)
+    api(libs.coil3.okhttp)
 
 
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.material)
+    api(libs.androidx.constraintlayout)
+    api(libs.material)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
 }

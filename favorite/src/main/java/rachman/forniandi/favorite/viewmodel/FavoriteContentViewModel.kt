@@ -1,4 +1,4 @@
-package rachman.forniandi.favorite.ui
+package rachman.forniandi.favorite.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

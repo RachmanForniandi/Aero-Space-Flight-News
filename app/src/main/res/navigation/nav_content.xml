@@ -5,6 +5,8 @@
     android:id="@+id/nav_content"
     app:startDestination="@id/articlesFragment">
 
+    <!--<include app:graph="@navigation/favorite_navigation" />-->
+
     <fragment
         android:id="@+id/articlesFragment"
         android:name="rachman.forniandi.aerospaceflightnews.uiPresentation.articles.ArticlesFragment"
@@ -64,6 +66,25 @@
             app:argType="rachman.forniandi.core.domain.entity.Contents"
              />
     </activity>
+
+    <fragment
+        android:id="@+id/favoriteContentFragment"
+        android:name="rachman.forniandi.favorite.ui.FavoriteContentFragment"
+        android:label="fragment_favorite_content"
+        tools:layout="@layout/fragment_favorite_content">
+
+        <action
+            android:id="@+id/action_favoriteContentFragment_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
+
+        <action
+            android:id="@+id/action_favoriteContentFragment_to_detailBlogsFragment"
+            app:destination="@id/detailBlogsFragment" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_favorite"
+        app:destination="@id/favoriteContentFragment" />
 
 
 </navigation>

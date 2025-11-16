@@ -55,46 +55,43 @@ android {
 
 dependencies {
     implementation (project(":core"))
-    implementation (project(":favorite"))
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
+    api(libs.androidx.core.ktx)
+    api(libs.androidx.appcompat)
+    api(libs.material)
+    api(libs.androidx.activity)
+    api(libs.androidx.constraintlayout)
 
     //dagger hilt
-    implementation (libs.hilt.android)
+    api (libs.hilt.android)
     ksp (libs.hilt.compiler)
     ksp (libs.dagger.compiler)
 
+    api(libs.paging.runtime.ktx)
+
     //viewmodel
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.activity.ktx)
+    api (libs.androidx.lifecycle.viewmodel.ktx)
 
     //glide
-    implementation(libs.glide)
+    api(libs.glide)
 
     //coil
-    implementation(libs.coil3.coil)
-    implementation(libs.coil3.okhttp)
+    api(libs.coil3.coil)
+    api(libs.coil3.okhttp)
+
 
     //lifecycle
-    implementation (libs.androidx.lifecycle.livedata.ktx)
+    api (libs.androidx.lifecycle.livedata.ktx)
 
     //Navigation
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    api(libs.facebook.shimmer)
+
 
     implementation(libs.androidx.swiperefreshlayout)
 
-    //facebook shimmer
-    implementation(libs.facebook.shimmer)
-
-    //paging3
-    implementation(libs.androidx.paging.runtime.ktx)
-    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

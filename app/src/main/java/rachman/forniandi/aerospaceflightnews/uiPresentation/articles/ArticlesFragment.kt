@@ -7,18 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import rachman.forniandi.aerospaceflightnews.adapters.ContentAdapter
-import rachman.forniandi.aerospaceflightnews.adapters.LoadingStatePageAdapter
-import rachman.forniandi.core.data.network.RemoteResponse
+import rachman.forniandi.core.adapters.ContentAdapter
+import rachman.forniandi.core.adapters.LoadingStatePageAdapter
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentArticlesBinding
 import rachman.forniandi.core.domain.entity.Contents
 
@@ -110,6 +107,11 @@ class ArticlesFragment : Fragment() {
             }
         }
         viewModel.refreshPagingArticles()
+        /*lifecycleScope.launch {
+            viewModel.pagingArticles.collectLatest { pagingData ->
+                contentAdapter.submitData(pagingData)
+            }
+        }*/
     }
 
 

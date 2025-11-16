@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.adapters
+package rachman.forniandi.core.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,9 +7,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import rachman.forniandi.aerospaceflightnews.R
-import rachman.forniandi.aerospaceflightnews.databinding.ItemContentBinding
-import rachman.forniandi.aerospaceflightnews.util.ContentDiffUtil
+import rachman.forniandi.core.R
+import rachman.forniandi.core.databinding.ItemContentBinding
 import rachman.forniandi.core.domain.entity.Contents
 
 class ContentAdapter (private val onItemClicked: (contents: Contents?) -> Unit):

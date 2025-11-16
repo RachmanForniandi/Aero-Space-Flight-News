@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.Contents
@@ -17,13 +18,13 @@ class BlogsViewModel @Inject constructor(private val blogsUseCase: BlogsUseCase)
 
     val getBlogs = MutableLiveData<PagingData<Contents>>()
 
-    //val blogsObserve: MutableLiveData<RemoteResponse<List<Contents>?>> get()= getBlogs
-
-
     fun refreshPagingBlogs() = viewModelScope.launch {
         blogsUseCase.getBlogs().cachedIn(viewModelScope).collect {
             getBlogs.postValue(it)
         }
     }
+
+    /*val pagingBlogs: Flow<PagingData<Contents>> =
+        blogsUseCase.getBlogs().cachedIn(viewModelScope)*/
 
 }

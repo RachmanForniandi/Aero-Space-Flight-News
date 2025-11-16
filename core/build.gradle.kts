@@ -50,6 +50,7 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        viewBinding = true
         buildConfig= true
     }
 }
@@ -62,6 +63,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.activity.ktx)
 
 
     //Retrofit
@@ -75,6 +77,16 @@ dependencies {
     implementation(libs.gms.play.services.base)
     implementation(libs.google.android.play.core)
 
+    //facebook shimmer
+    implementation(libs.facebook.shimmer)
+
+    //glide
+    implementation(libs.glide)
+
+    //coil
+    implementation(libs.coil3.coil)
+    implementation(libs.coil3.okhttp)
+
 
     //gson
     implementation(libs.gson)
@@ -83,6 +95,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.paging)
     implementation(libs.room.ktx)
+    implementation(libs.paging.runtime.ktx)
     ksp(libs.room.compiler)
 
 
