@@ -5,7 +5,6 @@
     android:id="@+id/nav_content"
     app:startDestination="@id/articlesFragment">
 
-    <!--<include app:graph="@navigation/favorite_navigation" />-->
 
     <fragment
         android:id="@+id/articlesFragment"
@@ -67,6 +66,16 @@
              />
     </activity>
 
+    <!--<include-dynamic
+        app:graphResName="nav_favorite">
+        <action
+            android:id="@+id/action_nav_content_to_detailBlogsFragment"
+            app:destination="@id/detailBlogsFragment" />
+        <action
+            android:id="@+id/action_nav_content_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
+    </include-dynamic>-->
+
     <fragment
         android:id="@+id/favoriteContentFragment"
         android:name="rachman.forniandi.favorite.ui.FavoriteContentFragment"
@@ -82,9 +91,9 @@
             app:destination="@id/detailBlogsFragment" />
     </fragment>
 
-    <action
+    <!--<action
         android:id="@+id/action_global_favorite"
-        app:destination="@id/favoriteContentFragment" />
+        app:destination="@id/favoriteContentFragment" />-->
 
 
 </navigation>

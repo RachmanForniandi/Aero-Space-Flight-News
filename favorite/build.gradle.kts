@@ -66,6 +66,5 @@ dependencies {
 
     api(libs.androidx.constraintlayout)
     api(libs.material)
-    implementation(libs.navigation.fragment.ktx)
-    implementation(libs.navigation.ui.ktx)
+
 }

@@ -1,12 +1,12 @@
 [versions]
 agp = "8.11.2"
-kotlin = "2.1.10"
+kotlin = "2.2.0"
 coreKtx = "1.17.0"
 junit = "4.13.2"
 
 hiltAndroid = "2.57.2"
-daggerhiltcompiler="2.51"
-kotlinKsp = "2.0.21-1.0.25"
+daggerhiltcompiler="2.57.2"
+kotlinKsp = "2.2.0-2.0.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 appcompat = "1.7.1"
@@ -33,9 +33,11 @@ coil="3.3.0"
 
 
 multidex= "2.0.1"
-roomRuntime = "2.6.1"
+roomRuntime = "2.8.3"
 gsonVersion="2.13.2"
 glideVersion="4.16.0"
+dfmFragment="2.9.6"
+dfmFragmentKtx="2.1.0"
 
 featureDelivery="2.1.0"
 playServiceBase="18.5.0"
@@ -54,8 +56,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 
-gms-play-services-base={ module = "com.google.android.gms:play-services-base", version.ref = "playServiceBase" }
-google-android-play-core={module="com.google.android.play:core",version.ref="androidPlayCore"}
+gms-play-services-base={ module = "com.google.android.play:feature-delivery", version.ref = "featureDelivery" }
+androidx-navigation-dynamic-features-fragment-ktx={module="com.google.android.play:feature-delivery-ktx",version.ref="dfmFragmentKtx"}
+androidx-navigation-dynamic-features-fragment={module="androidx.navigation:navigation-dynamic-features-fragment",version.ref="dfmFragment"}
+
 
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
@@ -99,8 +103,9 @@ androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "ro
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "pagingRuntimeKtxVersion" }
-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
+#navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+#navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
 
 

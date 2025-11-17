@@ -8,7 +8,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.play.core.splitinstall.SplitInstallManager
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityMainBinding
@@ -22,6 +26,7 @@ import rachman.forniandi.core.utilRemote.toContentsDomain
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var splitInstallManager: SplitInstallManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +43,7 @@ class MainActivity : AppCompatActivity() {
                 else -> hideToolbarAndNavBottomBar()
             }
         }
+        splitInstallManager = SplitInstallManagerFactory.create(this)
 
     }
 
@@ -47,7 +53,8 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_favorite -> {
                 return try {
-                    navController.navigate(R.id.favoriteContentFragment)
+                    navigateToFavorite()
+                    true
                 } catch (e: ClassNotFoundException) {
                     Toast.makeText(this, "Favorite module not installed!", Toast.LENGTH_SHORT).show()
                     false
@@ -60,27 +67,44 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun moveToFavorite() {
-        val intent = Intent(this, Class.forName("rachman.forniandi.favorite.FavoriteContentActivity"))
-        startActivity(intent)
+
+    private fun navigateToFavorite() {
+        val moduleName = "favorite"
+
+        if (splitInstallManager.installedModules.contains(moduleName)) {
+            openFavoritePage()
+        } else {
+            installFavoriteModule(moduleName)
+        }
     }
 
-    /*private fun installFavoriteModule() {
-        val splitInstallManager = SplitInstallManagerFactory.create(this)
+    private fun installFavoriteModule(moduleName: String) {
         val request = SplitInstallRequest.newBuilder()
-            .addModule("favorite") // nama modul sesuai folder di project
+            .addModule(moduleName)
             .build()
 
-        // Mulai proses download modul dinamis
+        Toast.makeText(this, "downloading module favorite...", Toast.LENGTH_SHORT).show()
+
         splitInstallManager.startInstall(request)
             .addOnSuccessListener {
-                // Modul berhasil dipasang
-                startActivity(Intent().setClassName(packageName, "rachman.forniandi.favorite.FavoriteContentActivity"))
+                Toast.makeText(this, "Install favorite module successfully", Toast.LENGTH_SHORT).show()
+                openFavoritePage()
             }
-            .addOnFailureListener {
-                it.printStackTrace()
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to install module: $exception", Toast.LENGTH_LONG).show()
             }
-    }*/
+    }
+    private fun openFavoritePage() {
+        val navController = findNavController(R.id.nav_host_fragment_container)
+
+        try {
+            navController.navigate("favoriteContentFragment")
+            hideToolbarAndNavBottomBar()
+        } catch (e: Exception) {
+            Toast.makeText(this, "Failed navigate Favorite: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+
+    }
 
     private fun showToolbarAndNavBottomBar(){
         binding.bottomNavigationMain.visibility = View.VISIBLE

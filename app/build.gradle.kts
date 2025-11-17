@@ -78,6 +78,10 @@ dependencies {
     api(libs.coil3.coil)
     api(libs.coil3.okhttp)
 
+//dynamic features
+    api(libs.gms.play.services.base)
+    implementation(libs.androidx.navigation.dynamic.features.fragment)
+    implementation(libs.androidx.navigation.dynamic.features.fragment.ktx)
 
     //lifecycle
     api (libs.androidx.lifecycle.livedata.ktx)
@@ -88,7 +92,6 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     api(libs.facebook.shimmer)
-
 
     implementation(libs.androidx.swiperefreshlayout)
 

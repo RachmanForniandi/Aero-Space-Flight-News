@@ -21,8 +21,6 @@ import rachman.forniandi.favorite.R
 import rachman.forniandi.favorite.adapter.FavoriteContentAdapter
 import rachman.forniandi.favorite.databinding.FragmentFavoriteContentBinding
 import rachman.forniandi.favorite.viewmodel.FavoriteContentViewModel
-import rachman.forniandi.favorite.viewmodel.FavoriteViewModelFactory
-import javax.inject.Inject
 import kotlin.getValue
 
 

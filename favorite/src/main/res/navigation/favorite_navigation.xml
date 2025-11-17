@@ -10,14 +10,14 @@
         android:id="@+id/favoriteContentFragment"
         android:name="rachman.forniandi.favorite.ui.FavoriteContentFragment"
         android:label="fragment_favorite_content"
-        tools:layout="@layout/fragment_favorite_content" >
+        tools:layout="@layout/fragment_favorite_content">
 
 
 
-        <argument
+        <!--<argument
             android:name="contents"
             app:argType="rachman.forniandi.core.domain.entity.Contents"
-            app:nullable="false" />
+            app:nullable="false" />-->
     </fragment>
 
 

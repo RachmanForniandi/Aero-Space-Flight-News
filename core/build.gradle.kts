@@ -74,8 +74,9 @@ dependencies {
     implementation (libs.kotlinx.coroutines.core)
     implementation (libs.kotlinx.coroutines.android)
 
+    //dynamic features
     implementation(libs.gms.play.services.base)
-    implementation(libs.google.android.play.core)
+
 
     //facebook shimmer
     implementation(libs.facebook.shimmer)
@@ -86,6 +87,9 @@ dependencies {
     //coil
     implementation(libs.coil3.coil)
     implementation(libs.coil3.okhttp)
+
+
+
 
 
     //gson
