@@ -1,26 +1,22 @@
 package rachman.forniandi.favorite.ui
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.AnimRes
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.EntryPointAccessors
-import rachman.forniandi.aerospaceflightnews.di.FavoriteContentModuleDependencies
 import rachman.forniandi.core.domain.entity.ContentType
-import rachman.forniandi.core.utilRemote.NavigationHelper
+import rachman.forniandi.core.utilRemote.NavigationProvider
 import rachman.forniandi.core.utilRemote.toContentsDomain
 import rachman.forniandi.favorite.R
 import rachman.forniandi.favorite.adapter.FavoriteContentAdapter
 import rachman.forniandi.favorite.databinding.FragmentFavoriteContentBinding
 import rachman.forniandi.favorite.viewmodel.FavoriteContentViewModel
+import javax.inject.Inject
 import kotlin.getValue
 
 
@@ -33,6 +29,9 @@ class FavoriteContentFragment : Fragment() {
 
 
     private val viewModel: FavoriteContentViewModel by viewModels()
+
+    @Inject
+    lateinit var navigationProvider: NavigationProvider
 
 
 
@@ -72,13 +71,10 @@ class FavoriteContentFragment : Fragment() {
 
             val contents = favorite.toContentsDomain()
 
-            val direction = when (favorite.contentType) {
-                ContentType.ARTICLE ->
-                    FavoriteContentFragmentDirections.actionFavoriteContentFragmentToArticleDetailsFragment(contents)
-                ContentType.BLOG ->
-                    FavoriteContentFragmentDirections.actionFavoriteContentFragmentToDetailBlogsFragment(contents)
+            when (favorite.contentType) {
+                ContentType.ARTICLE -> navigationProvider.openArticleDetails(contents)
+                ContentType.BLOG -> navigationProvider.openBlogDetails(contents)
             }
-            findNavController().navigate(direction)
         }
         binding?.rvFavorites?.adapter = adapter
     }

@@ -12,12 +12,9 @@
         android:label="fragment_favorite_content"
         tools:layout="@layout/fragment_favorite_content">
 
+        <deepLink
+            app:uri="aerospaceflightnews://favorite" />
 
-
-        <!--<argument
-            android:name="contents"
-            app:argType="rachman.forniandi.core.domain.entity.Contents"
-            app:nullable="false" />-->
     </fragment>
 
 

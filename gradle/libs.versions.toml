@@ -14,7 +14,7 @@ material = "1.13.0"
 activity = "1.11.0"
 activityKtx = "1.11.0"
 fragmentKtxVersion = "1.8.9"
-navigation = "2.9.5"
+navigation = "2.9.6"
 
 constraintlayout = "2.2.1"
 
@@ -31,20 +31,13 @@ facebookShimmer="0.5.0"
 swiperefreshlayout = "1.1.0"
 coil="3.3.0"
 
-
-multidex= "2.0.1"
 roomRuntime = "2.8.3"
 gsonVersion="2.13.2"
 glideVersion="4.16.0"
 dfmFragment="2.9.6"
-dfmFragmentKtx="2.1.0"
-
 featureDelivery="2.1.0"
-playServiceBase="18.5.0"
-androidPlayCore="1.10.3"
 pagingRuntimeKtxVersion = "3.3.6"
-navigationFragmentKtx = "2.9.6"
-navigationUiKtx = "2.9.6"
+navigationDynamicFeaturesRuntime = "2.9.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -56,10 +49,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 
-gms-play-services-base={ module = "com.google.android.play:feature-delivery", version.ref = "featureDelivery" }
-androidx-navigation-dynamic-features-fragment-ktx={module="com.google.android.play:feature-delivery-ktx",version.ref="dfmFragmentKtx"}
 androidx-navigation-dynamic-features-fragment={module="androidx.navigation:navigation-dynamic-features-fragment",version.ref="dfmFragment"}
 
+gms-play-services-base={ module = "com.google.android.play:feature-delivery", version.ref = "featureDelivery" }
+gms-play-services-base-ktx={ module = "com.google.android.play:feature-delivery-ktx", version.ref = "featureDelivery" }
 
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
@@ -70,7 +63,6 @@ facebook-shimmer={ module = "com.facebook.shimmer:shimmer", version.ref = "faceb
 gson ={ module = "com.google.code.gson:gson", version.ref = "gsonVersion" }
 glide ={ module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
 
-androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 
 
 chucker-library ={module = "com.github.chuckerteam.chucker:library",version.ref="chuckerVersion"}
@@ -104,10 +96,7 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRun
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "pagingRuntimeKtxVersion" }
 
-#navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
-#navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
-
-
+androidx-navigation-dynamic-features-runtime = { group = "androidx.navigation", name = "navigation-dynamic-features-runtime", version.ref = "navigationDynamicFeaturesRuntime" }
 
 
 [plugins]

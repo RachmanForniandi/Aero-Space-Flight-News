@@ -47,7 +47,7 @@ android {
 
     buildFeatures {
         viewBinding= true
-
+        buildConfig = true
     }
 
     dynamicFeatures += setOf(":favorite")
@@ -63,6 +63,8 @@ dependencies {
 
     //dagger hilt
     api (libs.hilt.android)
+    implementation(libs.gms.play.services.base)
+
     ksp (libs.hilt.compiler)
     ksp (libs.dagger.compiler)
 
@@ -78,10 +80,9 @@ dependencies {
     api(libs.coil3.coil)
     api(libs.coil3.okhttp)
 
-//dynamic features
-    api(libs.gms.play.services.base)
+    //dynamic features
     implementation(libs.androidx.navigation.dynamic.features.fragment)
-    implementation(libs.androidx.navigation.dynamic.features.fragment.ktx)
+    //implementation(libs.android.play.core)
 
     //lifecycle
     api (libs.androidx.lifecycle.livedata.ktx)
@@ -90,6 +91,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.dynamic.features.runtime)
 
     api(libs.facebook.shimmer)
 

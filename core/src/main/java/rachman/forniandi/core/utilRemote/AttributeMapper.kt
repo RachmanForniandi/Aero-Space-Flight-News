@@ -10,23 +10,6 @@ import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 
 
-/*fun List<ResultsItem>.toContentsEntity()=map { result ->
-    Contents(
-        result.id,
-        result.title,
-        result.authors?.map { authorsItem ->
-            AuthorContents(
-                name = authorsItem?.name
-            )
-        },
-        result.url,
-        result.imageUrl,
-        result.newsSite,
-        result.summary,
-        result.publishedAt,
-        result.updatedAt
-    )
-}*/
 
 fun ResultsItem.toDetailContentsEntity(type: ContentType) = Contents(
     id = id,
@@ -70,9 +53,6 @@ fun mapResponseToEntities(
     }
 }
 
-fun mapEntityToDomain(input: Contents): Contents = input
-
-fun mapDomainToEntity(input: Contents): Contents = input
 
 fun Contents.toFavoriteEntity(type: ContentType) = FavoriteContentsEntity(
     id = id,

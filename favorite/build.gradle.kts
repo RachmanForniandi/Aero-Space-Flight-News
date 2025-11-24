@@ -10,6 +10,7 @@ android {
     namespace = "rachman.forniandi.favorite"
     compileSdk = 36
 
+    //baseModuleName = "app"
 
     defaultConfig {
         minSdk = 24
@@ -55,6 +56,10 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    implementation(libs.androidx.navigation.dynamic.features.fragment)
+    implementation(libs.gms.play.services.base)
+    implementation(libs.gms.play.services.base.ktx)
 
     //glide
     api(libs.glide)

@@ -75,7 +75,7 @@ dependencies {
     implementation (libs.kotlinx.coroutines.android)
 
     //dynamic features
-    implementation(libs.gms.play.services.base)
+
 
 
     //facebook shimmer
