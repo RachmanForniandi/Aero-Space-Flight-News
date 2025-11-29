@@ -64,6 +64,10 @@ dependencies {
     //dagger hilt
     api (libs.hilt.android)
     implementation(libs.gms.play.services.base)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
 
     ksp (libs.hilt.compiler)
     ksp (libs.dagger.compiler)

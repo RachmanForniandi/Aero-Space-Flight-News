@@ -10,7 +10,7 @@ android {
     namespace = "rachman.forniandi.favorite"
     compileSdk = 36
 
-    //baseModuleName = "app"
+
 
     defaultConfig {
         minSdk = 24
@@ -71,5 +71,9 @@ dependencies {
 
     api(libs.androidx.constraintlayout)
     api(libs.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
 
 }

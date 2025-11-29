@@ -1,6 +1,7 @@
 package rachman.forniandi.aerospaceflightnews.uiPresentation
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
@@ -13,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.dynamicfeatures.DynamicIncludeGraphNavigator
 import androidx.navigation.dynamicfeatures.DynamicInstallManager
-import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.play.core.splitinstall.SplitInstallHelper
 import com.google.android.play.core.splitinstall.SplitInstallManager
@@ -27,11 +27,20 @@ import rachman.forniandi.aerospaceflightnews.uiPresentation.blogs.BlogsFragmentD
 import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.NavigationProvider
 import android.os.Handler
+import androidx.navigation.fragment.NavHostFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationProvider {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private val navControllerTab =NavController.OnDestinationChangedListener { _, destination, _ ->
+        when (destination.id) {
+            R.id.articlesFragment -> showToolbarAndNavBottomBar()
+            R.id.blogsFragment -> showToolbarAndNavBottomBar()
+            R.id.nav_favorite-> hideToolbar()
+            else -> hideToolbarAndNavBottomBar()
+        }
+    }
     private lateinit var splitInstallManager: SplitInstallManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,43 +48,61 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        navController= findNavController(R.id.nav_host_fragment_container)
-        splitInstallManager = SplitInstallManagerFactory.create(this)
-
+        setupNavHostMainFragment()
+        setupNavigationTabDestination()
         setupDynamicNavigation()
 
+
+    }
+    private fun setupNavHostMainFragment() {
+        val navHostMainFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        navController= navHostMainFragment.navController
         binding.bottomNavigationMain.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.articlesFragment -> showToolbarAndNavBottomBar()
-                R.id.blogsFragment -> showToolbarAndNavBottomBar()
-                else -> hideToolbarAndNavBottomBar()
-            }
-        }
     }
 
+
     private fun setupDynamicNavigation() {
+        splitInstallManager = SplitInstallManagerFactory.create(this)
+
         val dynamicInstallManager = DynamicInstallManager(
             context = this,
             splitInstallManager = splitInstallManager
         )
 
-        val dynamicNavigator = DynamicIncludeGraphNavigator(
-            context = this,
-            navigatorProvider = navController.navigatorProvider,
-            navInflater = navController.navInflater,
-            installManager = dynamicInstallManager
-        )
+        val navigatorProvider = navController.navigatorProvider
 
-        navController.navigatorProvider.addNavigator(dynamicNavigator)
+
+        val existingNavigator = try {
+            navigatorProvider.getNavigator(DynamicIncludeGraphNavigator::class.java)
+        } catch (e: Exception) {
+            null
+        }
+
+        if (existingNavigator == null) {
+            val dynamicNavigator = DynamicIncludeGraphNavigator(
+                context = this,
+                navigatorProvider = navigatorProvider,
+                navInflater = navController.navInflater,
+                installManager = dynamicInstallManager
+            )
+            navigatorProvider.addNavigator(dynamicNavigator)
+        } else {
+            Log.d("DynamicNavigation", "Navigator already exists — skipped register.")
+        }
     }
 
 
+    private fun setupNavigationTabDestination() {
+        navController.addOnDestinationChangedListener(navControllerTab)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_favorite -> {
-                navigateToFavorite()
+            R.id.action_settings -> {
+                /*navigateToFavorite()
+                Toast.makeText(this, "Test Favorite", Toast.LENGTH_SHORT).show()*/
+                val toSettings = Intent(this, SettingsActivity::class.java)
+                startActivity(toSettings)
                 return true
             }
         }
@@ -119,11 +146,11 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
             }
     }
     private fun openFavoritePage() {
-        /*val navToFavorite= NavContentDirections.actionGlobalFavoriteContentFragment()
-        navController.navigate(navToFavorite)
-        hideToolbarAndNavBottomBar()*/
-        try {
 
+        try {
+            /*val navToFavorite= NavContentDirections.actionGlobalFavoriteContentFragment()
+            navController.navigate(navToFavorite)
+            hideToolbarAndNavBottomBar()*/
             val deepLink = NavDeepLinkRequest.Builder
                 .fromUri("aerospaceflightnews://favorite".toUri())
                 .build()
@@ -136,6 +163,7 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
 
     }
 
+
     private fun showToolbarAndNavBottomBar(){
         binding.bottomNavigationMain.visibility = View.VISIBLE
         binding.homeAppBarLayout.visibility = View.VISIBLE
@@ -143,6 +171,9 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
 
     private fun hideToolbarAndNavBottomBar(){
         binding.bottomNavigationMain.visibility = View.GONE
+        binding.homeAppBarLayout.visibility = View.GONE
+    }
+    private fun hideToolbar(){
         binding.homeAppBarLayout.visibility = View.GONE
     }
 
@@ -163,4 +194,5 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
             .actionBlogsFragmentToDetailBlogsFragment(contents)
         navController.navigate(action)
     }
+
 }

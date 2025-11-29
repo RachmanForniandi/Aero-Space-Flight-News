@@ -67,18 +67,18 @@
     </activity>
 
 
-    <!--<include-dynamic
+    <include-dynamic
         android:id="@+id/nav_favorite"
         app:moduleName="favorite"
-        app:graphResName="favorite_navigation" />-->
+        app:graphResName="favorite_navigation"
+        app:graphPackage="${applicationId}.favorite" />
 
-    <fragment
+    <!--<fragment
         android:id="@+id/favoriteContentFragment"
         android:name="rachman.forniandi.favorite.ui.FavoriteContentFragment"
         android:label="fragment_favorite_content"
         tools:layout="@layout/fragment_favorite_content">
 
-        <deepLink app:uri="aerospaceflightnews://favorite" />
 
         <action
             android:id="@+id/action_favoriteContentFragment_to_articleDetailsFragment"
@@ -87,11 +87,11 @@
         <action
             android:id="@+id/action_favoriteContentFragment_to_detailBlogsFragment"
             app:destination="@id/detailBlogsFragment" />
-    </fragment>
+    </fragment>-->
 
-    <action
+    <!--<action
         android:id="@+id/action_global_favorite_content_fragment"
         app:destination="@id/favoriteContentFragment"
-        app:launchSingleTop="true" />
+        app:launchSingleTop="true" />-->
 
 </navigation>
