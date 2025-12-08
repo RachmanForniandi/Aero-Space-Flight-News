@@ -16,7 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentDetailBlogsBinding
-import rachman.forniandi.aerospaceflightnews.util.animateLoadingProcessData
+import rachman.forniandi.core.utilRemote.animateLoadingProcessData
 import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.ContentType

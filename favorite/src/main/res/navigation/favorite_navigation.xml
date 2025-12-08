@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/favorite_navigation"
     app:startDestination="@id/favoriteContentFragment">
 
 
@@ -12,8 +11,8 @@
         android:label="fragment_favorite_content"
         tools:layout="@layout/fragment_favorite_content">
 
-        <deepLink
-            app:uri="aerospaceflightnews://favorite" />
+        <!--<deepLink
+            app:uri="aerospaceflightnews://favorite" />-->
 
     </fragment>
 

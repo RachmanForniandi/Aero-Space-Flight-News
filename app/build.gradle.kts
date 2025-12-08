@@ -55,7 +55,6 @@ android {
 
 dependencies {
     implementation (project(":core"))
-    api(libs.androidx.core.ktx)
     api(libs.androidx.appcompat)
     api(libs.material)
     api(libs.androidx.activity)
@@ -63,14 +62,17 @@ dependencies {
 
     //dagger hilt
     api (libs.hilt.android)
+    ksp (libs.hilt.compiler)
+    ksp (libs.dagger.compiler)
+
+
     implementation(libs.gms.play.services.base)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
 
-    ksp (libs.hilt.compiler)
-    ksp (libs.dagger.compiler)
 
     api(libs.paging.runtime.ktx)
 

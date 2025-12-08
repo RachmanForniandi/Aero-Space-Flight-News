@@ -89,7 +89,7 @@ dependencies {
     implementation(libs.coil3.okhttp)
 
 
-
+    implementation(libs.androidx.navigation.fragment.ktx)
 
 
     //gson

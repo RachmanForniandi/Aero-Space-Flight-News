@@ -12,7 +12,7 @@ import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.usecase.FavoriteContentUseCase
 import javax.inject.Inject
 
-@HiltViewModel
+
 class FavoriteContentViewModel @Inject constructor(
     private val favoriteContentUseCase: FavoriteContentUseCase
 ): ViewModel(){

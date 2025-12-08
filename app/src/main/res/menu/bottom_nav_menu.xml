@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/homeFragment"
+        android:title="Home"
+        android:icon="@drawable/ic_home"
+       />
+
     <item android:id="@+id/articlesFragment"
         android:title="Articles"
         android:icon="@drawable/ic_home"
-        android:enabled="true"/>
+        />
 
     <item android:id="@+id/blogsFragment"
         android:title="Blogs"
         android:icon="@drawable/ic_menu_book"
-        android:enabled="true"/>
+        />
 
 
-    <item android:id="@+id/nav_favorite"
+    <item android:id="@+id/favorite_navigation"
         android:title="Favorited"
-        android:icon="@drawable/ic_favorite_tab"
-        android:enabled="true"/>
+        android:icon="@drawable/ic_favorite_tab"/>
 
 </menu>

@@ -8,6 +8,13 @@ import retrofit2.http.Query
 
 interface NetworkService {
 
+
+    @GET("articles")
+    suspend fun getArticles(): ResponseGeneral
+
+    @GET("blogs")
+    suspend fun getBlogs(): ResponseGeneral
+
     @GET("articles/")
     suspend fun getArticlesPaging(
         @Query("limit") limit: Int? =null,

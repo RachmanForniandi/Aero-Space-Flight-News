@@ -6,7 +6,10 @@ import javax.inject.Inject
 
 class BlogsInteractor @Inject constructor(private val contentsRepository: ContentsRepository):
     BlogsUseCase {
-    override fun getBlogs()= contentsRepository.doGetBlogs()
+
+    override fun getDataBlogs()= contentsRepository.getDataBlogs()
+
+    override fun getBlogs()= contentsRepository.doGetPagingBlogs()
 
     override fun getDetailBlogs(id: Int)= contentsRepository.doGetDetailBlogs(id)
 }

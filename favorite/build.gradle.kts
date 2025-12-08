@@ -13,6 +13,7 @@ android {
 
 
     defaultConfig {
+
         minSdk = 24
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -47,6 +48,9 @@ dependencies {
 
     //dagger hilt
     api (libs.hilt.android)
+    //ksp(libs.androidx.navigation.safe.args.generator)
+    ksp (libs.hilt.compiler)
+    ksp (libs.dagger.compiler)
 
     //viewmodel
     api (libs.androidx.lifecycle.viewmodel.ktx)

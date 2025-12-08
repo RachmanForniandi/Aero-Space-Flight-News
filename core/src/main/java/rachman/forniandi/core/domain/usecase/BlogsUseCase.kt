@@ -7,6 +7,8 @@ import rachman.forniandi.core.domain.entity.Contents
 
 interface BlogsUseCase {
 
+    fun getDataBlogs(): Flow<RemoteResponse<List<Contents>>>
+
     fun getBlogs(): Flow<PagingData<Contents>>
 
     fun getDetailBlogs(id: Int): Flow<RemoteResponse<Contents>>

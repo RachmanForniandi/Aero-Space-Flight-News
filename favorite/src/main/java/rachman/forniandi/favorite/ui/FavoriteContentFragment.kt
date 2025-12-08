@@ -1,15 +1,15 @@
 package rachman.forniandi.favorite.ui
 
+import android.app.AlertDialog.Builder
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EntryPointAccessors
 import rachman.forniandi.aerospaceflightnews.di.FavoriteContentModuleDependencies
 import rachman.forniandi.core.domain.entity.ContentType
@@ -19,24 +19,33 @@ import rachman.forniandi.favorite.R
 import rachman.forniandi.favorite.adapter.FavoriteContentAdapter
 import rachman.forniandi.favorite.databinding.FragmentFavoriteContentBinding
 import rachman.forniandi.favorite.viewmodel.FavoriteContentViewModel
-import javax.inject.Inject
+import rachman.forniandi.favorite.viewmodel.FavoriteContentViewModelFactory
 import kotlin.getValue
 
 
-@AndroidEntryPoint
 class FavoriteContentFragment : Fragment() {
 
     private var _binding: FragmentFavoriteContentBinding? = null
     private val binding get() = _binding
     private lateinit var adapter: FavoriteContentAdapter
+    private lateinit var viewModel: FavoriteContentViewModel
 
 
-    private val viewModel: FavoriteContentViewModel by viewModels()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val deps = EntryPointAccessors.fromApplication(
+            requireActivity().applicationContext,
+            FavoriteContentModuleDependencies::class.java
+        )
+        val favoriteUseCase = deps.provideFavoriteContentUseCase()
+        val factory = FavoriteContentViewModelFactory(favoriteUseCase)
+        viewModel = ViewModelProvider(this, factory).get(FavoriteContentViewModel::class.java)
+    }
 
-    @Inject
-    lateinit var navigationProvider: NavigationProvider
-
-
+    private val navigationProvider: NavigationProvider by lazy {
+        (requireActivity() as? NavigationProvider)
+            ?: throw IllegalStateException("Host activity must implement NavigationProvider")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,15 +67,30 @@ class FavoriteContentFragment : Fragment() {
         binding?.toolbarFavorite?.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_delete_all -> {
-                    viewModel.deleteAllFavorites()
-                    binding?.root?.let { Snackbar.make(it, "All favorites deleted", Snackbar.LENGTH_SHORT) }
-                        ?.show()
+                    checkBeforeClearAllFavoriteContents()
                     true
                 }
                 else -> false
             }
         }
     }
+
+    private fun checkBeforeClearAllFavoriteContents() {
+        Builder(requireActivity())
+            .setTitle(getString(R.string.delete_all_favorites))
+            .setMessage(getString(R.string.are_you_sure_do_you_want_to_delete_all_favorites))
+            .setNegativeButton(getString(R.string.no), null)
+            .setPositiveButton(getString(R.string.yes), object : DialogInterface.OnClickListener {
+                override fun onClick(arg0: DialogInterface?, arg1: Int) {
+                    viewModel.deleteAllFavorites()
+                    binding?.root?.let { Snackbar.make(it, "All favorites deleted", Snackbar.LENGTH_SHORT) }
+                        ?.show()
+
+                }
+            }).create().show()
+    }
+
+
 
     private fun setupRecyclerView() {
         adapter = FavoriteContentAdapter { favorite ->
@@ -95,10 +119,6 @@ class FavoriteContentFragment : Fragment() {
             }
         }
     }
-
-
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

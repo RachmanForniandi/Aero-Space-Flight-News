@@ -9,7 +9,24 @@ import rachman.forniandi.core.domain.entity.AuthorContents
 import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 
+/*fun List<ResultsItem>.toContentsEntity()=map { result ->
+    Contents(
+        result.id,
+        result.title,
+        result.authors?.map { authorsItem ->
+            AuthorContents(
+                name = authorsItem?.name
+            )
+        },
+        result.url,
+        result.imageUrl,
+        result.newsSite,
+        result.summary,
+        result.publishedAt,
+        result.updatedAt,
 
+    )
+}*/
 
 fun ResultsItem.toDetailContentsEntity(type: ContentType) = Contents(
     id = id,

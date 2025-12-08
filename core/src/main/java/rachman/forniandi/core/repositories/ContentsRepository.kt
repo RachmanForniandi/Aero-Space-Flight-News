@@ -6,14 +6,16 @@ import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
-import kotlin.reflect.KFunction2
 
 interface ContentsRepository {
 
-    //paging articles + blogs
-    fun doGetArticles(): Flow<PagingData<Contents>>
+    fun getDataArticles(): Flow<RemoteResponse<List<Contents>>>
+    fun getDataBlogs(): Flow<RemoteResponse<List<Contents>>>
 
-    fun doGetBlogs(): Flow<PagingData<Contents>>
+    //paging articles + blogs
+    fun doGetPagingArticles(): Flow<PagingData<Contents>>
+
+    fun doGetPagingBlogs(): Flow<PagingData<Contents>>
 
     fun doGetDetailArticles(id: Int): Flow<RemoteResponse<Contents>>
 

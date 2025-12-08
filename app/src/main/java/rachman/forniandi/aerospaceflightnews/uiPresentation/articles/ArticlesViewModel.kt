@@ -6,9 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.domain.usecase.ArticlesUseCase
 import javax.inject.Inject
@@ -20,7 +18,7 @@ class ArticlesViewModel @Inject constructor(private val articlesUseCase: Article
 
     fun refreshPagingArticles() {
         viewModelScope.launch {
-            articlesUseCase.getArticles().cachedIn(viewModelScope).collect {
+            articlesUseCase.getPagingArticles().cachedIn(viewModelScope).collect {
                 getArticles.postValue(it)
             }
         }

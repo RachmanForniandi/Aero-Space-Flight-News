@@ -17,7 +17,7 @@ object NavigationModule {
         fragment: Fragment
     ): NavigationProvider {
         return NavigationProviderImpl(
-            NavHostFragment.findNavController(fragment)
+            NavHostFragment.Companion.findNavController(fragment)
         )
     }
 }

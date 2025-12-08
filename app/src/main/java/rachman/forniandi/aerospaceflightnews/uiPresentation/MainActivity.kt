@@ -3,196 +3,90 @@ package rachman.forniandi.aerospaceflightnews.uiPresentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Looper
-import android.util.Log
-import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
-import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.dynamicfeatures.DynamicIncludeGraphNavigator
-import androidx.navigation.dynamicfeatures.DynamicInstallManager
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.play.core.splitinstall.SplitInstallHelper
-import com.google.android.play.core.splitinstall.SplitInstallManager
-import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
-import com.google.android.play.core.splitinstall.SplitInstallRequest
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityMainBinding
+import androidx.navigation.fragment.NavHostFragment
 import rachman.forniandi.aerospaceflightnews.uiPresentation.articles.ArticlesFragmentDirections
 import rachman.forniandi.aerospaceflightnews.uiPresentation.blogs.BlogsFragmentDirections
 import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.NavigationProvider
-import android.os.Handler
-import androidx.navigation.fragment.NavHostFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationProvider {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private val navControllerTab =NavController.OnDestinationChangedListener { _, destination, _ ->
-        when (destination.id) {
-            R.id.articlesFragment -> showToolbarAndNavBottomBar()
-            R.id.blogsFragment -> showToolbarAndNavBottomBar()
-            R.id.nav_favorite-> hideToolbar()
-            else -> hideToolbarAndNavBottomBar()
-        }
-    }
-    private lateinit var splitInstallManager: SplitInstallManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupNavHostMainFragment()
-        setupNavigationTabDestination()
-        setupDynamicNavigation()
-
-
-    }
-    private fun setupNavHostMainFragment() {
         val navHostMainFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        navController= navHostMainFragment.navController
+        navController = navHostMainFragment.navController
+
         binding.bottomNavigationMain.setupWithNavController(navController)
-    }
-
-
-    private fun setupDynamicNavigation() {
-        splitInstallManager = SplitInstallManagerFactory.create(this)
-
-        val dynamicInstallManager = DynamicInstallManager(
-            context = this,
-            splitInstallManager = splitInstallManager
-        )
-
-        val navigatorProvider = navController.navigatorProvider
-
-
-        val existingNavigator = try {
-            navigatorProvider.getNavigator(DynamicIncludeGraphNavigator::class.java)
-        } catch (e: Exception) {
-            null
-        }
-
-        if (existingNavigator == null) {
-            val dynamicNavigator = DynamicIncludeGraphNavigator(
-                context = this,
-                navigatorProvider = navigatorProvider,
-                navInflater = navController.navInflater,
-                installManager = dynamicInstallManager
-            )
-            navigatorProvider.addNavigator(dynamicNavigator)
-        } else {
-            Log.d("DynamicNavigation", "Navigator already exists — skipped register.")
-        }
-    }
-
-
-    private fun setupNavigationTabDestination() {
-        navController.addOnDestinationChangedListener(navControllerTab)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_settings -> {
-                /*navigateToFavorite()
-                Toast.makeText(this, "Test Favorite", Toast.LENGTH_SHORT).show()*/
-                val toSettings = Intent(this, SettingsActivity::class.java)
-                startActivity(toSettings)
-                return true
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment,
+                R.id.articlesFragment,
+                R.id.blogsFragment ->{
+                    showToolbarAndNavBottomBar()
+                }
+                R.id.favorite_navigation->hideToolbarAndShowBottomNavForFavorite()
+                else -> hideToolbarAndNavBottomBar()
             }
         }
-        return super.onOptionsItemSelected(item)
+        setupToolbarMainSetting()
+
     }
 
+    private fun setupToolbarMainSetting() {
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId){
+                R.id.action_settings->{
+                    val toSettings = Intent(this, SettingsActivity::class.java)
+                    startActivity(toSettings)
+                    true
+                }
+                else -> super.onOptionsItemSelected(menuItem)
+            }
 
-    private fun navigateToFavorite() {
-        val moduleName = "favorite"
-
-        Log.d("DynamicModule", "Installed modules: ${splitInstallManager.installedModules}")
-        if (splitInstallManager.installedModules.contains(moduleName)) {
-            Log.d("DynamicModule", "Module already installed, navigating...")
-            openFavoritePage()
-        } else {
-            Log.d("DynamicModule", "Module not installed, starting download...")
-            installFavoriteModule(moduleName)
         }
     }
 
-    private fun installFavoriteModule(moduleName: String) {
-        val request = SplitInstallRequest.newBuilder()
-            .addModule(moduleName)
-            .build()
-
-        Toast.makeText(this, "downloading module favorite...", Toast.LENGTH_SHORT).show()
-
-        splitInstallManager.startInstall(request)
-            .addOnSuccessListener {sessionId ->
-                Log.d("DynamicModule", "Install success: $sessionId")
-                SplitInstallHelper.updateAppInfo(this)
-                Toast.makeText(this, "Install favorite module successfully", Toast.LENGTH_SHORT).show()
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    openFavoritePage()
-                }, 1000)
-            }
-            .addOnFailureListener { exception ->
-                Log.e("DynamicModule", "Install failed: $exception")
-                Toast.makeText(this, "Failed to install module: ${exception.message}", Toast.LENGTH_LONG).show()
-            }
-    }
-    private fun openFavoritePage() {
-
-        try {
-            /*val navToFavorite= NavContentDirections.actionGlobalFavoriteContentFragment()
-            navController.navigate(navToFavorite)
-            hideToolbarAndNavBottomBar()*/
-            val deepLink = NavDeepLinkRequest.Builder
-                .fromUri("aerospaceflightnews://favorite".toUri())
-                .build()
-            navController.navigate(deepLink)
-            hideToolbarAndNavBottomBar()
-        } catch (e: Exception) {
-            Log.e("Navigation", "Failed to navigate to favorite: ${e.message}", e)
-            Toast.makeText(this, "Failed navigate Favorite: ${e.message}", Toast.LENGTH_SHORT).show()
-        }
-
-    }
-
-
-    private fun showToolbarAndNavBottomBar(){
-        binding.bottomNavigationMain.visibility = View.VISIBLE
-        binding.homeAppBarLayout.visibility = View.VISIBLE
-    }
-
-    private fun hideToolbarAndNavBottomBar(){
-        binding.bottomNavigationMain.visibility = View.GONE
-        binding.homeAppBarLayout.visibility = View.GONE
-    }
-    private fun hideToolbar(){
-        binding.homeAppBarLayout.visibility = View.GONE
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()|| super.onSupportNavigateUp()
 
     }
 
+    private fun showToolbarAndNavBottomBar(){
+        binding.bottomNavigationMain.visibility = View.VISIBLE
+        binding.toolbar.visibility = View.VISIBLE
+    }
+
+    private fun hideToolbarAndNavBottomBar(){
+        binding.bottomNavigationMain.visibility = View.GONE
+        binding.toolbar.visibility = View.GONE
+    }
+    private fun hideToolbarAndShowBottomNavForFavorite(){
+        binding.toolbar.visibility = View.GONE
+        binding.bottomNavigationMain.visibility = View.VISIBLE
+    }
 
     override fun openArticleDetails(contents: Contents) {
-        val action = ArticlesFragmentDirections
-            .actionArticlesFragmentToArticleDetailsFragment(contents)
-        navController.navigate(action)
+        val bundle = bundleOf("articleDetails" to contents)
+        navController.navigate(R.id.articleDetailsFragment, bundle)
     }
 
     override fun openBlogDetails(contents: Contents) {
-        val action = BlogsFragmentDirections
-            .actionBlogsFragmentToDetailBlogsFragment(contents)
-        navController.navigate(action)
+        val bundle = bundleOf("blogDetails" to contents)
+        navController.navigate(R.id.detailBlogsFragment, bundle)
     }
-
 }

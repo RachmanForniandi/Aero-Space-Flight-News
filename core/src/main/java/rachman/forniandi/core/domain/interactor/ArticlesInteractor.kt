@@ -7,8 +7,9 @@ import javax.inject.Inject
 class ArticlesInteractor @Inject constructor(
     private val contentsRepository: ContentsRepository
 ): ArticlesUseCase {
+    override fun getDataArticles()= contentsRepository.getDataArticles()
 
-    override fun getArticles() = contentsRepository.doGetArticles()
+    override fun getPagingArticles() = contentsRepository.doGetPagingArticles()
 
     override fun getDetailArticles(id: Int) = contentsRepository.doGetDetailArticles(id)
 

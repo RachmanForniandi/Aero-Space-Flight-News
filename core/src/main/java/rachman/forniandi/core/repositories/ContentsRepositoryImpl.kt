@@ -11,8 +11,8 @@ import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.data.remote.response.RemoteSourceData
 import rachman.forniandi.core.domain.entity.ContentType
-import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.paging.ContentsRemoteMediator
+import rachman.forniandi.core.utilRemote. toContentsEntity
 import rachman.forniandi.core.utilRemote.toDetailContentsEntity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -24,7 +24,29 @@ class ContentsRepositoryImpl @Inject constructor(
     private val localDataSource: ContentsLocalDataSource,
 ):ContentsRepository {
 
-    override fun doGetArticles()=
+    override fun getDataArticles()= flow {
+        emit(RemoteResponse.Loading())
+        try {
+            val response = remoteSourceData.getDataArticles()
+            val result = response.results.toContentsEntity(ContentType.ARTICLE)
+            emit(RemoteResponse.Success(result))
+        } catch (e: Exception) {
+            emit(RemoteResponse.Error(e.message.toString()))
+        }
+    }
+
+    override fun getDataBlogs()= flow {
+        emit(RemoteResponse.Loading())
+        try {
+            val response = remoteSourceData.getDataBlogs()
+            val result = response.results.toContentsEntity(ContentType.BLOG)
+            emit(RemoteResponse.Success(result))
+        } catch (e: Exception) {
+            emit(RemoteResponse.Error(e.message.toString()))
+        }
+    }
+
+    override fun doGetPagingArticles()=
         @OptIn(ExperimentalPagingApi::class)
         Pager(
             config = PagingConfig(
@@ -36,8 +58,6 @@ class ContentsRepositoryImpl @Inject constructor(
                 remoteDataSource = remoteSourceData,
                 localDataSource = localDataSource,
                 database = contentDatabase,
-
-
             ),
             pagingSourceFactory = {
                 localDataSource.getAllContents(ContentType.ARTICLE)
@@ -45,7 +65,7 @@ class ContentsRepositoryImpl @Inject constructor(
         ).flow
 
 
-    override fun doGetBlogs()=
+    override fun doGetPagingBlogs()=
         @OptIn(ExperimentalPagingApi::class)
         Pager(
             config = PagingConfig(

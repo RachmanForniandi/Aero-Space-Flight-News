@@ -1,9 +1,14 @@
-package rachman.forniandi.aerospaceflightnews.util
+package rachman.forniandi.core.utilRemote
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.content.Context
 
 import android.view.View
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import rachman.forniandi.core.R
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -27,6 +32,13 @@ fun getStringDate(date: String?): String? {
     val message = response()?.errorBody()?.string().toString()
     return JSONObject(message).getString("message")
 }*/
+
+fun ImageView.showImageSliderInto(context: Context, url: String?) {
+    Glide.with(context)
+        .load(url)
+        .placeholder(ContextCompat.getDrawable(context, R.color.dark))
+        .into(this)
+}
 
 
 fun View.animateLoadingProcessData(isVisible: Boolean, duration: Long = 300) {
