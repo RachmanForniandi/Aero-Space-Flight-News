@@ -86,5 +86,26 @@
             app:destination="@id/detailBlogsFragment" />
     </fragment>
 
+    <!--<fragment
+        android:id="@+id/favoriteContentFragment"
+        android:name="rachman.forniandi.favorite.ui.FavoriteContentFragment"
+        android:label="fragment_favorite_content"
+        tools:layout="@layout/fragment_favorite_content">
+
+
+        <action
+            android:id="@+id/action_favoriteContentFragment_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
+
+        <action
+            android:id="@+id/action_favoriteContentFragment_to_detailBlogsFragment"
+            app:destination="@id/detailBlogsFragment" />
+    </fragment>-->
+
+    <!--<action
+        android:id="@+id/action_global_favorite_content_fragment"
+        app:destination="@id/favorite_navigation"
+        app:launchSingleTop="true" />-->
+
 
 </navigation>

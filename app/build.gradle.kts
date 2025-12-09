@@ -62,6 +62,7 @@ dependencies {
 
     //dagger hilt
     api (libs.hilt.android)
+    implementation(libs.androidx.preference)
     ksp (libs.hilt.compiler)
     ksp (libs.dagger.compiler)
 

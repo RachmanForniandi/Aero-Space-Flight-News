@@ -37,6 +37,7 @@ dfmFragment="2.9.6"
 featureDelivery="2.1.0"
 pagingRuntimeKtxVersion = "3.3.6"
 navigationDynamicFeaturesRuntime = "2.9.6"
+preference = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -96,6 +97,7 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "pagingRuntimeKtxVersion" }
 
 androidx-navigation-dynamic-features-runtime = { group = "androidx.navigation", name = "navigation-dynamic-features-runtime", version.ref = "navigationDynamicFeaturesRuntime" }
+androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
 
 
 [plugins]

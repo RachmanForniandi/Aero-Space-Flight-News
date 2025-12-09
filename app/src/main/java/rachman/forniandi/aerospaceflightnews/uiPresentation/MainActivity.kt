@@ -1,7 +1,6 @@
 package rachman.forniandi.aerospaceflightnews.uiPresentation
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityMainBinding
 import androidx.navigation.fragment.NavHostFragment
-import rachman.forniandi.aerospaceflightnews.uiPresentation.articles.ArticlesFragmentDirections
-import rachman.forniandi.aerospaceflightnews.uiPresentation.blogs.BlogsFragmentDirections
 import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.NavigationProvider
 
@@ -35,30 +32,18 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.articlesFragment,
-                R.id.blogsFragment ->{
-                    showToolbarAndNavBottomBar()
+                R.id.blogsFragment,
+                R.id.favorite_navigation  ->{
+                    showNavBottomBar()
                 }
-                R.id.favorite_navigation->hideToolbarAndShowBottomNavForFavorite()
-                else -> hideToolbarAndNavBottomBar()
-            }
-        }
-        setupToolbarMainSetting()
-
-    }
-
-    private fun setupToolbarMainSetting() {
-        binding.toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId){
-                R.id.action_settings->{
-                    val toSettings = Intent(this, SettingsActivity::class.java)
-                    startActivity(toSettings)
-                    true
-                }
-                else -> super.onOptionsItemSelected(menuItem)
+                else -> hideNavBottomBar()
             }
 
         }
+
+
     }
+
 
 
     override fun onSupportNavigateUp(): Boolean {
@@ -66,19 +51,14 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
 
     }
 
-    private fun showToolbarAndNavBottomBar(){
+    private fun showNavBottomBar(){
         binding.bottomNavigationMain.visibility = View.VISIBLE
-        binding.toolbar.visibility = View.VISIBLE
     }
 
-    private fun hideToolbarAndNavBottomBar(){
+    private fun hideNavBottomBar(){
         binding.bottomNavigationMain.visibility = View.GONE
-        binding.toolbar.visibility = View.GONE
     }
-    private fun hideToolbarAndShowBottomNavForFavorite(){
-        binding.toolbar.visibility = View.GONE
-        binding.bottomNavigationMain.visibility = View.VISIBLE
-    }
+
 
     override fun openArticleDetails(contents: Contents) {
         val bundle = bundleOf("articleDetails" to contents)

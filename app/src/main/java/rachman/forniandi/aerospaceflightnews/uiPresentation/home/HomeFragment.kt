@@ -1,5 +1,6 @@
 package rachman.forniandi.aerospaceflightnews.uiPresentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,11 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
-import rachman.forniandi.aerospaceflightnews.databinding.FragmentBlogsBinding
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentHomeBinding
-import rachman.forniandi.aerospaceflightnews.uiPresentation.blogs.BlogsViewModel
+import rachman.forniandi.aerospaceflightnews.uiPresentation.SettingsActivity
 import rachman.forniandi.core.adapters.CarrouselAdapter
-import rachman.forniandi.core.adapters.ContentAdapter
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
@@ -39,6 +38,21 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         showImageSliderArticles()
         showImageSliderBlogs()
+    }
+
+
+    private fun setupToolbarMainSetting() {
+        binding?.toolbar?.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId){
+                R.id.action_settings->{
+                    val toSettings = Intent(requireActivity(), SettingsActivity::class.java)
+                    startActivity(toSettings)
+                    true
+                }
+                else -> super.onOptionsItemSelected(menuItem)
+            }
+
+        }
     }
 
 
