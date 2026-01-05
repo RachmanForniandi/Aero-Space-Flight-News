@@ -40,7 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/articles"
         android:textStyle="bold"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        style="@style/CustomColorTextStyle"/>
 
     <ImageView
         android:id="@+id/img_data_empty_1"
