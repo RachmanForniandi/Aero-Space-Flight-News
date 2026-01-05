@@ -22,7 +22,8 @@
             android:background="?attr/colorPrimary"
             app:title="Articles"
             app:titleTextColor="@android:color/white"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            style="@style/CustomActionBarStyle"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout

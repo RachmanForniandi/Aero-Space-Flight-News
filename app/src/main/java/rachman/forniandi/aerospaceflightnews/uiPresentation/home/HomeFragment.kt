@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentHomeBinding
-import rachman.forniandi.aerospaceflightnews.uiPresentation.SettingsActivity
+import rachman.forniandi.aerospaceflightnews.uiPresentation.settings.SettingsActivity
 import rachman.forniandi.core.adapters.CarrouselAdapter
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.ContentType
@@ -23,6 +23,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
     private val viewModel: HomeViewModel by viewModels()
+    private lateinit var articlesAdapter: CarrouselAdapter
+    private lateinit var blogsAdapter: CarrouselAdapter
 
 
 
@@ -36,8 +38,24 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showImageSliderArticles()
-        showImageSliderBlogs()
+
+        setupAdapters()
+        observeArticles()
+        observeBlogs()
+        setupToolbarMainSetting()
+    }
+
+    private fun setupAdapters() {
+        articlesAdapter = CarrouselAdapter { contents ->
+            navigateToDetailArticles(contents)
+        }
+
+        blogsAdapter = CarrouselAdapter { contents ->
+            navigateToDetailBlogs(contents)
+        }
+
+        binding?.rvArticlesCarrousel?.adapter = articlesAdapter
+        binding?.rvBlogsCarrousel?.adapter = blogsAdapter
     }
 
 
@@ -57,77 +75,64 @@ class HomeFragment : Fragment() {
 
 
 
-    private fun showImageSliderArticles() {
-        val adapter = CarrouselAdapter{ contentType, contents ->
-            navigateToDetailArticles(ContentType.ARTICLE,contents)
-        }
+    private fun observeArticles() {
+        viewModel.articlesData.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is RemoteResponse.Loading -> showShimmerSliderArticles()
 
-        binding?.rvArticlesCarrousel?.adapter = adapter
-
-        viewModel.articlesData.observe(viewLifecycleOwner){ response->
-            when(response){
-                is RemoteResponse.Loading -> {
-                    showShimmerSliderArticles()
-                }
                 is RemoteResponse.Success -> {
                     hideShimmerSliderArticles()
-                    adapter.submitList(response.data)
+                    articlesAdapter.submitList(response.data)
 
+                    binding?.rvArticlesCarrousel?.visibility = View.VISIBLE
+                    binding?.imgDataEmpty1?.visibility = View.GONE
+                    binding?.txtNoDataArticlesAvailable?.visibility = View.GONE
                 }
+
                 is RemoteResponse.Error -> {
                     hideShimmerSliderArticles()
+                    binding?.rvArticlesCarrousel?.visibility = View.GONE
                     binding?.imgDataEmpty1?.visibility = View.VISIBLE
                     binding?.txtNoDataArticlesAvailable?.visibility = View.VISIBLE
-                    binding?.rvArticlesCarrousel?.visibility = View.GONE
-
-
                 }
             }
-
         }
     }
 
-    private fun showImageSliderBlogs() {
-        val adapter = CarrouselAdapter{ contentType, contents ->
-            navigateToDetailBlogs(ContentType.BLOG,contents)
-        }
-
-        binding?.rvBlogsCarrousel?.adapter = adapter
-
-        viewModel.blogsData.observe(viewLifecycleOwner){ response->
-            when(response){
-                is RemoteResponse.Loading -> {
-                    showShimmerSliderBlogs()
-                }
+    private fun observeBlogs() {
+        viewModel.blogsData.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is RemoteResponse.Loading -> showShimmerSliderBlogs()
 
                 is RemoteResponse.Success -> {
                     hideShimmerSliderBlogs()
-                    adapter.submitList(response.data)
+                    blogsAdapter.submitList(response.data)
 
+                    binding?.rvBlogsCarrousel?.visibility = View.VISIBLE
+                    binding?.imgDataEmpty2?.visibility = View.GONE
+                    binding?.txtNoDataBlogsAvailable?.visibility = View.GONE
                 }
+
                 is RemoteResponse.Error -> {
                     hideShimmerSliderBlogs()
+                    binding?.rvBlogsCarrousel?.visibility = View.GONE
                     binding?.imgDataEmpty2?.visibility = View.VISIBLE
                     binding?.txtNoDataBlogsAvailable?.visibility = View.VISIBLE
-                    binding?.rvBlogsCarrousel?.visibility = View.GONE
-
-
                 }
             }
-
         }
-
-
     }
 
-    private fun navigateToDetailArticles(type: ContentType,contents: Contents) {
-        val dataItem = HomeFragmentDirections.actionHomeFragmentToArticleDetailsFragment(contents)
-        findNavController().navigate(dataItem)
+    private fun navigateToDetailArticles(contents: Contents) {
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToArticleDetailsFragment(contents)
+        findNavController().navigate(action)
     }
 
-    private fun navigateToDetailBlogs(type: ContentType,contents: Contents) {
-        val dataItem = HomeFragmentDirections.actionHomeFragmentToDetailBlogsFragment(contents)
-        findNavController().navigate(dataItem)
+    private fun navigateToDetailBlogs(contents: Contents) {
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToDetailBlogsFragment(contents)
+        findNavController().navigate(action)
     }
 
     private fun showShimmerSliderArticles() {

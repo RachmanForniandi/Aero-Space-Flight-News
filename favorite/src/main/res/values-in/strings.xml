@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello_blank_fragment">Halo fragment kosong</string>
+    <string name="title_favorite">Favorit</string>
+    <string name="delete_all_favorites">Hapus semua favorit</string>
+    <string name="no">Tidak</string>
+    <string name="yes">Iya</string>
+    <string name="are_you_sure_do_you_want_to_delete_all_favorites">Apakah anda yakin menghapus semua favorit?</string>
+    <string name="all_favorites_deleted">Semua favorit dihapus</string>
+    <string name="no_data_favorites_available">Tidak ada data favorit tersedia</string>
+    <string name="host_activity_must_implement_navigation_provider">Activity host harus implementasi NavigationProvider</string>
+</resources>

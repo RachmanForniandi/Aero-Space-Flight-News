@@ -14,8 +14,9 @@ import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.showImageSliderInto
 import kotlin.reflect.typeOf
 
-class CarrouselAdapter (private val data: (contentType: ContentType, contents: Contents) -> Unit):
-    ListAdapter<Contents, CarrouselAdapter.CarrouselHolder>(DIFF_CALLBACK){
+class CarrouselAdapter (
+    private val onClick: (Contents) -> Unit
+) : ListAdapter<Contents, CarrouselAdapter.CarrouselHolder>(DIFF_CALLBACK){
 
 
     override fun onCreateViewHolder(
@@ -35,7 +36,7 @@ class CarrouselAdapter (private val data: (contentType: ContentType, contents: C
         fun bind(contents: Contents){
             binding.imgContent.showImageSliderInto(itemView.context, contents.imageUrl)
             binding.txtTitleNameContent.text = contents.title
-            itemView.setOnClickListener { data.invoke(contents.type, contents) }
+            itemView.setOnClickListener { onClick(contents) }
         }
     }
 

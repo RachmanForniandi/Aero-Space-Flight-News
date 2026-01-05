@@ -154,7 +154,7 @@ class DetailArticlesFragment : Fragment() {
 
     private fun showSnackBarError(@Suppress("SameParameterValue") message: String?) {
         binding?.let { Snackbar.make(it.detailArticles,message.toString(), Snackbar.LENGTH_SHORT) }
-            ?.setAction("Ok"){}
+            ?.setAction(getString(R.string.ok)){}
             ?.show()
     }
 

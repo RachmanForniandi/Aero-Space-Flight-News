@@ -5,15 +5,95 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".uiPresentation.SettingsActivity">
+    tools:context=".uiPresentation.settings.SettingsActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello this is settings page"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_setting"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        style="@style/CustomActionBarStyle">
+
+        <ImageView
+            android:id="@+id/btn_back_setting"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/button_back_settings"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_all_arrow"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_title_setting_toolbar"
+            style="@style/setting_tv_actionBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/settings"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/line_option_setting_change_language"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_setting">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/setting_btn_changeLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/change_language"
+            android:fontFamily="@font/roboto_regular"
+            app:drawableEndCompat="@drawable/ic_arrow_option"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/line_border"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/line_dark_background"
+            app:layout_constraintTop_toBottomOf="@id/setting_btn_changeLanguage"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/setting_switch_change_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_border">
+
+            <TextView
+                style="@style/setting_tv_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_theme"
+                android:fontFamily="@font/roboto_regular"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_change_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AeroSpaceFlightNews"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".uiPresentation.SettingsActivity"
+            android:name=".uiPresentation.settings.SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".uiPresentation.detailContents.DetailContentsWebviewActivity"
