@@ -56,7 +56,8 @@
             app:drawableEndCompat="@drawable/ic_arrow_option"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/setting_tv_menu"/>
 
         <View
             android:id="@+id/line_border"

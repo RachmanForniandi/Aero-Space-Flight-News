@@ -52,7 +52,6 @@
         android:layout_height="wrap_content"
         android:text="@string/no_data_favorites_available"
         android:textStyle="bold"
-        android:textColor="@color/black"
         android:textSize="16sp"
         android:textAlignment="center"
         android:visibility="gone"

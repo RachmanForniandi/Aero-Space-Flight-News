@@ -10,4 +10,9 @@
 
     <color name="colorDivider">#2C2C2C</color>
     <color name="colorIcon">#FFFFFF</color>
+
+    <color name="actionBar_color">#1A237E</color>
+
+    <color name="actionBarBackgroundColor">@color/actionBar_color</color>
+
 </resources>

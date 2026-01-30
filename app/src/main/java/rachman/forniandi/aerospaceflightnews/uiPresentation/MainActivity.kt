@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        WindowCompat.setDecorFitsSystemWindows(window, true)
+        supportActionBar?.hide()
+
 
         val navHostMainFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostMainFragment.navController
@@ -40,12 +41,8 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
                 }
                 else -> hideNavBottomBar()
             }
-
         }
-
-
     }
-
 
 
     override fun onSupportNavigateUp(): Boolean {
