@@ -72,4 +72,5 @@
 
     <color name="lightBlue500">#03a9f4</color>//color primary
     <color name="lightBlue700">#0288D1</color>//color primary light
+    <color name="lightBlue800">#0277BD</color>
 </resources>
