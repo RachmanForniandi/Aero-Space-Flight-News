@@ -27,4 +27,9 @@
     <string name="no_data_blogs_available_please_try_again_later">No data blogs available. Please try again later.</string>
     <string name="no_data_articles_available_please_try_again_later">No data articles available. Please try again later</string>
     <string name="change_language">Change Language</string>
+    <string name="reload">reload</string>
+    <string name="no_data_articles_available">No data articles available</string>
+    <string name="no_data_blogs_available">No data articles blogs available</string>
+    <string name="image_no_data_blogs_available">Image no data blogs available</string>
+    <string name="image_no_data_articles_available">Image no data articles available</string>
 </resources>

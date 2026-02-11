@@ -14,10 +14,6 @@ class HomeViewModel@Inject constructor(
     blogsUseCase: BlogsUseCase
 ) : ViewModel() {
 
-    /*val articlesPagingData = MutableLiveData<PagingData<Contents>>()
-    val blogsPagingData = MutableLiveData<PagingData<Contents>>()*/
-
-
     val articlesData = articlesUseCase
         .getDataArticles()
         .asLiveData()
@@ -26,33 +22,4 @@ class HomeViewModel@Inject constructor(
         .getDataBlogs()
         .asLiveData()
 
-    /*// ---- Articles ----
-    fun refreshPagingArticles() {
-        viewModelScope.launch {
-            articlesUseCase.getPagingArticles()
-                .cachedIn(viewModelScope)
-                .collect { pagingData ->
-                    articlesPagingData.postValue(pagingData)
-                }
-        }
-    }
-
-    fun getDetailArticle(id: Int): Flow<RemoteResponse<Contents>> {
-        return articlesUseCase.getDetailArticles(id)
-    }
-
-    // ---- Blogs ----
-    fun refreshPagingBlogs() {
-        viewModelScope.launch {
-            blogsUseCase.getBlogs()
-                .cachedIn(viewModelScope)
-                .collect { pagingData ->
-                    blogsPagingData.postValue(pagingData)
-                }
-        }
-    }
-
-    fun getDetailBlog(id: Int): Flow<RemoteResponse<Contents>> {
-        return blogsUseCase.getDetailBlogs(id)
-    }*/
 }

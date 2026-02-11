@@ -12,7 +12,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import rachman.forniandi.core.adapters.ContentAdapter
 import rachman.forniandi.core.adapters.LoadingStatePageAdapter
@@ -25,7 +24,7 @@ class ArticlesFragment : Fragment() {
     private var _binding: FragmentArticlesBinding? = null
     private val binding get() = _binding
     private val viewModel: ArticlesViewModel by viewModels()
-    private lateinit var contentAdapter: ContentAdapter
+    private var contentAdapter: ContentAdapter? = null
 
 
     override fun onCreateView(
@@ -49,7 +48,7 @@ class ArticlesFragment : Fragment() {
         showRefreshArticles(true)
 
         binding?.btnReloadPageArticles?.setOnClickListener {
-            contentAdapter.retry()
+            contentAdapter?.retry()
         }
     }
 
@@ -63,11 +62,11 @@ class ArticlesFragment : Fragment() {
 
     private fun setupListArticles() {
         contentAdapter = ContentAdapter { contents -> contents?.let { handleClickToDetail(it) } }
-        binding?.listArticles?.adapter = contentAdapter.withLoadStateFooter(
-            footer = LoadingStatePageAdapter { contentAdapter.retry() }
+        binding?.listArticles?.adapter = contentAdapter?.withLoadStateFooter(
+            footer = LoadingStatePageAdapter { contentAdapter?.retry() }
         )
 
-        contentAdapter.addLoadStateListener { loadStates ->
+        contentAdapter?.addLoadStateListener { loadStates ->
             if (loadStates.refresh is LoadState.Loading) {
                 showRefreshArticles(true)
                 showShimmer()
@@ -80,7 +79,7 @@ class ArticlesFragment : Fragment() {
                 if (errorState != null) {
                     showErrorState(true)
                     binding?.listArticles?.visibility = View.GONE
-                }else if (endOfPaginationReached && contentAdapter.itemCount == 0) {
+                }else if (endOfPaginationReached && contentAdapter?.itemCount == 0) {
                     showEmptyState()
                 }else{
                     showErrorState(false)
@@ -101,17 +100,13 @@ class ArticlesFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getArticles.observe(viewLifecycleOwner) { pagingResult ->
-                    contentAdapter.submitData(lifecycle, pagingResult)
+                    contentAdapter?.submitData(lifecycle, pagingResult)
                     showRefreshArticles(false)
                 }
             }
         }
         viewModel.refreshPagingArticles()
-        /*lifecycleScope.launch {
-            viewModel.pagingArticles.collectLatest { pagingData ->
-                contentAdapter.submitData(pagingData)
-            }
-        }*/
+
     }
 
 
@@ -162,6 +157,8 @@ class ArticlesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        binding?.listArticles?.adapter = null
+        contentAdapter = null
     }
 
 }

@@ -8,5 +8,6 @@
     <string name="are_you_sure_do_you_want_to_delete_all_favorites">Are you sure do you want to delete all favorite?</string>
     <string name="all_favorites_deleted">All favorites deleted</string>
     <string name="no_data_favorites_available">No data favorites available</string>
+    <string name="image_no_data_favorites_available">Image no data favorites available</string>
     <string name="host_activity_must_implement_navigation_provider">Host activity must implement NavigationProvider</string>
 </resources>

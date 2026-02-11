@@ -14,7 +14,6 @@ import rachman.forniandi.aerospaceflightnews.databinding.FragmentHomeBinding
 import rachman.forniandi.aerospaceflightnews.uiPresentation.settings.SettingsActivity
 import rachman.forniandi.core.adapters.CarrouselAdapter
 import rachman.forniandi.core.data.network.RemoteResponse
-import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 import kotlin.getValue
 
@@ -23,8 +22,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var articlesAdapter: CarrouselAdapter
-    private lateinit var blogsAdapter: CarrouselAdapter
+    private var articlesAdapter: CarrouselAdapter? = null
+    private var blogsAdapter: CarrouselAdapter? = null
 
 
 
@@ -82,7 +81,7 @@ class HomeFragment : Fragment() {
 
                 is RemoteResponse.Success -> {
                     hideShimmerSliderArticles()
-                    articlesAdapter.submitList(response.data)
+                    articlesAdapter?.submitList(response.data)
 
                     binding?.rvArticlesCarrousel?.visibility = View.VISIBLE
                     binding?.imgDataEmpty1?.visibility = View.GONE
@@ -106,7 +105,7 @@ class HomeFragment : Fragment() {
 
                 is RemoteResponse.Success -> {
                     hideShimmerSliderBlogs()
-                    blogsAdapter.submitList(response.data)
+                    blogsAdapter?.submitList(response.data)
 
                     binding?.rvBlogsCarrousel?.visibility = View.VISIBLE
                     binding?.imgDataEmpty2?.visibility = View.GONE
@@ -136,33 +135,44 @@ class HomeFragment : Fragment() {
     }
 
     private fun showShimmerSliderArticles() {
-        binding?.shimmerFrameLayoutCarrouselArticles?.startShimmer()
-        binding?.shimmerFrameLayoutCarrouselArticles?.visibility = View.VISIBLE
-        binding?.rvArticlesCarrousel?.visibility = View.GONE
+        binding?.apply {
+            shimmerFrameLayoutCarrouselBlogs.startShimmer()
+            shimmerFrameLayoutCarrouselBlogs.visibility = View.VISIBLE
+            rvArticlesCarrousel.visibility = View.GONE
+        }
     }
 
     private fun hideShimmerSliderArticles() {
-        binding?.shimmerFrameLayoutCarrouselArticles?.stopShimmer()
-        binding?.shimmerFrameLayoutCarrouselArticles?.visibility = View.INVISIBLE
-        binding?.rvArticlesCarrousel?.visibility = View.VISIBLE
-
+        binding?.apply {
+            shimmerFrameLayoutCarrouselArticles.stopShimmer()
+            shimmerFrameLayoutCarrouselArticles.visibility = View.INVISIBLE
+            rvArticlesCarrousel.visibility = View.VISIBLE
+        }
     }
 
     private fun showShimmerSliderBlogs() {
-        binding?.shimmerFrameLayoutCarrouselBlogs?.startShimmer()
-        binding?.shimmerFrameLayoutCarrouselBlogs?.visibility = View.VISIBLE
-        binding?.rvBlogsCarrousel?.visibility = View.GONE
+        binding?.apply {
+            shimmerFrameLayoutCarrouselBlogs.startShimmer()
+            shimmerFrameLayoutCarrouselBlogs.visibility = View.VISIBLE
+            rvBlogsCarrousel.visibility = View.GONE
+        }
     }
 
     private fun hideShimmerSliderBlogs() {
-        binding?.shimmerFrameLayoutCarrouselBlogs?.stopShimmer()
-        binding?.shimmerFrameLayoutCarrouselBlogs?.visibility = View.INVISIBLE
-        binding?.rvBlogsCarrousel?.visibility = View.VISIBLE
-
+        binding?.apply {
+            shimmerFrameLayoutCarrouselBlogs.stopShimmer()
+            shimmerFrameLayoutCarrouselBlogs.visibility = View.INVISIBLE
+            rvBlogsCarrousel.visibility = View.VISIBLE
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        binding?.rvArticlesCarrousel?.adapter = null
+        binding?.rvBlogsCarrousel?.adapter = null
+        articlesAdapter = null
+        blogsAdapter = null
+
     }
 }

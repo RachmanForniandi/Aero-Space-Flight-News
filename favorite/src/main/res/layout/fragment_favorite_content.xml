@@ -37,7 +37,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:contentDescription="@string/no_data_favorites_available"
+        android:contentDescription="@string/image_no_data_favorites_available"
         android:src="@drawable/ic_calendar_event_error"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"

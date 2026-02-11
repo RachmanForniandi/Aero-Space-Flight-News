@@ -52,9 +52,6 @@ class DetailArticlesFragment : Fragment() {
             viewModel.setArticleId(idContent)
         }
 
-        /*binding?.detailToolbar?.setNavigationOnClickListener {
-            findNavController().navigateUp()
-        }*/
 
         showDetailArticles()
         observeFavoriteArticleState()
@@ -123,7 +120,7 @@ class DetailArticlesFragment : Fragment() {
                     setOnClickListener {
                         detailContent?.let { content ->
                             val favEntity = FavoriteContentsEntity(
-                                id = content.id ?: 0,
+                                id = content.id,
                                 title = content.title ?: "",
                                 imageUrl = content.imageUrl ?: "",
                                 newsSite = content.newsSite ?: "",
@@ -152,8 +149,8 @@ class DetailArticlesFragment : Fragment() {
         }
     }
 
-    private fun showSnackBarError(@Suppress("SameParameterValue") message: String?) {
-        binding?.let { Snackbar.make(it.detailArticles,message.toString(), Snackbar.LENGTH_SHORT) }
+    private fun showSnackBarError(message: String) {
+        binding?.let { Snackbar.make(it.detailArticles,message, Snackbar.LENGTH_SHORT) }
             ?.setAction(getString(R.string.ok)){}
             ?.show()
     }

@@ -1,18 +1,13 @@
 package rachman.forniandi.core.adapters
 
-import android.R.attr.type
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import rachman.forniandi.core.adapters.ContentAdapter.Companion.DIFF_CALLBACK
 import rachman.forniandi.core.databinding.ItemContentCarrouselBinding
-import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.showImageSliderInto
-import kotlin.reflect.typeOf
 
 class CarrouselAdapter (
     private val onClick: (Contents) -> Unit

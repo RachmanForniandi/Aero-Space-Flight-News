@@ -25,7 +25,7 @@ class BlogsFragment : Fragment() {
     private var _binding: FragmentBlogsBinding? = null
     private val binding get() = _binding
     private val viewModel: BlogsViewModel by viewModels()
-    private lateinit var contentAdapter: ContentAdapter
+    private var contentAdapter: ContentAdapter? = null
 
 
     override fun onCreateView(
@@ -46,7 +46,7 @@ class BlogsFragment : Fragment() {
         showRefreshBlogs(true)
 
         binding?.btnReloadPage?.setOnClickListener {
-            contentAdapter.retry()
+            contentAdapter?.retry()
         }
     }
 
@@ -60,11 +60,11 @@ class BlogsFragment : Fragment() {
 
     private fun setupListBlogs() {
         contentAdapter = ContentAdapter { contents -> contents?.let { handleClickToDetail(it) } }
-        binding?.listBlogs?.adapter = contentAdapter.withLoadStateFooter(
-            footer = LoadingStatePageAdapter { contentAdapter.retry() }
+        binding?.listBlogs?.adapter = contentAdapter?.withLoadStateFooter(
+            footer = LoadingStatePageAdapter { contentAdapter?.retry() }
         )
 
-        contentAdapter.addLoadStateListener { loadStates ->
+        contentAdapter?.addLoadStateListener { loadStates ->
             if (loadStates.refresh is LoadState.Loading) {
                 showRefreshBlogs(true)
                 showShimmer()
@@ -77,7 +77,7 @@ class BlogsFragment : Fragment() {
                 if (errorState != null) {
                     showErrorState(true)
                     binding?.listBlogs?.visibility = View.GONE
-                } else if (endOfPaginationReached && contentAdapter.itemCount == 0) {
+                } else if (endOfPaginationReached && contentAdapter?.itemCount == 0) {
                     showEmptyState()
                 } else {
                     showErrorState(false)
@@ -97,18 +97,13 @@ class BlogsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getBlogs.observe(viewLifecycleOwner){ pagingResult ->
-                    contentAdapter.submitData(lifecycle,pagingResult)
+                    contentAdapter?.submitData(lifecycle,pagingResult)
                     showRefreshBlogs(false)
                 }
             }
         }
         viewModel.refreshPagingBlogs()
 
-        /*lifecycleScope.launch {
-            viewModel.pagingBlogs.collectLatest { pagingData ->
-                contentAdapter.submitData(pagingData)
-            }
-        }*/
     }
 
     private fun showRefreshBlogs(isRefreshing: Boolean) {
@@ -159,6 +154,8 @@ class BlogsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        binding?.listBlogs?.adapter = null
+        contentAdapter = null
     }
 
 }

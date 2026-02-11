@@ -3,29 +3,25 @@ package rachman.forniandi.aerospaceflightnews.uiPresentation.settings
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ActivitySettingsBinding
 
 @AndroidEntryPoint
 class SettingsActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySettingsBinding
+    private var binding: ActivitySettingsBinding?=null
     private val viewModel: SettingsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding?.root)
         supportActionBar?.hide()
 
         observeTheme()
@@ -38,7 +34,7 @@ class SettingsActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.isDarkMode.collect { isDarkMode ->
 
-                    binding.switchChangeTheme.isChecked = isDarkMode
+                    binding?.switchChangeTheme?.isChecked = isDarkMode
 
 
                     AppCompatDelegate.setDefaultNightMode(
@@ -54,7 +50,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
     private fun setupFunctionalSettings() {
-        with(binding){
+        binding?.apply{
 
             switchChangeTheme.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.setTheme(isChecked)

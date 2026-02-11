@@ -26,7 +26,7 @@ class FavoriteContentFragment : Fragment() {
 
     private var _binding: FragmentFavoriteContentBinding? = null
     private val binding get() = _binding
-    private lateinit var adapter: FavoriteContentAdapter
+    private var adapter: FavoriteContentAdapter? = null
     private lateinit var viewModel: FavoriteContentViewModel
 
 
@@ -117,7 +117,7 @@ class FavoriteContentFragment : Fragment() {
                 binding?.rvFavorites?.visibility = View.VISIBLE
                 binding?.favoriteDataNotAvailable?.visibility = View.GONE
                 binding?.txtLblFavoriteNotAvailable?.visibility = View.GONE
-                adapter.submitList(favorites)
+                adapter?.submitList(favorites)
             }
         }
     }
@@ -125,5 +125,7 @@ class FavoriteContentFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        binding?.rvFavorites?.adapter = null
+        adapter = null
     }
 }

@@ -26,4 +26,10 @@
     <string name="no_data_blogs_available_please_try_again_later">Tidak ada data data blog tersedia. Silahkan coba lagi nanti.</string>
     <string name="no_data_articles_available_please_try_again_later">Tidak ada data data artikel tersedia. Silahkan coba lagi nanti.</string>
     <string name="change_language">Ganti bahasa</string>
+    <string name="reload">Dimuat ulang</string>
+    <string name="no_data_articles_available">Tidak ada data data artikel tersedia</string>
+    <string name="no_data_blogs_available">Tidak ada data data blog tersedia</string>
+    <string name="image_no_data_blogs_available">Gambar tidak ada data blog tersedia</string>
+    <string name="image_no_data_articles_available">Gambar tidak ada data artikel tersedia</string>
+
 </resources>

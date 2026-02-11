@@ -8,5 +8,6 @@
     <string name="are_you_sure_do_you_want_to_delete_all_favorites">Apakah anda yakin menghapus semua favorit?</string>
     <string name="all_favorites_deleted">Semua favorit dihapus</string>
     <string name="no_data_favorites_available">Tidak ada data favorit tersedia</string>
+    <string name="image_no_data_favorites_available">Gambar tidak ada data favorit tersedia</string>
     <string name="host_activity_must_implement_navigation_provider">Activity host harus implementasi NavigationProvider</string>
 </resources>
