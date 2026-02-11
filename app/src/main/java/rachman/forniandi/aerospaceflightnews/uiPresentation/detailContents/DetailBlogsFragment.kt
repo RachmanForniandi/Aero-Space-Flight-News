@@ -52,9 +52,9 @@ class DetailBlogsFragment : Fragment() {
             idContent?.let { viewModel.setBlogId(it) }
         }
 
-        binding?.detailToolbar?.setNavigationOnClickListener {
+        /*binding?.detailToolbar?.setNavigationOnClickListener {
             findNavController().navigateUp()
-        }
+        }*/
 
         showDetailBlogs()
         observeFavoriteArticleState()

@@ -9,19 +9,6 @@
     tools:context=".uiPresentation.detailContents.DetailArticlesFragment">
 
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/detail_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        style="@style/CustomActionBarStyle"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:titleTextAppearance="@style/TextAppearance.Material3.TitleMedium"
-        app:title="Detail Article"
-        app:titleTextColor="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <include
@@ -39,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/detail_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -55,6 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:layout_marginTop="16dp"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:maxLines="3"
@@ -200,7 +188,7 @@
                 android:id="@+id/btn_to_detail_content_web"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/click_here_for_more_details"
                 app:layout_constraintTop_toBottomOf="@id/txt_summary_content"
                 app:layout_constraintStart_toStartOf="parent"

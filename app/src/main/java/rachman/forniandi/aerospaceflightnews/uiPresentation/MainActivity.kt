@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
@@ -32,17 +33,24 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
         navController = navHostMainFragment.navController
 
         binding.bottomNavigationMain.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.homeFragment,
-                R.id.articlesFragment,
-                R.id.blogsFragment,
-                R.id.favorite_navigation  ->{
-                    showNavBottomBar()
-                }
-                else -> hideNavBottomBar()
-            }
-        }
+
+       navController.addOnDestinationChangedListener { _, destination, _ ->
+           val shouldShowBottomNav = when {
+               destination.id == R.id.homeFragment ||
+                       destination.id == R.id.articlesFragment ||
+                       destination.id == R.id.blogsFragment -> true
+
+               destination.parent?.id == R.id.favorite_navigation -> true
+
+               else -> false
+           }
+
+           if (shouldShowBottomNav) {
+               showNavBottomBar()
+           } else {
+               hideNavBottomBar()
+           }
+       }
     }
 
 

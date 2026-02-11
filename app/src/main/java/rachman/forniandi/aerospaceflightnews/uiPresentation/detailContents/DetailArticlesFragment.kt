@@ -52,9 +52,9 @@ class DetailArticlesFragment : Fragment() {
             viewModel.setArticleId(idContent)
         }
 
-        binding?.detailToolbar?.setNavigationOnClickListener {
+        /*binding?.detailToolbar?.setNavigationOnClickListener {
             findNavController().navigateUp()
-        }
+        }*/
 
         showDetailArticles()
         observeFavoriteArticleState()

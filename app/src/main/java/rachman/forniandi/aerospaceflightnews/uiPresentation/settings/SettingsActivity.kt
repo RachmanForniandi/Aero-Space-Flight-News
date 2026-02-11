@@ -63,6 +63,10 @@ class SettingsActivity : AppCompatActivity() {
             lineOptionSettingChangeLanguage.setOnClickListener {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
+
+            btnBackSetting.setOnClickListener {
+                onBackPressed()
+            }
         }
     }
 }
