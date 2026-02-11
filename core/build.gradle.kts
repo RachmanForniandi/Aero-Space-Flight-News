@@ -1,5 +1,4 @@
 plugins {
-    //alias(libs.plugins.android.application)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
@@ -14,7 +13,7 @@ android {
 
     defaultConfig {
         //applicationId = "rachman.forniandi.core"
-        minSdk = 24
+        minSdk = 27
         targetSdk = 36
         //versionCode = 1
         //versionName = "1.0"

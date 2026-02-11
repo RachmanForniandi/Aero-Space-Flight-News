@@ -26,6 +26,15 @@
 
     <color name="backgroundMaterialColorText">#263238</color>
 
+    <color name="colorBackground">#F9F9F9</color>
+    <color name="colorSurface">#FFFFFF</color>
+
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#616161</color>
+
+    <color name="colorDivider">#E0E0E0</color>
+    <color name="colorIcon">#313C44</color>
+
 
     <color name="actionBar_color">#03a9f4</color>
     <color name="toolbar_content">#FFFFFF</color>
@@ -41,8 +50,8 @@
     <color name="backgroundStateButtonColor">@color/lightGray</color>
 
 
-    <color name="colorPrimary">#6200EA</color>
-    <color name="colorPrimaryDark">#5502C8</color>
+    <color name="colorPrimary">#0D47A1</color>
+    <color name="colorPrimaryDark">#1A237E</color>
     <color name="colorAccent">#9D46FF</color>
 
     // Custom CardView Style
@@ -63,4 +72,5 @@
 
     <color name="lightBlue500">#03a9f4</color>//color primary
     <color name="lightBlue700">#0288D1</color>//color primary light
+    <color name="lightBlue800">#0277BD</color>
 </resources>

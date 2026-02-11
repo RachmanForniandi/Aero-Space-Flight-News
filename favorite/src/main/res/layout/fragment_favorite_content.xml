@@ -10,10 +10,10 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/fav_appBarLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fitsSystemWindows="true"
+        app:liftOnScroll="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -22,12 +22,12 @@
             android:id="@+id/toolbar_favorite"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             app:title="@string/title_favorite"
             app:titleTextColor="@android:color/white"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:menu="@menu/menu_favorite"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            style="@style/CustomActionBarStyle"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
@@ -37,6 +37,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:contentDescription="@string/image_no_data_favorites_available"
         android:src="@drawable/ic_calendar_event_error"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
@@ -49,9 +50,8 @@
         android:id="@+id/txt_lbl_favorite_not_available"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No data favorites available"
+        android:text="@string/no_data_favorites_available"
         android:textStyle="bold"
-        android:textColor="@color/black"
         android:textSize="16sp"
         android:textAlignment="center"
         android:visibility="gone"
@@ -59,7 +59,8 @@
         app:layout_constraintTop_toBottomOf="@id/favorite_data_not_available"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible"/>
+        tools:visibility="visible"
+        style="@style/CustomColorTextStyle"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavorites"

@@ -2,7 +2,6 @@ package rachman.forniandi.favorite.ui
 
 import android.app.AlertDialog.Builder
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,7 +26,7 @@ class FavoriteContentFragment : Fragment() {
 
     private var _binding: FragmentFavoriteContentBinding? = null
     private val binding get() = _binding
-    private lateinit var adapter: FavoriteContentAdapter
+    private var adapter: FavoriteContentAdapter? = null
     private lateinit var viewModel: FavoriteContentViewModel
 
 
@@ -39,12 +38,12 @@ class FavoriteContentFragment : Fragment() {
         )
         val favoriteUseCase = deps.provideFavoriteContentUseCase()
         val factory = FavoriteContentViewModelFactory(favoriteUseCase)
-        viewModel = ViewModelProvider(this, factory).get(FavoriteContentViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory)[FavoriteContentViewModel::class.java]
     }
 
     private val navigationProvider: NavigationProvider by lazy {
         (requireActivity() as? NavigationProvider)
-            ?: throw IllegalStateException("Host activity must implement NavigationProvider")
+            ?: throw IllegalStateException(getString(R.string.host_activity_must_implement_navigation_provider))
     }
 
     override fun onCreateView(
@@ -80,14 +79,17 @@ class FavoriteContentFragment : Fragment() {
             .setTitle(getString(R.string.delete_all_favorites))
             .setMessage(getString(R.string.are_you_sure_do_you_want_to_delete_all_favorites))
             .setNegativeButton(getString(R.string.no), null)
-            .setPositiveButton(getString(R.string.yes), object : DialogInterface.OnClickListener {
-                override fun onClick(arg0: DialogInterface?, arg1: Int) {
-                    viewModel.deleteAllFavorites()
-                    binding?.root?.let { Snackbar.make(it, "All favorites deleted", Snackbar.LENGTH_SHORT) }
-                        ?.show()
-
+            .setPositiveButton(getString(R.string.yes)) { arg0, arg1 ->
+                viewModel.deleteAllFavorites()
+                binding?.root?.let {
+                    Snackbar.make(
+                        it,
+                        getString(R.string.all_favorites_deleted),
+                        Snackbar.LENGTH_SHORT
+                    )
                 }
-            }).create().show()
+                    ?.show()
+            }.create().show()
     }
 
 
@@ -115,7 +117,7 @@ class FavoriteContentFragment : Fragment() {
                 binding?.rvFavorites?.visibility = View.VISIBLE
                 binding?.favoriteDataNotAvailable?.visibility = View.GONE
                 binding?.txtLblFavoriteNotAvailable?.visibility = View.GONE
-                adapter.submitList(favorites)
+                adapter?.submitList(favorites)
             }
         }
     }
@@ -123,5 +125,7 @@ class FavoriteContentFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        binding?.rvFavorites?.adapter = null
+        adapter = null
     }
 }

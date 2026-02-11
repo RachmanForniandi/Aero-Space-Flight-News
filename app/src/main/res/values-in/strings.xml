@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello_blank_fragment">Halo fragment kosong</string>
+    <string name="try_again">Coba lagi</string>
+    <string name="unable_to_fetch_data_of_contents">Tidak dapat mengambil data dari konten</string>
+
+    <string name="title_settings">Judul pengaturan</string>
+    <string name="title_delete_all">Hapus semua</string>
+    <string name="title_favorite">Judul favorite</string>
+    <string name="settings">Pengaturan</string>
+    <string name="button_back_settings">Tombol kembali pengaturan</string>
+    <string name="change_theme">Ganti tema</string>
+    <string name="image_of_content">Gambar dari konten</string>
+    <string name="image_of_detail_articles">gambar dari detail artikel</string>
+    <string name="bookmarked_data_articles">data artikel ditandai</string>
+    <string name="source">Sumber:</string>
+    <string name="author">Penulis:</string>
+    <string name="published_at">Waktu terbit:</string>
+    <string name="updated_at">Waktu update:</string>
+    <string name="click_here_for_more_details">Klik disini untuk detail lebih lengkap</string>
+    <string name="bookmarked_data_blogs">data blog ditandai</string>
+    <string name="loading_detail">Memuat detail....</string>
+    <string name="ok">Ok</string>
+    <string name="articles">Artikel</string>
+    <string name="blogs">Blog</string>
+    <string name="no_data_blogs_available_please_try_again_later">Tidak ada data data blog tersedia. Silahkan coba lagi nanti.</string>
+    <string name="no_data_articles_available_please_try_again_later">Tidak ada data data artikel tersedia. Silahkan coba lagi nanti.</string>
+    <string name="change_language">Ganti bahasa</string>
+    <string name="reload">Dimuat ulang</string>
+    <string name="no_data_articles_available">Tidak ada data data artikel tersedia</string>
+    <string name="no_data_blogs_available">Tidak ada data data blog tersedia</string>
+    <string name="image_no_data_blogs_available">Gambar tidak ada data blog tersedia</string>
+    <string name="image_no_data_articles_available">Gambar tidak ada data artikel tersedia</string>
+
+</resources>

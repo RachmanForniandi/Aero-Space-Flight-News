@@ -1,6 +1,5 @@
 package rachman.forniandi.core.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -59,7 +58,6 @@ PagingDataAdapter<Contents, ContentAdapter.ContentHolder>(DIFF_CALLBACK){
                 return oldItem.id == newItem.id
             }
 
-            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(oldItem: Contents, newItem: Contents): Boolean {
                 return oldItem == newItem
             }

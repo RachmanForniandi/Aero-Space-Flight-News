@@ -20,6 +20,7 @@
             android:id="@+id/img_Content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/image_of_content"
             android:src="@drawable/place_holder"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"

@@ -24,7 +24,4 @@ class ArticlesViewModel @Inject constructor(private val articlesUseCase: Article
         }
     }
 
-    /*val pagingArticles: Flow<PagingData<Contents>> =
-        articlesUseCase.getArticles().cachedIn(viewModelScope)*/
-
 }

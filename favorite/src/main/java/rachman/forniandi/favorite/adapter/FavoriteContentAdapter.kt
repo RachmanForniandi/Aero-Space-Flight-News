@@ -1,6 +1,6 @@
 package rachman.forniandi.favorite.adapter
 
-import android.annotation.SuppressLint
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -61,7 +61,7 @@ class FavoriteContentAdapter (
                 return oldItem.id == newItem.id
             }
 
-            @SuppressLint("DiffUtilEquals")
+
             override fun areContentsTheSame(oldItem: FavoriteContentsEntity, newItem: FavoriteContentsEntity): Boolean {
                 return oldItem == newItem
             }
