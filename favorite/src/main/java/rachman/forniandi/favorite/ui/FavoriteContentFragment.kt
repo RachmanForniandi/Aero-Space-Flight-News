@@ -57,21 +57,15 @@ class FavoriteContentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbar()
+        setupButtonClearFavorite()
         setupRecyclerView()
         observeFavorites()
     }
-    private fun setupToolbar() {
-        binding?.toolbarFavorite?.setNavigationOnClickListener { requireActivity().onBackPressedDispatcher.onBackPressed() }
-        binding?.toolbarFavorite?.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.action_delete_all -> {
-                    checkBeforeClearAllFavoriteContents()
-                    true
-                }
-                else -> false
-            }
+    private fun setupButtonClearFavorite() {
+        binding?.fabClearFavoriteContent?.setOnClickListener {
+            checkBeforeClearAllFavoriteContents()
         }
+
     }
 
     private fun checkBeforeClearAllFavoriteContents() {

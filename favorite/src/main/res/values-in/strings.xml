@@ -10,4 +10,5 @@
     <string name="no_data_favorites_available">Tidak ada data favorit tersedia</string>
     <string name="image_no_data_favorites_available">Gambar tidak ada data favorit tersedia</string>
     <string name="host_activity_must_implement_navigation_provider">Activity host harus implementasi NavigationProvider</string>
+    <string name="button_clear_favorite_content">Tombol hapus semua konten favorit</string>
 </resources>

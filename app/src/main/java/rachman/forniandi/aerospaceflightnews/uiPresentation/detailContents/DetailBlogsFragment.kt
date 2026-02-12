@@ -21,6 +21,7 @@ import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
+import rachman.forniandi.core.utilRemote.getStringDate
 import kotlin.getValue
 
 @AndroidEntryPoint
@@ -72,10 +73,12 @@ class DetailBlogsFragment : Fragment() {
                 applyLoadingStateDetail(false)
                 detailContent = response.data
                 binding?.apply {
+                    val datePublished= getStringDate(detailContent?.publishedAt)
+                    val dateUpdated = getStringDate(detailContent?.updatedAt)
                     txtTitleContent.text = detailContent?.title
                     txtSummaryContent.text = detailContent?.summary
-                    txtPublishedAt.text = detailContent?.publishedAt
-                    txtUpdatedAt.text = detailContent?.updatedAt
+                    txtPublishedAt.text = datePublished
+                    txtUpdatedAt.text = dateUpdated
                     txtSource.text = detailContent?.newsSite
                     txtAuthor.text = detailContent?.authors?.firstOrNull()?.name
 

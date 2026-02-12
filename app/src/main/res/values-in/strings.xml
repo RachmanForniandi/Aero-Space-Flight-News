@@ -31,5 +31,6 @@
     <string name="no_data_blogs_available">Tidak ada data data blog tersedia</string>
     <string name="image_no_data_blogs_available">Gambar tidak ada data blog tersedia</string>
     <string name="image_no_data_articles_available">Gambar tidak ada data artikel tersedia</string>
-
+    <string name="here_is_top_10_articles">Berikut adalah 10 artikel teratas:</string>
+    <string name="here_is_top_10_blogs">Berikut adalah 10 blog teratas:</string>
 </resources>

@@ -32,4 +32,6 @@
     <string name="no_data_blogs_available">No data articles blogs available</string>
     <string name="image_no_data_blogs_available">Image no data blogs available</string>
     <string name="image_no_data_articles_available">Image no data articles available</string>
+    <string name="here_is_top_10_articles">Here is top 10 articles:</string>
+    <string name="here_is_top_10_blogs">Here is top 10 blogs:</string>
 </resources>
