@@ -66,6 +66,9 @@ dependencies {
     ksp (libs.hilt.compiler)
     ksp (libs.dagger.compiler)
 
+    //lottie
+    implementation(libs.lottie)
+
 
     implementation(libs.gms.play.services.base)
     implementation(libs.androidx.appcompat)

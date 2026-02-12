@@ -33,4 +33,5 @@
     <string name="image_no_data_articles_available">Gambar tidak ada data artikel tersedia</string>
     <string name="here_is_top_10_articles">Berikut adalah 10 artikel teratas:</string>
     <string name="here_is_top_10_blogs">Berikut adalah 10 blog teratas:</string>
+    <string name="powered_by">Di dukung oleh:</string>
 </resources>

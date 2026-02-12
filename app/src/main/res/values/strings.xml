@@ -34,4 +34,6 @@
     <string name="image_no_data_articles_available">Image no data articles available</string>
     <string name="here_is_top_10_articles">Here is top 10 articles:</string>
     <string name="here_is_top_10_blogs">Here is top 10 blogs:</string>
+    <string name="powered_by">powered by:</string>
+    <string name="https_api_spaceflightnewsapi_net" translatable="false">https://api.spaceflightnewsapi.net</string>
 </resources>
