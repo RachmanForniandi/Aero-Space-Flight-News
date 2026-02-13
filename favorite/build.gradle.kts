@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.kotlin.android)
@@ -10,7 +11,11 @@ android {
     namespace = "rachman.forniandi.favorite"
     compileSdk = 36
 
+    testOptions {
+        unitTests.all {
 
+        }
+    }
 
     defaultConfig {
 
@@ -48,7 +53,7 @@ dependencies {
 
     //dagger hilt
     api (libs.hilt.android)
-    //ksp(libs.androidx.navigation.safe.args.generator)
+
     ksp (libs.hilt.compiler)
     ksp (libs.dagger.compiler)
 
@@ -79,5 +84,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
 
 }

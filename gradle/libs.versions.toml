@@ -39,6 +39,8 @@ featureDelivery="2.1.0"
 pagingRuntimeKtxVersion = "3.3.6"
 navigationDynamicFeaturesRuntime = "2.9.6"
 preference = "1.2.0"
+coreTesting = "2.2.0"
+kotlinxCoroutinesTest = "1.10.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -100,6 +102,8 @@ paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", v
 
 androidx-navigation-dynamic-features-runtime = { group = "androidx.navigation", name = "navigation-dynamic-features-runtime", version.ref = "navigationDynamicFeaturesRuntime" }
 androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
+androidx-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "coreTesting" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 
 
 [plugins]
