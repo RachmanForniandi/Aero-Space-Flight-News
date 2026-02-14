@@ -1,16 +1,12 @@
 package rachman.forniandi.core.di
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import rachman.forniandi.core.BuildConfig
 import rachman.forniandi.core.data.local.room.ContentsDatabase
 import rachman.forniandi.core.data.local.room.ContentsDatabase.Companion.MIGRATION_1_2
 import javax.inject.Singleton

@@ -34,4 +34,6 @@
     <string name="here_is_top_10_articles">Berikut adalah 10 artikel teratas:</string>
     <string name="here_is_top_10_blogs">Berikut adalah 10 blog teratas:</string>
     <string name="powered_by">Di dukung oleh:</string>
+    <string name="detail_blog_error">Detail Blog Galat.</string>
+    <string name="detail_article_error">Detail Article Galat.</string>
 </resources>

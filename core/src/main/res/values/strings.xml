@@ -2,4 +2,5 @@
     <string name="app_name">Core</string>
     <string name="unable_to_fetch_data_of_contents">Unable to fetch data of contents</string>
     <string name="try_again">Try Again</string>
+    <string name="image_of_content_articles_or_blogs">image of content articles or blogs</string>
 </resources>

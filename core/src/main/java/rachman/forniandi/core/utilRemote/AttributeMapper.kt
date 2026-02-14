@@ -1,32 +1,14 @@
 package rachman.forniandi.core.utilRemote
 
 
-import androidx.paging.PagingData
-import androidx.paging.map
+
 import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import rachman.forniandi.core.data.remote.response.ResultsItem
 import rachman.forniandi.core.domain.entity.AuthorContents
 import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 
-/*fun List<ResultsItem>.toContentsEntity()=map { result ->
-    Contents(
-        result.id,
-        result.title,
-        result.authors?.map { authorsItem ->
-            AuthorContents(
-                name = authorsItem?.name
-            )
-        },
-        result.url,
-        result.imageUrl,
-        result.newsSite,
-        result.summary,
-        result.publishedAt,
-        result.updatedAt,
 
-    )
-}*/
 
 fun ResultsItem.toDetailContentsEntity(type: ContentType) = Contents(
     id = id,
@@ -45,59 +27,7 @@ fun ResultsItem.toDetailContentsEntity(type: ContentType) = Contents(
     type = type
 )
 
-fun mapResponseToEntities(
-    input: List<ResultsItem>,
-    type: ContentType // "ARTICLE" atau "BLOG"
-): List<Contents> {
-    return input.map { data ->
-        Contents(
-            id = data.id,
-            title = data.title.orEmpty(),
-            authors = data.authors?.map {
-                AuthorContents(
-                    name = it?.name.orEmpty(),
 
-                )
-            },
-            url = data.url,
-            imageUrl = data.imageUrl,
-            newsSite = data.newsSite,
-            summary = data.summary,
-            publishedAt = data.publishedAt,
-            updatedAt = data.updatedAt,
-            type = type
-        )
-    }
-}
-
-
-fun Contents.toFavoriteEntity(type: ContentType) = FavoriteContentsEntity(
-    id = id,
-    title = title,
-    imageUrl = imageUrl,
-    newsSite = newsSite,
-    summary = summary,
-    publishedAt = publishedAt,
-    updatedAt,
-    url = url,
-    contentType = type,
-    isFavorite = false
-)
-
-fun toContentPagingDomain(content: PagingData<Contents>,contentType: ContentType)= content.map {
-    Contents(
-        id = it.id,
-        title = it.title,
-        authors = it.authors,
-        url = it.url,
-        imageUrl = it.imageUrl,
-        newsSite = it.newsSite,
-        summary = it.summary,
-        publishedAt = it.publishedAt,
-        updatedAt = it.updatedAt,
-        type = contentType
-    )
-}
 
 fun FavoriteContentsEntity.toContentsDomain(): Contents = Contents(
     id = this.id,

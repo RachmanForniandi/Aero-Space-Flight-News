@@ -153,9 +153,9 @@ class BlogsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         binding?.listBlogs?.adapter = null
         contentAdapter = null
+        _binding = null
     }
 
 }

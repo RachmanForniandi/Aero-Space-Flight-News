@@ -11,11 +11,7 @@ android {
     namespace = "rachman.forniandi.favorite"
     compileSdk = 36
 
-    testOptions {
-        unitTests.all {
 
-        }
-    }
 
     defaultConfig {
 

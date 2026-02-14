@@ -101,7 +101,7 @@ class DetailArticlesFragment : Fragment() {
             }
             is RemoteResponse.Error->{
                 applyLoadingStateDetail(false)
-                showSnackBarError("Detail Article Error.")
+                showSnackBarError(getString(R.string.detail_article_error))
 
 
             }

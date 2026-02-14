@@ -9,7 +9,6 @@ import rachman.forniandi.core.data.local.room.FavoriteContentDao
 import rachman.forniandi.core.domain.entity.ContentType
 import rachman.forniandi.core.domain.entity.Contents
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 class ContentsLocalDataSource @Inject constructor(

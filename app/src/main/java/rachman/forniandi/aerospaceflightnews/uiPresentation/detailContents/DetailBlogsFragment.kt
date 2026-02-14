@@ -99,7 +99,7 @@ class DetailBlogsFragment : Fragment() {
             }
             is RemoteResponse.Error->{
                 applyLoadingStateDetail(false)
-                showSnackBarError("Detail Blog Error.")
+                showSnackBarError(getString(R.string.detail_blog_error))
             }
         }
     }

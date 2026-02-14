@@ -136,8 +136,8 @@ class HomeFragment : Fragment() {
 
     private fun showShimmerSliderArticles() {
         binding?.apply {
-            shimmerFrameLayoutCarrouselBlogs.startShimmer()
-            shimmerFrameLayoutCarrouselBlogs.visibility = View.VISIBLE
+            shimmerFrameLayoutCarrouselArticles.startShimmer()
+            shimmerFrameLayoutCarrouselArticles.visibility = View.VISIBLE
             rvArticlesCarrousel.visibility = View.GONE
         }
     }
@@ -149,6 +149,7 @@ class HomeFragment : Fragment() {
             rvArticlesCarrousel.visibility = View.VISIBLE
         }
     }
+
 
     private fun showShimmerSliderBlogs() {
         binding?.apply {
@@ -168,11 +169,10 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         binding?.rvArticlesCarrousel?.adapter = null
         binding?.rvBlogsCarrousel?.adapter = null
         articlesAdapter = null
         blogsAdapter = null
-
+        _binding = null
     }
 }
