@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
@@ -27,6 +27,19 @@
     <style name="customItemCardList">
         <item name="cardBackgroundColor">@color/colorSurface</item>
         <item name="strokeColor">@color/colorDivider</item>
+    </style>
+
+    <style name="CustomImageSplash">
+        <item name="android:src">@drawable/dicoding_cover_dark</item>
+    </style>
+
+
+    <style name="WhiteBackgroundTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="WhiteBackgroundDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="Widget.App.BottomNavigation"
@@ -72,9 +85,7 @@
         <item name="android:tint">@color/tintColorIcon</item>
     </style>
 
-    <style name="CustomImageSplash">
-        <item name="android:src">@drawable/dicoding_cover_dark</item>
-    </style>
+
 
     <style name="CustomButtonStyle">
         <item name="android:backgroundTint">@color/actionBarBackgroundColor</item>

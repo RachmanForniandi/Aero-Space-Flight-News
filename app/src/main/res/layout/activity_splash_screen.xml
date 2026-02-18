@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".uiPresentation.SplashScreenActivity">
+    tools:context=".uiPresentation.splash.SplashScreenActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/img_splashscreen"
@@ -46,12 +46,36 @@
         android:textSize="16sp"
         style="@style/CustomColorTextStyle"/>
 
+    <ImageView
+        android:id="@+id/img_logo_dicoding"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/image_logo_dicoding"
+        android:src="@drawable/dicoding_logo"
+        app:layout_constraintTop_toBottomOf="@id/txt_lbl_powered_by"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/CustomImageSplash"/>
+
+    <TextView
+        android:id="@+id/txt_lbl_and"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/img_logo_dicoding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="and"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        style="@style/CustomColorTextStyle"/>
+
     <TextView
         android:id="@+id/txt_api_source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/txt_lbl_powered_by"
+        app:layout_constraintTop_toBottomOf="@id/txt_lbl_and"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/https_api_spaceflightnewsapi_net"

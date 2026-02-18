@@ -44,12 +44,24 @@
 
     </style>
 
+    <style name="CustomImageSplash">
+        <item name="android:src">@drawable/dicoding_logo</item>
+    </style>
+
     <style name="Widget.App.BottomNav.ActiveIndicator">
         <item name="android:color">?attr/colorSecondaryContainer</item>
         <item name="android:height">32dp</item>
         <item name="shapeAppearance">
             @style/ShapeAppearance.App.BottomNav.Indicator
         </item>
+    </style>
+
+    <style name="WhiteBackgroundTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="WhiteBackgroundDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="ShapeAppearance.App.BottomNav.Indicator"
@@ -66,9 +78,6 @@
         <item name="strokeColor">@color/colorDivider</item>
     </style>
 
-    <style name="CustomImageSplash">
-        <item name="android:src">@drawable/dicoding_logo</item>
-    </style>
 
     <style name="CustomColorTextStyle">
         <item name="android:textColor">@color/colorText</item>

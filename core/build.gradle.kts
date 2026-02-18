@@ -12,11 +12,8 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        //applicationId = "rachman.forniandi.core"
         minSdk = 27
         targetSdk = 36
-        //versionCode = 1
-        //versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,22 +21,19 @@ android {
     buildTypes {
         debug{
             buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
+            buildConfigField("String", "DB_PASSPHRASE", "\"debug_passphrase_2026\"")
         }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            consumerProguardFiles("consumer-rules.pro")
             buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
+            buildConfigField("String", "DB_PASSPHRASE", "\"debug_passphrase_2026\"")
         }
-        /*release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }*/
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -52,6 +46,8 @@ android {
         viewBinding = true
         buildConfig= true
     }
+
+
 }
 
 dependencies {
@@ -99,6 +95,8 @@ dependencies {
     implementation(libs.androidx.room.paging)
     implementation(libs.room.ktx)
     implementation(libs.paging.runtime.ktx)
+    implementation(libs.android.database.sqlcipher)
+    implementation(libs.androidx.sqlite.ktx)
     ksp(libs.room.compiler)
 
 

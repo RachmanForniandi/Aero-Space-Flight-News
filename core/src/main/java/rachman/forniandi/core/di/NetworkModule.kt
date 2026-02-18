@@ -9,6 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import rachman.forniandi.core.BuildConfig
 import rachman.forniandi.core.data.network.NetworkService
@@ -21,6 +22,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+
     @Provides
     @Singleton
     fun provideHttpClient(chuckerInterceptor: ChuckerInterceptor): OkHttpClient {
@@ -30,6 +32,35 @@ object NetworkModule {
             .connectTimeout(30, TimeUnit.SECONDS)
             .build()
     }
+
+//    @Provides
+//    @Singleton
+//    fun provideHttpClient(
+//        chuckerInterceptor: ChuckerInterceptor
+//    ): OkHttpClient {
+//
+//        val hostname = "api.spaceflightnewsapi.net"
+//
+//        val certificatePin = CertificatePinner.Builder()
+//            .add(hostname, "sha256/Q6Ycl4h7j1q3uEbTgIwGB+uK+oBobbol4ryydDOOZBQ=")
+//            .add(hostname, "sha256/kIdp6NNEd8wsugYyyIYFsi1ylMCED3hZbSR8ZFsa/A4=")
+//            .add(hostname, "sha256/mEflZT5enoR1FuXLgYYGqnVEoZvmf9c2bVBpiOjYQ0c=")
+//            .build()
+//
+//        return if (BuildConfig.DEBUG) {
+//            OkHttpClient.Builder()
+//                .addInterceptor(chuckerInterceptor)
+//                .readTimeout(30, TimeUnit.SECONDS)
+//                .connectTimeout(30, TimeUnit.SECONDS)
+//                .build()
+//        } else {
+//            OkHttpClient.Builder()
+//                .certificatePinner(certificatePin)
+//                .readTimeout(30, TimeUnit.SECONDS)
+//                .connectTimeout(30, TimeUnit.SECONDS)
+//                .build()
+//        }
+//    }
 
     @Singleton
     @Provides
@@ -56,6 +87,9 @@ object NetworkModule {
         okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
+
+
+
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)

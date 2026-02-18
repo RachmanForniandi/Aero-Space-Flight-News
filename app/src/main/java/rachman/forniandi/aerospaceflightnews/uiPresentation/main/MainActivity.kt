@@ -1,5 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.uiPresentation
-
+package rachman.forniandi.aerospaceflightnews.uiPresentation.main
 
 import android.os.Bundle
 import android.view.View
@@ -7,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ActivityMainBinding
-import androidx.navigation.fragment.NavHostFragment
 import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.NavigationProvider
 
@@ -50,6 +49,8 @@ class MainActivity : AppCompatActivity(), NavigationProvider {
                hideNavBottomBar()
            }
        }
+
+
     }
 
 

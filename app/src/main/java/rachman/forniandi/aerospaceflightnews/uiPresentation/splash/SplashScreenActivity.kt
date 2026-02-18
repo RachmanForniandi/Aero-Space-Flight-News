@@ -1,4 +1,4 @@
-package rachman.forniandi.aerospaceflightnews.uiPresentation
+package rachman.forniandi.aerospaceflightnews.uiPresentation.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
+import rachman.forniandi.aerospaceflightnews.uiPresentation.main.MainActivity
 import java.util.Timer
 import kotlin.concurrent.schedule
 

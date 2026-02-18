@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias (libs.plugins.kotlin.parcelize)
-    id("androidx.navigation.safeargs.kotlin")
 
 }
 android {
@@ -22,10 +21,11 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFile("proguard-rules.pro")
+        }
+
+        debug {
+            isMinifyEnabled = false
         }
     }
     compileOptions {
@@ -40,6 +40,8 @@ android {
 
     }
 
+
+
 }
 
 dependencies {
@@ -49,6 +51,7 @@ dependencies {
 
     //dagger hilt
     api (libs.hilt.android)
+    implementation(libs.androidx.junit.ktx)
 
     ksp (libs.hilt.compiler)
     ksp (libs.dagger.compiler)

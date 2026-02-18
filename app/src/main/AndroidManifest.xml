@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AeroSpaceFlightNews"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".uiPresentation.SplashScreenActivity"
+            android:name=".uiPresentation.splash.SplashScreenActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
             android:name=".uiPresentation.detailContents.DetailContentsWebviewActivity"
             android:exported="false" />
         <activity
-            android:name=".uiPresentation.MainActivity"
+            android:name=".uiPresentation.main.MainActivity"
             android:exported="true"/>
     </application>
 
