@@ -38,4 +38,5 @@
     <string name="https_api_spaceflightnewsapi_net" translatable="false">https://api.spaceflightnewsapi.net</string>
     <string name="detail_blog_error">Detail Blog Error.</string>
     <string name="detail_article_error">Detail Article Error.</string>
+    <string name="image_logo_dicoding">image logo dicoding</string>
 </resources>
