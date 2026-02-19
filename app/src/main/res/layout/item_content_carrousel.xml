@@ -16,7 +16,7 @@
             android:id="@+id/img_Content"
             android:layout_width="0dp"
             android:layout_height="180dp"
-            android:contentDescription="image carousel content"
+            android:contentDescription="@string/image_carousel_content"
             android:src="@drawable/placeholder_portrait"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"

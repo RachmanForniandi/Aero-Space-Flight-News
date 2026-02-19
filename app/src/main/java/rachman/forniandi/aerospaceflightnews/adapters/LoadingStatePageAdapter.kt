@@ -1,4 +1,4 @@
-package rachman.forniandi.core.adapters
+package rachman.forniandi.aerospaceflightnews.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import rachman.forniandi.core.R
-import rachman.forniandi.core.databinding.ItemLoadingShimmerBinding
+import rachman.forniandi.aerospaceflightnews.databinding.ItemLoadingShimmerBinding
+import rachman.forniandi.aerospaceflightnews.R
 
 class LoadingStatePageAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<LoadingStatePageAdapter.LoadingStatePageViewHolder>() {

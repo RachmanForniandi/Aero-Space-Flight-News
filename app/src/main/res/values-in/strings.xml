@@ -12,6 +12,7 @@
     <string name="change_theme">Ganti tema</string>
     <string name="image_of_content">Gambar dari konten</string>
     <string name="image_of_detail_articles">gambar dari detail artikel</string>
+    <string name="image_of_detail_blogs">gambar dari detail blog</string>
     <string name="bookmarked_data_articles">data artikel ditandai</string>
     <string name="source">Sumber:</string>
     <string name="author">Penulis:</string>
@@ -20,7 +21,7 @@
     <string name="click_here_for_more_details">Klik disini untuk detail lebih lengkap</string>
     <string name="bookmarked_data_blogs">data blog ditandai</string>
     <string name="loading_detail">Memuat detail....</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="articles">Artikel</string>
     <string name="blogs">Blog</string>
     <string name="no_data_blogs_available_please_try_again_later">Tidak ada data data blog tersedia. Silahkan coba lagi nanti.</string>
@@ -37,4 +38,10 @@
     <string name="detail_blog_error">Detail Blog Galat.</string>
     <string name="detail_article_error">Detail Article Galat.</string>
     <string name="image_logo_dicoding">Gambar logo dicoding</string>
+
+    <string name="image_of_content_articles_or_blogs">Gambar dari konten artikel atau blog</string>
+    <string name="and">dan</string>
+    <string name="home">Rumah</string>
+    <string name="favorite">Favorit</string>
+    <string name="image_carousel_content">konten carousel gambar</string>
 </resources>

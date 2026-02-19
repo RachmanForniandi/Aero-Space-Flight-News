@@ -23,7 +23,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
 
-    @Provides
+    /*@Provides
     @Singleton
     fun provideHttpClient(chuckerInterceptor: ChuckerInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
@@ -31,36 +31,36 @@ object NetworkModule {
             .readTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
             .build()
-    }
+    }*/
 
-//    @Provides
-//    @Singleton
-//    fun provideHttpClient(
-//        chuckerInterceptor: ChuckerInterceptor
-//    ): OkHttpClient {
-//
-//        val hostname = "api.spaceflightnewsapi.net"
-//
-//        val certificatePin = CertificatePinner.Builder()
-//            .add(hostname, "sha256/Q6Ycl4h7j1q3uEbTgIwGB+uK+oBobbol4ryydDOOZBQ=")
-//            .add(hostname, "sha256/kIdp6NNEd8wsugYyyIYFsi1ylMCED3hZbSR8ZFsa/A4=")
-//            .add(hostname, "sha256/mEflZT5enoR1FuXLgYYGqnVEoZvmf9c2bVBpiOjYQ0c=")
-//            .build()
-//
-//        return if (BuildConfig.DEBUG) {
-//            OkHttpClient.Builder()
-//                .addInterceptor(chuckerInterceptor)
-//                .readTimeout(30, TimeUnit.SECONDS)
-//                .connectTimeout(30, TimeUnit.SECONDS)
-//                .build()
-//        } else {
-//            OkHttpClient.Builder()
-//                .certificatePinner(certificatePin)
-//                .readTimeout(30, TimeUnit.SECONDS)
-//                .connectTimeout(30, TimeUnit.SECONDS)
-//                .build()
-//        }
-//    }
+    @Provides
+    @Singleton
+    fun provideHttpClient(
+        chuckerInterceptor: ChuckerInterceptor
+    ): OkHttpClient {
+
+        val hostname = "api.spaceflightnewsapi.net"
+
+        val certificatePin = CertificatePinner.Builder()
+            .add(hostname, "sha256/Q6Ycl4h7j1q3uEbTgIwGB+uK+oBobbol4ryydDOOZBQ=")
+            .add(hostname, "sha256/kIdp6NNEd8wsugYyyIYFsi1ylMCED3hZbSR8ZFsa/A4=")
+            .add(hostname, "sha256/mEflZT5enoR1FuXLgYYGqnVEoZvmf9c2bVBpiOjYQ0c=")
+            .build()
+
+        return if (BuildConfig.DEBUG) {
+            OkHttpClient.Builder()
+                .addInterceptor(chuckerInterceptor)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .build()
+        } else {
+            OkHttpClient.Builder()
+                .certificatePinner(certificatePin)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .build()
+        }
+    }
 
     @Singleton
     @Provides

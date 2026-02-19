@@ -19,14 +19,9 @@ class ContentsLocalDataSource @Inject constructor(
     fun getAllContents(type: ContentType): PagingSource<Int, Contents> =
         contentsDao.getContentsByType(type)
 
-    /*suspend fun insertContents(contents: List<Contents>) =
-        contentsDao.insertContents(contents)*/
 
     suspend fun clearContentsByType(type: ContentType) =
         contentsDao.clearContentsByType(type)
-
-    /*suspend fun getContentById(id: Int): Flow<Contents?> =
-        contentsDao.getContentById(id)*/
 
     fun getAllFavorites(type: ContentType): Flow<List<FavoriteContentsEntity>> =
         favoriteContentDao.getFavorites(type)

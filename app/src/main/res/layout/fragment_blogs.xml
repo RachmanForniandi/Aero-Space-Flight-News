@@ -127,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="reload"
+            android:text="@string/reload"
             style="@style/CustomButtonStyle"
             app:layout_constraintTop_toBottomOf="@id/txt_lbl_blogs_not_available"
             app:layout_constraintStart_toStartOf="parent"

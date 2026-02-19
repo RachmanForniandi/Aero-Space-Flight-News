@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import rachman.forniandi.core.adapters.ContentAdapter
-import rachman.forniandi.core.adapters.LoadingStatePageAdapter
+import rachman.forniandi.aerospaceflightnews.adapters.ContentAdapter
+import rachman.forniandi.aerospaceflightnews.adapters.LoadingStatePageAdapter
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentArticlesBinding
 import rachman.forniandi.core.domain.entity.Contents
 

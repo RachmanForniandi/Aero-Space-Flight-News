@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/img_logo_dicoding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="and"
+        android:text="@string/and"
         android:textStyle="bold"
         android:textSize="16sp"
         style="@style/CustomColorTextStyle"/>

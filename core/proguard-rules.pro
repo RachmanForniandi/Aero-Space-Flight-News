@@ -22,23 +22,25 @@
 # Aturan internal untuk core module
 # Biasanya hanya untuk testing atau debugging
 
-# Internal rules untuk SQLCipher di core module
+# SQLCipher native libraries
 -keep class net.sqlcipher.** { *; }
 -dontwarn net.sqlcipher.**
 
-# Untuk native library SQLCipher
--keep class net.sqlcipher.database.SQLiteDatabase {
+# Native methods untuk SQLCipher
+-keepclassmembers class net.sqlcipher.database.SQLiteDatabase {
     native <methods>;
 }
 
-# Testing
+# Testing libraries - hanya untuk debug
 -dontwarn org.junit.**
 -dontwarn org.mockito.**
+-dontwarn org.assertj.**
 
-# Untuk debug logging
+# Untuk debug logging - akan dihapus di release
 -assumenosideeffects class android.util.Log {
     public static *** d(...);
     public static *** v(...);
     public static *** i(...);
 }
+
 

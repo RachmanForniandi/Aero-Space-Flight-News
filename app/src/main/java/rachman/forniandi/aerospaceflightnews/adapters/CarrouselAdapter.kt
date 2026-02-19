@@ -1,11 +1,11 @@
-package rachman.forniandi.core.adapters
+package rachman.forniandi.aerospaceflightnews.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import rachman.forniandi.core.adapters.ContentAdapter.Companion.DIFF_CALLBACK
-import rachman.forniandi.core.databinding.ItemContentCarrouselBinding
+import rachman.forniandi.aerospaceflightnews.adapters.ContentAdapter.Companion.DIFF_CALLBACK
+import rachman.forniandi.aerospaceflightnews.databinding.ItemContentCarrouselBinding
 import rachman.forniandi.core.domain.entity.Contents
 import rachman.forniandi.core.utilRemote.showImageSliderInto
 

@@ -94,7 +94,6 @@ dependencies {
 
     //dynamic features
     implementation(libs.androidx.navigation.dynamic.features.fragment)
-    //implementation(libs.android.play.core)
 
     //lifecycle
     api (libs.androidx.lifecycle.livedata.ktx)
@@ -106,6 +105,8 @@ dependencies {
     implementation(libs.androidx.navigation.dynamic.features.runtime)
 
     api(libs.facebook.shimmer)
+
+
 
     implementation(libs.androidx.swiperefreshlayout)
 

@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.FragmentHomeBinding
 import rachman.forniandi.aerospaceflightnews.uiPresentation.settings.SettingsActivity
-import rachman.forniandi.core.adapters.CarrouselAdapter
+import rachman.forniandi.aerospaceflightnews.adapters.CarrouselAdapter
 import rachman.forniandi.core.data.network.RemoteResponse
 import rachman.forniandi.core.domain.entity.Contents
 import kotlin.getValue

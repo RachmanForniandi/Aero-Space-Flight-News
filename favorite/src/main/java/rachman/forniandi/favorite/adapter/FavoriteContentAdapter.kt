@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import androidx.recyclerview.widget.ListAdapter
+import rachman.forniandi.aerospaceflightnews.databinding.ItemContentBinding
 import rachman.forniandi.core.R.drawable.*
-import rachman.forniandi.core.databinding.ItemContentBinding
 
 class FavoriteContentAdapter (
     private val onItemClicked: (FavoriteContentsEntity) -> Unit
