@@ -23,16 +23,6 @@ import javax.inject.Singleton
 object NetworkModule {
 
 
-    /*@Provides
-    @Singleton
-    fun provideHttpClient(chuckerInterceptor: ChuckerInterceptor): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(chuckerInterceptor)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .build()
-    }*/
-
     @Provides
     @Singleton
     fun provideHttpClient(

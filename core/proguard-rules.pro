@@ -31,12 +31,12 @@
     native <methods>;
 }
 
-# Testing libraries - hanya untuk debug
+# Testing libraries (hanya untuk internal)
 -dontwarn org.junit.**
 -dontwarn org.mockito.**
 -dontwarn org.assertj.**
 
-# Untuk debug logging - akan dihapus di release
+# Debug logging - akan dihapus di release
 -assumenosideeffects class android.util.Log {
     public static *** d(...);
     public static *** v(...);
