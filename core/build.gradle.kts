@@ -16,18 +16,21 @@ android {
         targetSdk = 36
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
+        buildConfigField("String", "DB_PASSPHRASE", "\"debug_passphrase_2026\"")
+
     }
 
     buildTypes {
         debug{
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
-            buildConfigField("String", "DB_PASSPHRASE", "\"debug_passphrase_2026\"")
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            consumerProguardFiles("consumer-rules.pro")
+
         }
 
         release {
@@ -36,9 +39,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            consumerProguardFiles("consumer-rules.pro")
-            buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
-            buildConfigField("String", "DB_PASSPHRASE", "\"debug_passphrase_2026\"")
         }
 
     }
