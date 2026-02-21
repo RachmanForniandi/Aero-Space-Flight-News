@@ -6,80 +6,127 @@
 # === PASTIKAN INI ADA DI PALING ATAS ===
 -keep class rachman.forniandi.core.** { *; }
 
-# === ATAU LEBIH SPESIFIK (REKOMENDASI) ===
-# DATA LAYER - LOCAL
+# Keep Data Source classes
 -keep class rachman.forniandi.core.data.local.** { *; }
--keep class rachman.forniandi.core.data.local.datasource.** { *; }
+-keep class rachman.forniandi.core.data.remote.** { *; }
+-keep class rachman.forniandi.core.data.network.** { *; }
+
+# Keep Room database entities and DAOs
 -keep class rachman.forniandi.core.data.local.entity.** { *; }
 -keep class rachman.forniandi.core.data.local.room.** { *; }
--keep class rachman.forniandi.core.data.local.ContentsLocalDataSource { *; }
+-keep class * extends androidx.room.RoomDatabase { *; }
+-keep @androidx.room.Entity class *
+-keep @androidx.room.Dao class *
+-keep @androidx.room.Database class *
 
-# DATA LAYER - NETWORK & REMOTE
--keep class rachman.forniandi.core.data.network.** { *; }
--keep interface rachman.forniandi.core.data.network.** { *; }
--keep class rachman.forniandi.core.data.remote.response.** { *; }
-
-# DI MODULES
+# Keep Dagger/Hilt generated classes
 -keep class rachman.forniandi.core.di.** { *; }
+-keep class * extends dagger.internal.Factory { *; }
+-keep class * extends dagger.internal.Provider { *; }
+-keep class * extends dagger.internal.DoubleCheck { *; }
+-keep class * extends javax.inject.Provider { *; }
 
-# DOMAIN LAYER
--keep class rachman.forniandi.core.domain.** { *; }
+# Keep domain models and use cases
 -keep class rachman.forniandi.core.domain.entity.** { *; }
--keep class rachman.forniandi.core.domain.interactor.** { *; }
 -keep class rachman.forniandi.core.domain.usecase.** { *; }
--keep class rachman.forniandi.core.domain.paging.** { *; }
--keep class rachman.forniandi.core.domain.repositories.** { *; }
+-keep class rachman.forniandi.core.domain.interactor.** { *; }
 
-# UTILITIES
+# Keep repositories
+-keep class rachman.forniandi.core.repositories.** { *; }
+
+# Keep utility classes
 -keep class rachman.forniandi.core.utilRemote.** { *; }
 
-# === DAGGER/HILT GENERATED CLASSES ===
--keep class **._Factory { *; }
--keep class **._MembersInjector { *; }
--keep class **.HiltModules { *; }
--keep class **.Hilt_* { *; }
--keep class * extends dagger.hilt.internal.GeneratedComponent { *; }
+# Retrofit and network rules
+-keep class rachman.forniandi.core.data.remote.response.** { *; }
+-keep class rachman.forniandi.core.data.network.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+-keepattributes *Annotation*
+-keepattributes RuntimeVisibleAnnotations
+-keepattributes RuntimeVisibleParameterAnnotations
+-keepattributes RuntimeVisibleTypeAnnotations
+-keepattributes EnclosingMethod
 
-# === SQLCIPHER (ENKRIPSI DATABASE) ===
--keep class net.sqlcipher.** { *; }
--keep interface net.sqlcipher.** { *; }
--dontwarn net.sqlcipher.**
-
-# === ROOM DATABASE ===
--keep class androidx.room.** { *; }
--keep @androidx.room.Entity class *
--keep class * extends androidx.room.RoomDatabase
--keep class * extends androidx.room.RoomDatabase$* { *; }
--dontwarn androidx.room.paging.**
-
-# === RETROFIT, OKHTTP, OKIO ===
+# Retrofit specific rules
 -keep class retrofit2.** { *; }
 -keep class okhttp3.** { *; }
--keep class okio.** { *; }
 -dontwarn retrofit2.**
 -dontwarn okhttp3.**
 -dontwarn okio.**
 
-# === KOTLIN & COROUTINES ===
--keep class kotlin.Metadata { *; }
--keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
--keepclassmembers class ** {
-    public static ** INSTANCE;
-    **$Companion **;
-}
-
-# === ENUM & PARCELABLE ===
--keepclassmembers enum * {
-    public static **[] values();
-    public static ** valueOf(java.lang.String);
-}
+# Keep Parcelable classes
 -keep class * implements android.os.Parcelable {
     public static final android.os.Parcelable$Creator *;
 }
 
-# === ANNOTATIONS ===
--keepattributes *Annotation*
--keepattributes Signature
--keepattributes Exceptions
--keepattributes RuntimeVisibleAnnotations
+# Keep Serializable classes
+-keep class * implements java.io.Serializable {
+    *;
+}
+
+# Keep enum classes
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+# Keep classes with @Keep annotation
+-keep @androidx.annotation.Keep class *
+-keepclassmembers class * {
+    @androidx.annotation.Keep *;
+}
+
+# R8 full mode compatibility (AGP 8+)
+-keep,allowoptimization,allowobfuscation,allowshrinking class * extends androidx.lifecycle.ViewModel {
+    <init>();
+}
+-keep,allowoptimization,allowobfuscation,allowshrinking class * extends android.app.Application {
+    <init>();
+}
+
+# Keep constructors for Dagger/Hilt
+-keepclassmembers class * {
+    @dagger.* <init>(...);
+    @javax.inject.* <init>(...);
+}
+
+# Ignore warnings for missing classes (if they're not critical)
+-dontwarn rachman.forniandi.core.data.local.ContentsLocalDataSource
+-dontwarn rachman.forniandi.core.data.local.datasource.DataSourceReference
+-dontwarn rachman.forniandi.core.data.local.datasource.SettingPreferenceImpl
+-dontwarn rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
+-dontwarn rachman.forniandi.core.data.local.room.ContentsDao
+-dontwarn rachman.forniandi.core.data.local.room.FavoriteContentDao
+-dontwarn rachman.forniandi.core.data.network.NetworkService
+-dontwarn rachman.forniandi.core.data.network.RemoteResponse$Error
+-dontwarn rachman.forniandi.core.data.network.RemoteResponse$Loading
+-dontwarn rachman.forniandi.core.data.network.RemoteResponse$Success
+-dontwarn rachman.forniandi.core.data.network.RemoteResponse
+-dontwarn rachman.forniandi.core.data.remote.response.RemoteSourceData
+-dontwarn rachman.forniandi.core.di.DatabaseModule_ProvideContentsDaoFactory
+-dontwarn rachman.forniandi.core.di.DatabaseModule_ProvideContentsDatabaseFactory
+-dontwarn rachman.forniandi.core.di.DatabaseModule_ProvideDatabasePassphraseFactory
+-dontwarn rachman.forniandi.core.di.DatabaseModule_ProvideFavoriteContentDaoFactory
+-dontwarn rachman.forniandi.core.di.DatabaseModule_ProvideSupportFactoryFactory
+-dontwarn rachman.forniandi.core.di.LocalDataSourceModule_ProvideContentsLocalDataSourceFactory
+-dontwarn rachman.forniandi.core.di.NetworkModule_ProvideApiServiceFactory
+-dontwarn rachman.forniandi.core.di.NetworkModule_ProvideCheckerCollectorFactory
+-dontwarn rachman.forniandi.core.di.NetworkModule_ProvideCheckerInterceptorFactory
+-dontwarn rachman.forniandi.core.di.NetworkModule_ProvideConverterFactoryFactory
+-dontwarn rachman.forniandi.core.di.NetworkModule_ProvideHttpClientFactory
+-dontwarn rachman.forniandi.core.di.NetworkModule_ProvideRetrofitInstanceNetFactory
+-dontwarn rachman.forniandi.core.domain.entity.AuthorContents
+-dontwarn rachman.forniandi.core.domain.entity.ContentType
+-dontwarn rachman.forniandi.core.domain.entity.Contents
+-dontwarn rachman.forniandi.core.domain.interactor.ArticlesInteractor
+-dontwarn rachman.forniandi.core.domain.interactor.BlogsInteractor
+-dontwarn rachman.forniandi.core.domain.interactor.FavoriteContentsInteractor
+-dontwarn rachman.forniandi.core.domain.usecase.ArticlesUseCase
+-dontwarn rachman.forniandi.core.domain.usecase.BlogsUseCase
+-dontwarn rachman.forniandi.core.domain.usecase.FavoriteContentUseCase
+-dontwarn rachman.forniandi.core.repositories.ContentsRepository
+-dontwarn rachman.forniandi.core.repositories.ContentsRepositoryImpl
+-dontwarn rachman.forniandi.core.utilRemote.AttributeMapperKt
+-dontwarn rachman.forniandi.core.utilRemote.NavigationProvider
+-dontwarn rachman.forniandi.core.utilRemote.ViewSupportKt

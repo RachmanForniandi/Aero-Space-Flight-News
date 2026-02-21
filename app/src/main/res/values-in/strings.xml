@@ -14,10 +14,10 @@
     <string name="image_of_detail_articles">gambar dari detail artikel</string>
     <string name="image_of_detail_blogs">gambar dari detail blog</string>
     <string name="bookmarked_data_articles">data artikel ditandai</string>
-    <string name="source">Sumber:</string>
-    <string name="author">Penulis:</string>
-    <string name="published_at">Waktu terbit:</string>
-    <string name="updated_at">Waktu update:</string>
+    <string name="source">Sumber: %s</string>
+    <string name="author">Penulis: %s</string>
+    <string name="published_at">Waktu terbit: %1$s</string>
+    <string name="updated_at">Waktu update: %1$s</string>
     <string name="click_here_for_more_details">Klik disini untuk detail lebih lengkap</string>
     <string name="bookmarked_data_blogs">data blog ditandai</string>
     <string name="loading_detail">Memuat detail....</string>

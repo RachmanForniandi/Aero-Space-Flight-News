@@ -12,7 +12,7 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
-private const val FILE_DATE_FORMAT = "dd-MMMM-yyyy HH:mm"
+private const val FILE_DATE_FORMAT = "dd MMMM yyyy"
 
 fun getStringDate(date: String?): String {
     return if (date.isNullOrEmpty()) {

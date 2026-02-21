@@ -77,10 +77,10 @@ class DetailBlogsFragment : Fragment() {
                     val dateUpdated = getStringDate(detailContent?.updatedAt)
                     txtTitleContent.text = detailContent?.title
                     txtSummaryContent.text = detailContent?.summary
-                    txtPublishedAt.text = datePublished
-                    txtUpdatedAt.text = dateUpdated
-                    txtSource.text = detailContent?.newsSite
-                    txtAuthor.text = detailContent?.authors?.firstOrNull()?.name
+                    txtLblPublishedAt.text = getString(R.string.published_at,datePublished)
+                    txtLblUpdatedAt.text = getString(R.string.updated_at,dateUpdated)
+                    txtLblSource.text = getString(R.string.source,detailContent?.newsSite)
+                    txtLblAuthor.text = getString(R.string.author,detailContent?.authors?.firstOrNull()?.name)
 
                     imgOfContent.load(detailContent?.imageUrl){
                         placeholder(R.drawable.place_holder)

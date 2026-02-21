@@ -15,10 +15,10 @@
     <string name="image_of_detail_articles">image of detail articles</string>
     <string name="image_of_detail_blogs">image of detail blogs</string>
     <string name="bookmarked_data_articles">data articles</string>
-    <string name="source">Source:</string>
-    <string name="author">Author:</string>
-    <string name="published_at">Published at:</string>
-    <string name="updated_at">Updated at:</string>
+    <string name="source">Source: %s</string>
+    <string name="author">Author: %s</string>
+    <string name="published_at">Published at: %s</string>
+    <string name="updated_at">Updated at: %s</string>
     <string name="click_here_for_more_details">Click here for more details</string>
     <string name="bookmarked_data_blogs">Bookmarked data blogs</string>
     <string name="loading_detail">Loading detail....</string>
