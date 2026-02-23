@@ -22,8 +22,9 @@
 
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
 
-        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigation</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNav</item>
     </style>
+
 
     <style name="Theme.AeroSpaceFlightNews" parent="Base.Theme.AeroSpaceFlightNews" />
 
@@ -31,13 +32,17 @@
 
     <style name="Widget.App.BottomNav"
         parent="Widget.Material3.BottomNavigationView">
-        <item name="itemIconTint">@drawable/bottom_nav_selector_night</item>
-        <item name="itemTextColor">@drawable/bottom_nav_selector_night</item>
+        <item name="itemIconTint">@drawable/bottom_nav_selector_light</item>
+        <item name="itemTextColor">@drawable/bottom_nav_selector_light</item>
         <item name="labelVisibilityMode">labeled</item>
     </style>
 
     <style name="CustomImageSplash">
         <item name="android:src">@drawable/ic_dicoding_logo</item>
+    </style>
+
+    <style name="CustomBackgroundLoading">
+        <item name="android:background">@color/dark</item>
     </style>
 
     <style name="Widget.App.BottomNavigation" parent="Widget.Material3.BottomNavigationView">

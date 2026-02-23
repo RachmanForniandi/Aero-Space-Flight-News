@@ -16,7 +16,6 @@
         android:icon="@drawable/ic_captive_portal"
         />
 
-
     <item android:id="@+id/favorite_navigation"
         android:title="@string/favorite"
         android:icon="@drawable/ic_favorite_tab"/>

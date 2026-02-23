@@ -31,9 +31,9 @@
 
     </style>
 
-
-
-
+    <style name="CustomBackgroundLoading">
+        <item name="android:background">@color/darkGray</item>
+    </style>
 
     <style name="CustomColorTextStyle">
         <item name="android:textColor">@color/colorText</item>
