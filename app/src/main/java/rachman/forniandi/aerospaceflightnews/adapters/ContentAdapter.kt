@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import rachman.forniandi.aerospaceflightnews.databinding.ItemContentBinding
-import rachman.forniandi.core.R
 import rachman.forniandi.core.domain.entity.Contents
+import rachman.forniandi.aerospaceflightnews.*
 
 class ContentAdapter (private val onItemClicked: (contents: Contents?) -> Unit):
 PagingDataAdapter<Contents, ContentAdapter.ContentHolder>(DIFF_CALLBACK){
@@ -39,8 +39,8 @@ PagingDataAdapter<Contents, ContentAdapter.ContentHolder>(DIFF_CALLBACK){
                 Glide.with(itemView.context)
                     .load(contents?.imageUrl)
                     .centerCrop()
-                    .placeholder(R.drawable.place_holder)
-                    .error(R.drawable.error_placeholder)
+                    .placeholder(R.drawable.ic_place_holder)
+                    .error(R.drawable.ic_error_placeholder)
                     .into(imgContent)
 
                 txtTitleContent.text = contents?.title

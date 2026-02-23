@@ -32,10 +32,10 @@ android {
         }
         debug {
             isMinifyEnabled =false
-            /*proguardFiles(
+            proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
-            )*/
+            )
         }
     }
     compileOptions {

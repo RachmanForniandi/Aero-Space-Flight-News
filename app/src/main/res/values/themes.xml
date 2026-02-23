@@ -21,6 +21,8 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
 
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigation</item>
     </style>
 
     <style name="Theme.AeroSpaceFlightNews" parent="Base.Theme.AeroSpaceFlightNews" />
@@ -29,31 +31,19 @@
 
     <style name="Widget.App.BottomNav"
         parent="Widget.Material3.BottomNavigationView">
-
-        <!-- Warna icon & text -->
-        <item name="itemIconTint">@drawable/bottom_nav_selector</item>
-        <item name="itemTextColor">@drawable/bottom_nav_selector</item>
-
-        <!-- Label -->
+        <item name="itemIconTint">@drawable/bottom_nav_selector_night</item>
+        <item name="itemTextColor">@drawable/bottom_nav_selector_night</item>
         <item name="labelVisibilityMode">labeled</item>
-
-        <!-- Indicator (Material 3 style) -->
-        <item name="itemActiveIndicatorStyle">
-            @style/Widget.App.BottomNav.ActiveIndicator
-        </item>
-
     </style>
 
     <style name="CustomImageSplash">
-        <item name="android:src">@drawable/dicoding_logo</item>
+        <item name="android:src">@drawable/ic_dicoding_logo</item>
     </style>
 
-    <style name="Widget.App.BottomNav.ActiveIndicator">
-        <item name="android:color">?attr/colorSecondaryContainer</item>
-        <item name="android:height">32dp</item>
-        <item name="shapeAppearance">
-            @style/ShapeAppearance.App.BottomNav.Indicator
-        </item>
+    <style name="Widget.App.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@drawable/bottom_nav_selector_light</item>
+        <item name="itemTextColor">@drawable/bottom_nav_selector_light</item>
+        <item name="labelVisibilityMode">labeled</item>
     </style>
 
     <style name="WhiteBackgroundTheme" parent="Theme.Material3.DayNight.NoActionBar">
@@ -64,10 +54,7 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
-    <style name="ShapeAppearance.App.BottomNav.Indicator"
-        parent="ShapeAppearance.Material3.Corner.Full">
-        <item name="cornerSize">16dp</item>
-    </style>
+
 
     <style name="CustomActionBarStyle">
         <item name="android:background">@color/actionBarBackgroundColor</item>
@@ -88,13 +75,6 @@
         <item name="android:textColor">@color/colorTextMaterial</item>
     </style>
 
-    <style name="CustomContentScrim">
-        <item name="android:background">@color/actionBarBackgroundColor</item>
-    </style>
-
-    <style name="customColorTintIcon">
-        <item name="android:tint">@color/tintColorIcon</item>
-    </style>
 
 
     <style name="CustomButtonStyle">

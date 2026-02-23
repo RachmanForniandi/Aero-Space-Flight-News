@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="280dp"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    style="@style/customItemCardList">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="180dp"
             android:contentDescription="@string/image_carousel_content"
-            android:src="@drawable/placeholder_portrait"
+            android:src="@drawable/ic_place_holder"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             app:layout_constraintStart_toStartOf="parent"

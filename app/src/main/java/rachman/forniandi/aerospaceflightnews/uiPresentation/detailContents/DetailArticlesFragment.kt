@@ -86,7 +86,7 @@ class DetailArticlesFragment : Fragment() {
                     txtLblSource.text = getString(R.string.source,detailContent?.newsSite)
                     txtLblAuthor.text = getString(R.string.author,detailContent?.authors?.firstOrNull()?.name)
                     imgOfContent.load(detailContent?.imageUrl){
-                        placeholder(R.drawable.place_holder)
+                        placeholder(R.drawable.ic_place_holder)
                         //error(R.drawable.place_holder)
                         crossfade(true)
                     }

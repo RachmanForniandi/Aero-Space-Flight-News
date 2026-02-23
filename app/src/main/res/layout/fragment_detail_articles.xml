@@ -58,7 +58,7 @@
                 android:layout_marginTop="12dp"
                 android:contentDescription="@string/image_of_detail_articles"
                 android:scaleType="fitXY"
-                android:src="@drawable/place_holder"
+                android:src="@drawable/ic_place_holder"
                 app:layout_constraintTop_toBottomOf="@id/txt_lbl_updated_at"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

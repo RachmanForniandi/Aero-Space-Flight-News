@@ -17,20 +17,30 @@
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
 
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigation</item>
+    </style>
+
+    <!-- Bottom Navigation Style -->
+    <style name="Widget.App.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <!-- Warna icon & text menggunakan selector -->
+        <item name="itemIconTint">@drawable/bottom_nav_selector_night</item>
+        <item name="itemTextColor">@drawable/bottom_nav_selector_night</item>
+
+        <!-- Label selalu terlihat -->
+        <item name="labelVisibilityMode">labeled</item>
 
     </style>
+
+
+
+
 
     <style name="CustomColorTextStyle">
         <item name="android:textColor">@color/colorText</item>
     </style>
 
-    <style name="customItemCardList">
-        <item name="cardBackgroundColor">@color/colorSurface</item>
-        <item name="strokeColor">@color/colorDivider</item>
-    </style>
-
     <style name="CustomImageSplash">
-        <item name="android:src">@drawable/dicoding_cover_dark</item>
+        <item name="android:src">@drawable/ic_dicoding_dark</item>
     </style>
 
 
@@ -41,31 +51,6 @@
     <style name="WhiteBackgroundDialogTheme" parent="Theme.Material3.DayNight.Dialog">
         <item name="android:windowBackground">@color/white</item>
     </style>
-
-    <style name="Widget.App.BottomNavigation"
-        parent="Widget.Material3.BottomNavigationView">
-
-        <!-- Warna icon & text -->
-        <item name="itemIconTint">@drawable/bottom_nav_selector</item>
-        <item name="itemTextColor">@drawable/bottom_nav_selector</item>
-
-        <!-- Label -->
-        <item name="labelVisibilityMode">labeled</item>
-
-        <!-- Indicator (Material 3 style) -->
-        <item name="itemActiveIndicatorStyle">
-            @style/Widget.App.BottomNav.ActiveIndicator
-        </item>
-
-    </style>
-    <style name="Widget.App.BottomNav.ActiveIndicator">
-        <item name="android:color">?attr/colorSecondaryContainer</item>
-        <item name="android:height">32dp</item>
-        <item name="shapeAppearance">
-            @style/ShapeAppearance.App.BottomNav.Indicator
-        </item>
-    </style>
-
 
 
     <style name="CustomMaterialTextView">
@@ -80,11 +65,6 @@
     <style name="CustomActionBarStyle">
         <item name="android:background">@color/actionBarBackgroundColor</item>
     </style>
-
-    <style name="customTintIcon">
-        <item name="android:tint">@color/tintColorIcon</item>
-    </style>
-
 
 
     <style name="CustomButtonStyle">

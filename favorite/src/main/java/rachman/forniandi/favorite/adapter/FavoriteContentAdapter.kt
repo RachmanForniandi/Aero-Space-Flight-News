@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import rachman.forniandi.core.data.local.entity.FavoriteContentsEntity
 import androidx.recyclerview.widget.ListAdapter
 import rachman.forniandi.aerospaceflightnews.databinding.ItemContentBinding
-import rachman.forniandi.core.R.drawable.*
+import rachman.forniandi.aerospaceflightnews.*
 
 class FavoriteContentAdapter (
     private val onItemClicked: (FavoriteContentsEntity) -> Unit
@@ -42,8 +42,8 @@ class FavoriteContentAdapter (
                 Glide.with(itemView.context)
                     .load(contents.imageUrl)
                     .centerCrop()
-                    .placeholder(place_holder)
-                    .error(error_placeholder)
+                    .placeholder(R.drawable.ic_place_holder)
+                    .error(R.drawable.ic_error_placeholder)
                     .into(imgContent)
 
                 txtTitleContent.text = contents.title

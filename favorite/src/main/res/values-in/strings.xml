@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello_blank_fragment">Halo fragment kosong</string>
     <string name="title_favorite">Favorit</string>
     <string name="delete_all_favorites">Hapus semua favorit</string>
     <string name="no">Tidak</string>
