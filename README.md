@@ -79,84 +79,16 @@ AeroSpaceFlightNews/
 
 ## 📸 Screenshots
 
-### 1. Splashscreen
+|Splashscreen|Tab 1(Home)|Tab 2(Articles)|Tab 3 (Blogs)|
+|--|--|--|--|
+|![](assets/ss/1.jpeg?raw=true)|![](assets/ss/2.jpeg?raw=true)|![](assets/ss/3.jpeg?raw=true)|![](assets/ss/4.jpeg?raw=true)|
 
-<p align="center">
-  <img src="assets/ss/1.jpeg" width="300" alt="Splashscreen"/>
-</p>
-
-> Animated launch screen with Lottie rocket animation, app name, and API attribution.
-
----
-
-### 2. Tab 1 — Home
-
-<p align="center">
-  <img src="assets/ss/2.jpeg" width="300" alt="Home Tab"/>
-</p>
-
-> Displays **Top 10 Articles** and **Top 10 Blogs** in a horizontally scrollable card list. Tap the ⚙️ icon to access Settings.
-
----
-
-### 3. Tab 2 — Articles
-
-<p align="center">
-  <img src="assets/ss/3.jpeg" width="300" alt="Articles Tab"/>
-</p>
-
-> Full paginated list of aerospace articles fetched from the Spaceflight News API, displayed in a vertical card layout with shimmer loading.
-
----
-
-### 4. Tab 3 — Blogs
-
-<p align="center">
-  <img src="assets/ss/4.jpeg" width="300" alt="Blogs Tab"/>
-</p>
-
-> Full paginated list of space blogs with pull-to-refresh support and shimmer skeleton loading.
-
----
-
-### 5. Tab 4 — Favorites
-
-<p align="center">
-  <img src="assets/ss/5.jpeg" width="300" alt="Favorites Tab"/>
-</p>
-
-> Saved favorite articles and blogs stored locally in an encrypted Room database (SQLCipher). Includes a floating **Clear All** button to remove all favorites at once.
-
----
-
-### 6. Detail
-
-<p align="center">
-  <img src="assets/ss/6.jpeg" width="300" alt="Detail Screen"/>
-</p>
-
-> Article/Blog detail page showing title, published date, updated date, image, source, author, and summary. Includes a ⭐ **Add to Favorites** button and a **"Click here for more details"** button that opens the full article in a WebView.
-
----
-
-### 7. Detail (WebView)
-
-<p align="center">
-  <img src="assets/ss/7.jpeg" width="300" alt="Detail WebView"/>
-</p>
-
-> Opens the original article source URL directly inside the app using an in-app WebView, providing a seamless reading experience without leaving the application.
-
----
-
-### 8. Settings
-
-<p align="center">
-  <img src="assets/ss/8.jpeg" width="300" alt="Settings Screen"/>
-</p>
+|Tab 4 (Favorites)|Detail|Detail (Webview)|Settings|
+|--|--|--|--|
+|![](assets/ss/5.jpeg?raw=true)|![](assets/ss/6.jpeg?raw=true)|![](assets/ss/7.jpeg?raw=true)|![](assets/ss/8.jpeg?raw=true)|
 
 > Settings page accessible from the Home toolbar. Options include:
-> - **Change Language** — Switch the app language
+> - **Change Language** — Switch the app language (English <-> Indo)
 > - **Change Theme** — Toggle between Light 🌤️ and Dark 🌙 mode
 
 ---
@@ -179,18 +111,6 @@ Open the project in Android Studio and run the `:app` module.
 
 ---
 
-## 🌐 API Reference
-
-This app uses the free public [Spaceflight News API v4](https://api.spaceflightnewsapi.net/v4/).
-
-| Endpoint | Description |
-|---|---|
-| `/v4/articles/` | Fetch paginated articles |
-| `/v4/blogs/` | Fetch paginated blogs |
-| `/v4/articles/{id}` | Fetch article detail |
-| `/v4/blogs/{id}` | Fetch blog detail |
-
----
 
 ## 📄 License
 
@@ -212,4 +132,4 @@ limitations under the License.
 
 ---
 
-<p align="center">Made with ❤️ by <strong>Rachman Forniandi</strong> · Supported by <a href="https://www.dicoding.com">Dicoding</a></p>
+Supported by <a href="https://www.dicoding.com">Dicoding</a></p>
