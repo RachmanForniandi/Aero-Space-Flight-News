@@ -1,7 +1,7 @@
 ﻿<h1 align="center">🚀 Aero Space Flight News</h1>
 
 <p align="center">
-  An Android application that brings you the latest aerospace &amp; spaceflight news, articles, and blogs — powered by the public <a href="https://api.spaceflightnewsapi.net">Spaceflight News API</a>.
+  An Android application that brings you the latest aerospace &amp; spaceflight news, articles, and blogs — powered by the public API <a href="https://api.spaceflightnewsapi.net">Spaceflight News API</a>.
 </p>
 
 <p align="center">
