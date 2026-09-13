@@ -2,19 +2,17 @@ package rachman.forniandi.aerospaceflightnews.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import rachman.forniandi.aerospaceflightnews.R
 import rachman.forniandi.aerospaceflightnews.databinding.ItemContentBinding
-import rachman.forniandi.aerospaceflightnews.domain.Contents
-import rachman.forniandi.aerospaceflightnews.util.ContentDiffUtil
+import rachman.forniandi.core.domain.entity.Contents
+import rachman.forniandi.aerospaceflightnews.*
 
-class ContentAdapter (): RecyclerView.Adapter
-<ContentAdapter.ContentHolder>(){
+class ContentAdapter (private val onItemClicked: (contents: Contents?) -> Unit):
+PagingDataAdapter<Contents, ContentAdapter.ContentHolder>(DIFF_CALLBACK){
 
-    private var events = listOf<Contents>()
-    private var onClickListener: OnContentClickListener ?= null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,48 +26,42 @@ class ContentAdapter (): RecyclerView.Adapter
         holder: ContentHolder,
         position: Int
     ) {
-        val eventData = events[position]
-        holder.bind(eventData)
-        holder.itemView.setOnClickListener {
-            onClickListener?.onClick(position,eventData)
-        }
+        val contents = getItem(position)
+        holder.bind(contents)
 
     }
 
-    override fun getItemCount(): Int {
-        return events.size
-    }
+
 
     inner class ContentHolder (private val binding: ItemContentBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(contents: Contents){
+        fun bind(contents: Contents?){
             binding.apply {
                 Glide.with(itemView.context)
-                    .load(contents.imageUrl)
+                    .load(contents?.imageUrl)
                     .centerCrop()
-                    .placeholder(R.drawable.place_holder)
-                    .error(R.drawable.error_placeholder)
+                    .placeholder(R.drawable.ic_place_holder)
+                    .error(R.drawable.ic_error_placeholder)
                     .into(imgContent)
 
-                txtTitleContent.text = contents.title
-
+                txtTitleContent.text = contents?.title
+            }
+            itemView.setOnClickListener {
+                onItemClicked(contents)
             }
 
         }
     }
 
-    fun setOnClickListener(onClickListener: OnContentClickListener ) {
-        this.onClickListener = onClickListener
-    }
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Contents>() {
+            override fun areItemsTheSame(oldItem: Contents, newItem: Contents): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    interface OnContentClickListener {
-        fun onClick(position: Int, idContent: Contents)
-    }
-
-    fun setData(eventData: List<Contents>){
-        val dataDiffUtil = ContentDiffUtil(events,eventData)
-        val diffUtilResult = DiffUtil.calculateDiff(dataDiffUtil)
-        events = eventData
-        diffUtilResult.dispatchUpdatesTo(this)
+            override fun areContentsTheSame(oldItem: Contents, newItem: Contents): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
 }

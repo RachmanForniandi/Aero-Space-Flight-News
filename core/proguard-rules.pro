@@ -19,3 +19,28 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# Aturan internal untuk core module
+# Biasanya hanya untuk testing atau debugging
+
+# SQLCipher native libraries
+-keep class net.sqlcipher.** { *; }
+-dontwarn net.sqlcipher.**
+
+# Native methods untuk SQLCipher
+-keepclassmembers class net.sqlcipher.database.SQLiteDatabase {
+    native <methods>;
+}
+
+# Testing libraries (hanya untuk internal)
+-dontwarn org.junit.**
+-dontwarn org.mockito.**
+-dontwarn org.assertj.**
+
+# Debug logging - akan dihapus di release
+-assumenosideeffects class android.util.Log {
+    public static *** d(...);
+    public static *** v(...);
+    public static *** i(...);
+}
+
+

@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="title_favorite">Favorite</string>
+
+    <string name="delete_all_favorites">Delete all favorites</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="are_you_sure_do_you_want_to_delete_all_favorites">Are you sure do you want to delete all favorite?</string>
+    <string name="all_favorites_deleted">All favorites deleted</string>
+    <string name="no_data_favorites_available">No data favorites available</string>
+    <string name="image_no_data_favorites_available">Image no data favorites available</string>
+    <string name="host_activity_must_implement_navigation_provider">Host activity must implement NavigationProvider</string>
+    <string name="button_clear_favorite_content">button clear favorite content</string>
+</resources>

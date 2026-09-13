@@ -1,0 +1,5 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@style/WhiteBackgroundTheme,
+                @style/WhiteBackgroundDialogTheme,
+                @mipmap/ic_launcher.webp"
+    />

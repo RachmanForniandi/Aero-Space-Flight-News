@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.AeroSpaceFlightNews" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
@@ -9,14 +9,49 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigation</item>
+    </style>
+
+    <!-- Bottom Navigation Style -->
+    <style name="Widget.App.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <!-- Warna icon & text menggunakan selector -->
+        <item name="itemIconTint">@drawable/bottom_nav_selector_night</item>
+        <item name="itemTextColor">@drawable/bottom_nav_selector_night</item>
+
+        <!-- Label selalu terlihat -->
+        <item name="labelVisibilityMode">labeled</item>
+
+    </style>
+
+    <style name="CustomBackgroundLoading">
+        <item name="android:background">@color/darkGray</item>
     </style>
 
     <style name="CustomColorTextStyle">
         <item name="android:textColor">@color/colorText</item>
     </style>
+
+    <style name="CustomImageSplash">
+        <item name="android:src">@drawable/ic_dicoding_dark</item>
+    </style>
+
+
+    <style name="WhiteBackgroundTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="WhiteBackgroundDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
 
     <style name="CustomMaterialTextView">
         <item name="android:background">@drawable/bg_tv_item_white_mini</item>
@@ -24,7 +59,6 @@
     </style>
 
     <style name="setting_tv_menu">
-        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -32,13 +66,6 @@
         <item name="android:background">@color/actionBarBackgroundColor</item>
     </style>
 
-    <style name="customTintIcon">
-        <item name="android:tint">@color/tintColorIcon</item>
-    </style>
-
-    <style name="CustomImageSplash">
-        <item name="android:src">@drawable/dicoding_cover_dark</item>
-    </style>
 
     <style name="CustomButtonStyle">
         <item name="android:backgroundTint">@color/actionBarBackgroundColor</item>

@@ -1,4 +1,4 @@
-pluginManagement {
+/*pluginManagement {
     repositories {
         google {
             content {
@@ -7,6 +7,13 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}*/
+pluginManagement {
+    repositories {
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -22,3 +29,4 @@ dependencyResolutionManagement {
 rootProject.name = "Aero Space Flight News"
 include(":app")
 include(":core")
+include(":favorite")

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/favoriteContentFragment"
+    tools:ignore="UnusedResources">
+
+
+    <fragment
+        android:id="@+id/favoriteContentFragment"
+        android:name="rachman.forniandi.favorite.ui.FavoriteContentFragment"
+        android:label="fragment_favorite_content"
+        tools:layout="@layout/fragment_favorite_content">
+
+
+
+    </fragment>
+
+
+</navigation>

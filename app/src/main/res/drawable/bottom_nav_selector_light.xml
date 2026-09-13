@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!--State: item dipilih/aktif-->
+    <item android:state_checked="true" android:color="@color/purple_500"/>
+<!--Warna saat aktif (ungu gelap)-->
+<!--State: default / tidak dipilih-->
+    <item android:color="@color/black"/>
+</selector>

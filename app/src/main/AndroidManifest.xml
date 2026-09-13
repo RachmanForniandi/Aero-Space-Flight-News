@@ -8,27 +8,30 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AeroSpaceFlightNews"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".uiPresentation.DetailContents.DetailContentsWebviewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".uiPresentation.DetailContents.DetailContentsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".uiPresentation.MainActivity"
-            android:exported="true">
+            android:name=".uiPresentation.splash.SplashScreenActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".uiPresentation.settings.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uiPresentation.detailContents.DetailContentsWebviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uiPresentation.main.MainActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

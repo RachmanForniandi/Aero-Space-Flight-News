@@ -1,10 +1,10 @@
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.daggerhilt)
-    id("androidx.navigation.safeargs")
+    alias (libs.plugins.kotlin.parcelize)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "rachman.forniandi.aerospaceflightnews"
-        minSdk = 24
+        minSdk = 27
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -22,16 +22,20 @@ android {
     }
 
     buildTypes {
-        debug{
-            buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
-        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled =true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://api.spaceflightnewsapi.net/v4/\"")
+        }
+        debug {
+            isMinifyEnabled =false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -44,69 +48,68 @@ android {
 
     buildFeatures {
         viewBinding= true
-        buildConfig= true
+        buildConfig = true
     }
+
+    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {
     implementation (project(":core"))
-    implementation(libs.androidx.core.ktx)
+    api(libs.androidx.appcompat)
+    api(libs.material)
+    api(libs.androidx.activity)
+    api(libs.androidx.constraintlayout)
+
+    //dagger hilt
+    api (libs.hilt.android)
+    implementation(libs.androidx.preference)
+    debugImplementation(libs.leakcanary.android)
+    ksp (libs.hilt.compiler)
+    ksp (libs.dagger.compiler)
+
+    //lottie
+    implementation(libs.lottie)
+
+
+    implementation(libs.gms.play.services.base)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
 
-    //Retrofit
-    implementation (libs.okhttp)
-    implementation (libs.logging.interceptor)
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
-    implementation (libs.kotlinx.coroutines.core)
-    implementation (libs.kotlinx.coroutines.android)
 
+    api(libs.paging.runtime.ktx)
 
     //viewmodel
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.activity.ktx)
+    api (libs.androidx.lifecycle.viewmodel.ktx)
 
     //glide
-    implementation(libs.glide)
+    api(libs.glide)
+
+    //coil
+    api(libs.coil3.coil)
+    api(libs.coil3.okhttp)
+
+    //dynamic features
+    implementation(libs.androidx.navigation.dynamic.features.fragment)
 
     //lifecycle
-    implementation (libs.androidx.lifecycle.livedata.ktx)
+    api (libs.androidx.lifecycle.livedata.ktx)
 
     //Navigation
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.dynamic.features.runtime)
 
-    //Room
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.room.ktx)
-    implementation(libs.androidx.legacy.support.v4)
-    ksp(libs.room.compiler)
+    api(libs.facebook.shimmer)
 
-    //datastore
-    implementation(libs.androidx.datastore.preferences)
 
-    //gson
-    implementation(libs.gson)
-
-    //dagger hilt
-    implementation (libs.hilt.android)
-    ksp (libs.hilt.compiler)
-    ksp (libs.dagger.compiler)
-
-    //chucker
-    debugImplementation(libs.chucker.library)
-    releaseImplementation(libs.chucker.no.op)
 
     implementation(libs.androidx.swiperefreshlayout)
 
-    //facebook shimmer
-    implementation(libs.facebook.shimmer)
-
-    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
