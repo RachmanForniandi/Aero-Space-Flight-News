@@ -14,19 +14,6 @@
 
 ---
 
-## 📋 Table of Contents
-
-1. [Splashscreen](#1-splashscreen)
-2. [Tab 1 — Home](#2-tab-1--home)
-3. [Tab 2 — Articles](#3-tab-2--articles)
-4. [Tab 3 — Blogs](#4-tab-3--blogs)
-5. [Tab 4 — Favorites](#5-tab-4--favorites)
-6. [Detail](#6-detail)
-7. [Detail (WebView)](#7-detail-webview)
-8. [Settings](#8-settings)
-
----
-
 ## ✨ Features
 
 - 🏠 **Home** — Top 10 Articles & Blogs displayed in a horizontal scrollable carousel
